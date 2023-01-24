@@ -2,6 +2,7 @@ import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Test from "./components/TestComponent";
+import NewProtocolForm from "./components/ProtocolForm";
 
 // comment
 
@@ -23,7 +24,7 @@ function App() {
           };
         });
         setDrugList(updatedDrugList);
-        // console.log(`🌸 ${JSON.stringify(drugList)}`);
+        console.log(`🌸 ${JSON.stringify(drugList)}`);
       })
       .catch((error) => {
         console.log(error);
@@ -32,11 +33,41 @@ function App() {
 
   useEffect(loadDrugList, []);
 
+  const addProtocol = (newProtocolInfo) => {
+    axios.post();
+  };
+
   return (
     <div>
       <Test drugList={drugList} loadDrugList={loadDrugList}></Test>
+      <NewProtocolForm addProtocolCallbackFunc={addProtocol} />
     </div>
   );
 }
 
 export default App;
+
+// const addNewDrug = (newDrugInfo) => {
+//   console.log("create new drug called");
+//   axios
+//     .post("https://vet-anes.herokuapp.com/protocol/drugs", newDrugInfo)
+//     .then((response) => {
+//       const newDrugs = [...drugList];
+//       const newDrugJSON = {
+//         ...newDrugInfo,
+//         id: response.data.id,
+//         name: response.data.name,
+//         concentration: response.data.concentration,
+//         concentration_units: response.data.concentration_units,
+//         route: response.data.route,
+//       };
+//       newDrugs.push(newDrugJSON);
+//       setDrugList(newDrugs);
+//       loadDrugList();
+//       console.log(`${JSON.stringify(response)}`);
+//       // DO STUFF
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
