@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Test from "./components/TestComponent";
 
 function App() {
+  const [drugList, setDrugList] = useState([]);
+
+  const loadDrugList = () => {
+    axios
+      .get("https://vet-anes.herokuapp.com/protocol/drugs") // deployed
+      // .get("http://127.0.0.1:8000/protocol/drugs")  // local development
+      .then((response) => {
+        const updatedDrugList = response.data.map((drug) => {
+          return {
+            id: drug.id,
+            name: drug.name,
+            concentration: drug.concentration,
+            concentration_units: drug.concentration_units,
+            route: drug.route,
+          };
+        });
+        setDrugList(updatedDrugList);
+        // console.log(`🌸 ${JSON.stringify(drugList)}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(loadDrugList, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Test drugList={drugList} loadDrugList={loadDrugList}></Test>
     </div>
   );
 }
