@@ -1,5 +1,7 @@
 import React from "react";
 
+// comment
+
 const Test = ({ drugList, loadDrugList }) => {
   const drugComponents = [];
   for (const drug of drugList) {
