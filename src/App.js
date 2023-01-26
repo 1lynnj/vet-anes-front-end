@@ -8,10 +8,18 @@ function App() {
   const [drugList, setDrugList] = useState([]);
   const [protocol, setProtocol] = useState([]);
 
+  // var apiHost = null;
+  // if (window.location.host === "localhost:3000") {
+  //   apiHost = "http://127.0.0.1:8000";
+  // } else {
+  //   apiHost = "https://vet-anes.herokuapp.com";
+  // }
+
   const loadDrugList = () => {
     axios
-      // .get("https://vet-anes.herokuapp.com/protocol/drugs") // deployed
-      .get("http://127.0.0.1:8000/drugs") // local development
+      // .get(`${apiHost}/drugs`)
+      .get("https://vet-anes.herokuapp.com/drugs") // deployed
+      // .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugList = response.data.map((drug) => {
           return {
@@ -56,7 +64,9 @@ function App() {
 
   const apiCall = (params) => {
     axios
-      .post("http://127.0.0.1:8000/new_protocol", params)
+      // .post(`${apiHost}/drugs`, params)
+      .post("https://vet-anes.herokuapp.com/new_protocol", params)
+      // .post("http://127.0.0.1:8000/new_protocol", params)
       .then((response) => {
         console.log(`👁️${JSON.stringify(response)}`);
         const protocol_data = {
