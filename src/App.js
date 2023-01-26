@@ -10,8 +10,8 @@ function App() {
 
   const loadDrugList = () => {
     axios
-      .get("https://vet-anes.herokuapp.com/protocol/drugs") // deployed
-      // .get("http://127.0.0.1:8000/drugs") // local development
+      // .get("https://vet-anes.herokuapp.com/protocol/drugs") // deployed
+      .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugList = response.data.map((drug) => {
           return {
