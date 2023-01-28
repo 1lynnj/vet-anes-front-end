@@ -1,99 +1,149 @@
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Test from "./components/TestComponent";
+// import axios from "axios";
+import { useEffect, useState } from "react";
+// import Test from "./components/TestComponent";
+import PatientInfoForm from "./components/PatientInfoForm";
+import PatientWeightForm from "./components/PatientWeightForm";
 import NewProtocolForm from "./components/NewProtocolForm";
+// import NewDrugInput from "./components/NewDrugInput";
+// import NewProtocolForm from "./components/NewProtocolForm";
 
 function App() {
-  const [drugList, setDrugList] = useState([]);
-  const [protocol, setProtocol] = useState([]);
+  var INITIAL_DRUG_INPUTS = [
+    { i: 0, drug: "", dose: "", drugSet: "premed" },
+    { i: 1, drug: "", dose: "", drugSet: "premed" },
+    { i: 2, drug: "", dose: "", drugSet: "premed" },
+    { i: 3, drug: "", dose: "", drugSet: "induction" },
+    { i: 4, drug: "", dose: "", drugSet: "induction" },
+    { i: 5, drug: "", dose: "", drugSet: "induction" },
+    { i: 6, drug: "", dose: "", drugSet: "other" },
+    { i: 7, drug: "", dose: "", drugSet: "other" },
+    { i: 8, drug: "", dose: "", drugSet: "other" },
+    { i: 9, drug: "", dose: "", drugSet: "other" },
+  ];
 
-  // var apiHost = null;
-  // if (window.location.host === "localhost:3000") {
-  //   apiHost = "http://127.0.0.1:8000";
-  // } else {
-  //   apiHost = "https://vet-anes.herokuapp.com";
-  // }
+  const [patientInfo, setPatientInfo] = useState("");
+  const [patientWeight, setPatientWeight] = useState("");
+  const [newDrugInputs, setNewDrugInputs] = useState(INITIAL_DRUG_INPUTS);
 
-  const loadDrugList = () => {
-    axios
-      // .get(`${apiHost}/drugs`)
-      .get("https://vet-anes.herokuapp.com/drugs") // deployed
-      // .get("http://127.0.0.1:8000/drugs") // local development
-      .then((response) => {
-        const updatedDrugList = response.data.map((drug) => {
-          return {
-            ...drug,
-            // id: drug.id,
-            // name: drug.name,
-            // concentration: drug.concentration,
-            // concentration_units: drug.concentration_units,
-            // route: drug.route,
-          };
-        });
-        // console.log(`🤢 ${JSON.stringify(updatedDrugList)}`);
-        setDrugList(updatedDrugList);
-        // console.log(`🌸 ${JSON.stringify(drugList)}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const addNewPatientInfo = (newPatientInfo) => {
+    newPatientInfo = {
+      name: newPatientInfo.name,
+      signalment: newPatientInfo.signalment,
+    };
+    setPatientInfo(newPatientInfo);
   };
 
-  useEffect(loadDrugList, []);
+  const addNewPatientWeight = (newPatientWeight) => {
+    newPatientWeight = {
+      weight: newPatientWeight.weight,
+    };
+    setPatientWeight(newPatientWeight);
+  };
 
-  // DO I NEED A PATIENT DRUG LIST TO LOOP THROUGH TO MAKE POST REQUEST AND THEN TO DISPLAY DATA FOR EACH?
-
-  // const newProtocol = (newProtocolInfo) => {
-  //   axios
-  //     .post("http://127.0.0.1:8000/protocol/drugs", newProtocolInfo)
-  //     .then((response) => {
-  //       const newProtocolData = {
-  //         drug: response.data.drug,
-  //         concentration: response.data.concentration,
-  //         dose: response.data.dose,
-  //         volume: response.data.volume,
-  //         route: response.data.route,
-  //       };
-  //       setProtocol(newProtocolData);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  const apiCall = (params) => {
-    axios
-      // .post(`${apiHost}/drugs`, params)
-      .post("https://vet-anes.herokuapp.com/new_protocol", params)
-      // .post("http://127.0.0.1:8000/new_protocol", params)
-      .then((response) => {
-        console.log(`👁️${JSON.stringify(response)}`);
-        const protocol_data = {
-          drug: response.data.drug,
-          volume: response.data.volume,
+  const updateDrugList = (newDrugData) => {
+    // console.log(`2. updateDrugList is being called`);
+    //console.log(`😀 ${JSON.stringify(newDrugData)}`);
+    const updatedDrugList = [];
+    for (const drug of newDrugInputs) {
+      if (drug.i !== newDrugData.i) {
+        updatedDrugList.push(drug);
+      } else {
+        const newDrug = {
+          ...drug,
+          drug: newDrugData.drug,
+          dose: newDrugData.dose,
         };
-        console.log(`🤡${JSON.stringify(protocol_data)}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        updatedDrugList.push(newDrug);
+      }
+      console.log(`updatedDrugList: ${JSON.stringify(updatedDrugList)}`);
+      setNewDrugInputs(updatedDrugList);
+    }
   };
-
-  const params = {
-    drug: "Hydromorphone",
-    dose: 0.2,
-    weight: 30,
-  };
-
-  apiCall(params);
 
   return (
     <div>
-      <Test drugList={drugList} loadDrugList={loadDrugList}></Test>
-      {/* <NewProtocolForm onNewProtocolFormSubmit={newProtocol} /> */}
+      <header className="header">
+        <h1 cla>Veterinary Anesthesia Protocol</h1>
+      </header>
+      <div className="patient-information">
+        <h3>Patient Information:</h3>
+        <PatientInfoForm
+          sendPatientInfoToApp={addNewPatientInfo}
+        ></PatientInfoForm>
+      </div>
+      <div className="patient-weight">
+        <PatientWeightForm
+          sendPatientWeightToApp={addNewPatientWeight}
+        ></PatientWeightForm>
+      </div>
+      <div>
+        <NewProtocolForm
+          newDrugInputs={newDrugInputs}
+          updateDrugList={updateDrugList}
+        ></NewProtocolForm>
+      </div>
     </div>
   );
 }
 
 export default App;
+
+// WORKING FUNCTION
+// const loadDrugList = () => {
+//   axios
+//     // .get("https://vet-anes.herokuapp.com/drugs") // deployed
+//     .get("http://127.0.0.1:8000/drugs") // local development
+//     .then((response) => {
+//       const updatedDrugList = response.data.map((drug) => {
+//         return {
+//           ...drug,
+//         };
+//       });
+//       // console.log(`🤢 ${JSON.stringify(updatedDrugList)}`);
+//       setDrugList(updatedDrugList);
+//       // console.log(`🌸 ${JSON.stringify(drugList)}`);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
+
+// useEffect(loadDrugList, []);
+
+// NONWORKING FUNCTION
+// const loadProtocolDrugList = (NewProtocolFromInfo) => {
+//   console.log("load protocol");
+//   axios
+//     // .post("https://vet-anes.herokuapp.com/new_protocol", params)
+//     .post("http://127.0.0.1:8000/new_protocol", NewProtocolFromInfo)
+//     .then((response) => {
+//       console.log(`👁️${JSON.stringify(response)}`);
+//       const updatedProtocolDrugList = response.data.map((protocol) => {
+//         return {
+//           ...protocol,
+//           drug: response.data.drug,
+//           concentration: response.data.concentration,
+//           concentration_units: response.data.concentration_units,
+//           dose: response.data.dose,
+//           volume: response.data.volume,
+//           route: response.data.route,
+//         };
+//       });
+//       console.log(`🤖${JSON.stringify(updatedProtocolDrugList)}`);
+//       setProtocolDrugList(updatedProtocolDrugList);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
+// useEffect(loadProtocolDrugList, []);
+
+// RETURN TO LOAD DRUG LIST FROM TEST
+// {/* <Test
+//   // protocolDrugList={protocolDrugList}
+//   drugList={drugList}
+//   loadDrugList={loadDrugList}
+//   // loadProtocolDrugList={loadProtocolDrugList}
+// ></Test> */}
+// {/* <NewProtocolForm loadProtocolCallback={loadProtocolDrugList} /> */}

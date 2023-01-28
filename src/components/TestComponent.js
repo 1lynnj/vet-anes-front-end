@@ -2,12 +2,14 @@ import React from "react";
 
 // comment
 
-const Test = ({ drugList, loadDrugList }) => {
+const Test = ({ drugList }) => {
+  console.log(`😾${drugList}`);
   const drugComponents = [];
   for (const drug of drugList) {
     drugComponents.push(
       <li key={drug.id}>
-        {drug.name} {drug.concentration}
+        {drug.name} {drug.concentration} {drug.concentration_units} {drug.dose}
+        {drug.volume} {drug.route}
       </li>
     );
   }
