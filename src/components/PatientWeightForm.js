@@ -24,11 +24,17 @@ const PatientWeightForm = (props) => {
   };
 
   return (
-    <div>
+    <div className="col">
       <form onChange={onPatientWeightChange}>
-        <div>
-          <label htmlFor="patientWeight">WEIGHT:</label>
+        <div className="mb-3">
+          <label htmlFor="patientWeight" className="form-label">
+            WEIGHT:
+          </label>
           <input
+            type="number"
+            className="form-control"
+            id="patientweight"
+            aria-describedby="patientweight"
             placeholder="weight in kg"
             name="weight"
             value={formData.weight}

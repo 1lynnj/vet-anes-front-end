@@ -5,9 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #3c81be;
+  border: 2px lightslategray solid;
+  background-color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+html {
+  background-color: #3c81be;
+}
+
+table td, table th {
+  color: #3c81be;
 }
