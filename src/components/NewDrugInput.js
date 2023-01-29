@@ -52,6 +52,7 @@ const NewDrugInput = (props) => {
       </td>
       <td>
         <input
+          placeholder="μg or mg /kg"
           className="form-control"
           type="number"
           id="dose"

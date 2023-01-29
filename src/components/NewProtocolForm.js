@@ -12,12 +12,12 @@ const NewProtocolForm = (props) => {
   return (
     <div>
       <form onChange={onNewProtocolFormSubmit}>
-        <input type="submit" value={"Submit Form"} />
+        {/* <input type="submit" value={"Submit Form"} /> */}
         <table className="table">
           <tbody>
             <tr>
               <td colSpan="5">
-                <h3>Predmedications:</h3>
+                <h4>Premedications:</h4>
               </td>
             </tr>
             <tr>
@@ -45,7 +45,7 @@ const NewProtocolForm = (props) => {
           <tbody>
             <tr>
               <td colSpan="5">
-                <h3>Induction:</h3>
+                <h4>Induction:</h4>
               </td>
             </tr>
             <tr>
@@ -74,7 +74,7 @@ const NewProtocolForm = (props) => {
           <tbody>
             <tr>
               <td colSpan="5">
-                <h3>Other medications administered at anesthesia:</h3>
+                <h4>Other medications administered at anesthesia:</h4>
               </td>
             </tr>
             <tr>

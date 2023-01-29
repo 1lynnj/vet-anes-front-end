@@ -1,14 +1,10 @@
 import "./App.css";
-import "./vet_logo.jpg";
+import "./vet_logo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import Test from "./components/TestComponent";
 import PatientInfoForm from "./components/PatientInfoForm";
-// import PatientWeightForm from "./components/PatientWeightForm";
 import NewProtocolForm from "./components/NewProtocolForm";
 import Header from "./components/Header";
-// import NewDrugInput from "./components/NewDrugInput";
-// import NewProtocolForm from "./components/NewProtocolForm";
 
 function App() {
   var INITIAL_DRUG_INPUTS = [
@@ -64,11 +60,7 @@ function App() {
       setNewDrugInputs(updatedDrugList);
     }
   };
-  // const options = [
-  //   { value: "chocolate", label: "Chocolate" },
-  //   { value: "strawberry", label: "Strawberry" },
-  //   { value: "vanilla", label: "Vanilla" },
-  // ];
+
   const loadDrugOptions = () => {
     axios
       .get("https://vet-anes.herokuapp.com/drugs") // deployed
@@ -95,7 +87,7 @@ function App() {
   return (
     <div className="container">
       <Header></Header>
-      <h3>Patient Information:</h3>
+      <h4>Patient Information:</h4>
 
       <PatientInfoForm
         sendPatientInfoToApp={addNewPatientInfo}

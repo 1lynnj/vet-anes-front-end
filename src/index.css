@@ -6,10 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #3c81be;
-  border: 2px lightslategray solid;
-  background-color: aliceblue;
+  /* border: 2px lightslategray solid; */
+  background-color: #ffff;
   padding: 10px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin: 10px;
 }
 
@@ -20,9 +20,14 @@ code {
 
 
 html {
-  background-color: #3c81be;
+  /* background-color: #3c81be; */
+
 }
 
 table td, table th {
   color: #3c81be;
+}
+
+h4, table h4 {
+  color: darkslategray
 }

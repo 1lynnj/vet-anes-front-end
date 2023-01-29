@@ -1,12 +1,29 @@
-.header img {
+.site-header img {
     float: left;
     width: 50px;
     height: 50px;
     background: #555;
+    margin-top: 12px;
   }
   
-  .header h1 {
+  .site-header h1 {
     position: relative;
     top: 18px;
     left: 10px;
+    color:#555;
   }
+
+  .site-header {
+    width: 100%;
+    border-bottom: 2px solid #3c81be;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #555;
+  }
+
+  .site-header button {
+      float: right;
+      background-color: #3c81be;
+      margin: auto;
+    }
+
