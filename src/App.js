@@ -92,6 +92,7 @@ function App() {
     const params = [];
     let newDrug = {};
     for (const drug of newDrugInputs) {
+      // console.log(`-----> ${JSON.stringify(drug)}`);
       if (drug.drugId !== "") {
         newDrug = {
           drugId: drug.drugId,
@@ -101,14 +102,12 @@ function App() {
         params.push(newDrug);
       }
     }
-    setCalculationParameters(params);
+    // console.log(`🌝 ${JSON.stringify(params)}`);
+    // setCalculationParameters(params);
     // console.log(`😶‍🌫️${JSON.stringify(calculationParameters)}`);
 
     axios
-      .post(
-        "https://vet-anes.herokuapp.com/new_protocol",
-        calculationParameters
-      )
+      .post("https://vet-anes.herokuapp.com/new_protocol", params)
       // .post("http://127.0.0.1:8000/new_protocol")
       .then((response) => {
         console.log(`👁️${JSON.stringify(response)}`);
@@ -124,7 +123,7 @@ function App() {
           };
         });
         console.log(`🤖${JSON.stringify(updatedProtocolDrugList)}`);
-        setNewDrugInputs(updatedProtocolDrugList);
+        // setNewDrugInputs(updatedProtocolDrugList);
       })
       .catch((error) => {
         console.log(error);
