@@ -9,6 +9,7 @@ const NewProtocolForm = (props) => {
     // props.loadProtocolDrugList(drugs);
     setFormData({});
   };
+
   return (
     <div>
       <form onChange={onNewProtocolFormSubmit}>
@@ -30,16 +31,19 @@ const NewProtocolForm = (props) => {
               drugData={props.newDrugInputs[0]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.newDrugInputs[1]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.newDrugInputs[2]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
           </tbody>
           <tbody>
@@ -58,16 +62,19 @@ const NewProtocolForm = (props) => {
               drugData={props.newDrugInputs[3]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.newDrugInputs[4]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.newDrugInputs[5]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
           </tbody>
 
@@ -87,26 +94,29 @@ const NewProtocolForm = (props) => {
               drugData={props.newDrugInputs[6]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.newDrugInputs[7]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.newDrugInputs[8]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.newDrugInputs[9]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              // loadCalculations={props.loadCalculations}
             ></NewDrugInput>
           </tbody>
         </table>
       </form>
-      <button onSubmit={() => props.loadCalculations()}></button>
     </div>
   );
 };

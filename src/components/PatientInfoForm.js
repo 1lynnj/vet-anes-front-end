@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const INITIAL_FORM_DATA = {
   name: "",
@@ -9,6 +9,10 @@ const INITIAL_FORM_DATA = {
 
 const PatientInfoForm = (props) => {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   const handleUserEntry = (e) => {
     let formField = e.target.value;
     const newFormData = {
@@ -16,19 +20,18 @@ const PatientInfoForm = (props) => {
       [e.target.name]: formField,
     };
     setFormData(newFormData);
+    props.setPatientInfo(newFormData);
   };
 
-  const onPatientInfoChange = (e) => {
-    e.preventDefault();
-    props.sendPatientInfoToApp({
-      name: formData.name,
-      signalment: formData.signalment,
-      weight: formData.weight,
-    });
-  };
+  // const onPatientInfoChange = (e) => {
+  //   e.preventDefault();
+  //   // props.sendPatientInfoToApp(formData);
+  //   console.log(`👺${JSON.stringify(formData)}`);
+  //   // setFormData({});
+  // };
 
   return (
-    <form onChange={onPatientInfoChange} className="patient-information row">
+    <form className="patient-information row">
       <h4>Patient Information:</h4>
       <div className="mb-3 col-12 col-sm-4">
         <label htmlFor="patientName" className="form-label">
@@ -75,6 +78,7 @@ const PatientInfoForm = (props) => {
           onChange={handleUserEntry}
         />
       </div>
+      {/* <input type="submit" value="Add Patient Information" /> */}
     </form>
   );
 };

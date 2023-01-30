@@ -61,8 +61,8 @@ const NewDrugInput = (props) => {
           onChange={onDoseChange}
         />
       </td>
-      <td></td>
-      <td></td>
+      <td>{newDrugInput.volume}</td>
+      <td>{newDrugInput.route}</td>
 
       {/* <label htmlFor="drugSet"></label>
       <input

@@ -9,31 +9,32 @@ import Navbar from "./components/Navbar";
 
 function App() {
   var INITIAL_DRUG_INPUTS = [
-    { i: 0, drugId: "", dose: "", drugSet: "premed" },
-    { i: 1, drugId: "", dose: "", drugSet: "premed" },
-    { i: 2, drugId: "", dose: "", drugSet: "premed" },
-    { i: 3, drugId: "", dose: "", drugSet: "induction" },
-    { i: 4, drugId: "", dose: "", drugSet: "induction" },
-    { i: 5, drugId: "", dose: "", drugSet: "induction" },
-    { i: 6, drugId: "", dose: "", drugSet: "other" },
-    { i: 7, drugId: "", dose: "", drugSet: "other" },
-    { i: 8, drugId: "", dose: "", drugSet: "other" },
-    { i: 9, drugId: "", dose: "", drugSet: "other" },
+    { i: 0, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
+    { i: 1, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
+    { i: 2, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
+    { i: 3, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
+    { i: 4, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
+    { i: 5, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
+    { i: 6, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
+    { i: 7, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
+    { i: 8, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
+    { i: 9, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
   ];
 
   const [patientInfo, setPatientInfo] = useState("");
   // const [patientWeight, setPatientWeight] = useState("");
   const [newDrugInputs, setNewDrugInputs] = useState(INITIAL_DRUG_INPUTS);
   const [drugOptions, setDrugOptions] = useState([]);
+  const [calculationParameters, setCalculationParameters] = useState([]);
 
-  const addNewPatientInfo = (newPatientInfo) => {
-    newPatientInfo = {
-      name: newPatientInfo.name,
-      signalment: newPatientInfo.signalment,
-      weight: newPatientInfo.weight,
-    };
-    setPatientInfo(newPatientInfo);
-  };
+  // const addNewPatientInfo = (newPatientInfo) => {
+  //   newPatientInfo = {
+  //     name: newPatientInfo.name,
+  //     signalment: newPatientInfo.signalment,
+  //     weight: newPatientInfo.weight,
+  //   };
+  //   setPatientInfo(newPatientInfo);
+  // };
 
   // const addNewPatientWeight = (newPatientWeight) => {
   //   newPatientWeight = {
@@ -84,53 +85,60 @@ function App() {
 
   useEffect(loadDrugOptions, []);
 
-  const loadCalculations = (newDrugInputs, patientInfo) => {
+  // console.log(`🤪${JSON.stringify(newDrugInputs)}`);
+
+  const loadCalculations = () => {
     console.log("load calculations called");
     const params = [];
+    let newDrug = {};
     for (const drug of newDrugInputs) {
-      const newDrug = {
-        ...drug,
-        weight: patientInfo.weight,
-      };
-      console.log(`😇${newDrug}`);
-      params.push(newDrug);
+      if (drug.drugId !== "") {
+        newDrug = {
+          drugId: drug.drugId,
+          dose: drug.dose,
+          weight: patientInfo.weight,
+        };
+        params.push(newDrug);
+      }
     }
-    console.log(`🥸${JSON.stringify(params)}`);
-    // console.log(`updatedDrugList: ${JSON.stringify(updatedDrugList)}`);
-    // setNewDrugInputs(updatedDrugList);
+    setCalculationParameters(params);
+    // console.log(`😶‍🌫️${JSON.stringify(calculationParameters)}`);
 
-    // axios
-    //   .post("https://vet-anes.herokuapp.com/new_protocol", params)
-    //   // .post("http://127.0.0.1:8000/new_protocol")
-    //   .then((response) => {
-    //     console.log(`👁️${JSON.stringify(response)}`);
-    //     const updatedProtocolDrugList = response.data.map((protocol) => {
-    //       return {
-    //         ...protocol,
-    //         // drug: response.data.drug,
-    //         // concentration: response.data.concentration,
-    //         // concentration_units: response.data.concentration_units,
-    //         // dose: response.data.dose,
-    //         volume: response.data.volume,
-    //         route: response.data.route,
-    //       };
-    //     });
-    //     console.log(`🤖${JSON.stringify(updatedProtocolDrugList)}`);
-    //     setNewDrugInputs(updatedProtocolDrugList);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios
+      .post(
+        "https://vet-anes.herokuapp.com/new_protocol",
+        calculationParameters
+      )
+      // .post("http://127.0.0.1:8000/new_protocol")
+      .then((response) => {
+        console.log(`👁️${JSON.stringify(response)}`);
+        const updatedProtocolDrugList = response.data.map((protocol) => {
+          return {
+            ...protocol,
+            // drug: response.data.drug,
+            // concentration: response.data.concentration,
+            // concentration_units: response.data.concentration_units,
+            // dose: response.data.dose,
+            volume: response.data.volume,
+            route: response.data.route,
+          };
+        });
+        console.log(`🤖${JSON.stringify(updatedProtocolDrugList)}`);
+        setNewDrugInputs(updatedProtocolDrugList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  // loadCalculations(calculationParameters);
 
   return (
     <div className="container">
       <Header></Header>
       {/* <Navbar></Navbar> */}
 
-      <PatientInfoForm
-        sendPatientInfoToApp={addNewPatientInfo}
-      ></PatientInfoForm>
+      <PatientInfoForm setPatientInfo={setPatientInfo}></PatientInfoForm>
       {/* <PatientWeightForm
           sendPatientWeightToApp={addNewPatientWeight}
         ></PatientWeightForm> */}
@@ -138,8 +146,17 @@ function App() {
         drugOptions={drugOptions}
         newDrugInputs={newDrugInputs}
         updateDrugList={updateDrugList}
-        loadCalculations={loadCalculations}
+        // loadCalculations={loadCalculations}
       ></NewProtocolForm>
+      <button
+        onClick={() => {
+          loadCalculations();
+        }}
+        className="btn btn-primary"
+        type="submit"
+      >
+        Submit Protocol
+      </button>
     </div>
   );
 }
