@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
 import NewProtocolForm from "./components/NewProtocolForm";
 import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 
 function App() {
   var INITIAL_DRUG_INPUTS = [
@@ -72,7 +73,6 @@ function App() {
             label: drug.name,
           };
         });
-        // updatedDrugOptions.unshift({ value: null, label: " " });
         // console.log(`🤢 ${JSON.stringify(updatedDrugOptions)}`);
         setDrugOptions(updatedDrugOptions);
         // console.log(`🌸 ${JSON.stringify(drugList)}`);
@@ -84,10 +84,49 @@ function App() {
 
   useEffect(loadDrugOptions, []);
 
+  const loadCalculations = (newDrugInputs, patientInfo) => {
+    console.log("load calculations called");
+    const params = [];
+    for (const drug of newDrugInputs) {
+      const newDrug = {
+        ...drug,
+        weight: patientInfo.weight,
+      };
+      console.log(`😇${newDrug}`);
+      params.push(newDrug);
+    }
+    console.log(`🥸${JSON.stringify(params)}`);
+    // console.log(`updatedDrugList: ${JSON.stringify(updatedDrugList)}`);
+    // setNewDrugInputs(updatedDrugList);
+
+    // axios
+    //   .post("https://vet-anes.herokuapp.com/new_protocol", params)
+    //   // .post("http://127.0.0.1:8000/new_protocol")
+    //   .then((response) => {
+    //     console.log(`👁️${JSON.stringify(response)}`);
+    //     const updatedProtocolDrugList = response.data.map((protocol) => {
+    //       return {
+    //         ...protocol,
+    //         // drug: response.data.drug,
+    //         // concentration: response.data.concentration,
+    //         // concentration_units: response.data.concentration_units,
+    //         // dose: response.data.dose,
+    //         volume: response.data.volume,
+    //         route: response.data.route,
+    //       };
+    //     });
+    //     console.log(`🤖${JSON.stringify(updatedProtocolDrugList)}`);
+    //     setNewDrugInputs(updatedProtocolDrugList);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <div className="container">
       <Header></Header>
-      <h4>Patient Information:</h4>
+      {/* <Navbar></Navbar> */}
 
       <PatientInfoForm
         sendPatientInfoToApp={addNewPatientInfo}
@@ -99,6 +138,7 @@ function App() {
         drugOptions={drugOptions}
         newDrugInputs={newDrugInputs}
         updateDrugList={updateDrugList}
+        loadCalculations={loadCalculations}
       ></NewProtocolForm>
     </div>
   );
@@ -127,34 +167,6 @@ export default App;
 // };
 
 // useEffect(loadDrugList, []);
-
-// NONWORKING FUNCTION
-// const loadProtocolDrugList = (NewProtocolFromInfo) => {
-//   console.log("load protocol");
-//   axios
-//     // .post("https://vet-anes.herokuapp.com/new_protocol", params)
-//     .post("http://127.0.0.1:8000/new_protocol", NewProtocolFromInfo)
-//     .then((response) => {
-//       console.log(`👁️${JSON.stringify(response)}`);
-//       const updatedProtocolDrugList = response.data.map((protocol) => {
-//         return {
-//           ...protocol,
-//           drug: response.data.drug,
-//           concentration: response.data.concentration,
-//           concentration_units: response.data.concentration_units,
-//           dose: response.data.dose,
-//           volume: response.data.volume,
-//           route: response.data.route,
-//         };
-//       });
-//       console.log(`🤖${JSON.stringify(updatedProtocolDrugList)}`);
-//       setProtocolDrugList(updatedProtocolDrugList);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
-// useEffect(loadProtocolDrugList, []);
 
 // RETURN TO LOAD DRUG LIST FROM TEST
 // {/* <Test

@@ -29,6 +29,7 @@ const PatientInfoForm = (props) => {
 
   return (
     <form onChange={onPatientInfoChange} className="patient-information row">
+      <h4>Patient Information:</h4>
       <div className="mb-3 col-12 col-sm-4">
         <label htmlFor="patientName" className="form-label">
           Name:

@@ -28,6 +28,11 @@ table td, table th {
   color: #3c81be;
 }
 
-h4, table h4 {
-  color: darkslategray
+h4 {
+  padding-top: 30px;
 }
+
+/* h4, table h4 {
+  color: darkslategray;
+  padding-top: 10px;
+} */

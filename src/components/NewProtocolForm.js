@@ -106,6 +106,7 @@ const NewProtocolForm = (props) => {
           </tbody>
         </table>
       </form>
+      <button onSubmit={() => props.loadCalculations()}></button>
     </div>
   );
 };

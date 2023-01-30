@@ -1,29 +1,28 @@
 .site-header img {
     float: left;
     width: 50px;
-    height: 50px;
+    height: 75px;
     background: #555;
     margin-top: 12px;
   }
   
   .site-header h1 {
-    position: relative;
-    top: 18px;
-    left: 10px;
-    color:#555;
+    color: rgb(47, 79, 79);
+    margin-bottom: 0 !important;
+    padding-bottom: 4;
   }
 
   .site-header {
+    display: inline;
     width: 100%;
-    border-bottom: 2px solid #3c81be;
+    /* border-bottom: 2px solid #3c81be; */
     margin-bottom: 50px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #555;
+    /* border-bottom: 2px solid #555; */
   }
 
   .site-header button {
-      float: right;
       background-color: #3c81be;
-      margin: auto;
+      padding-bottom: 7px;
     }
 
