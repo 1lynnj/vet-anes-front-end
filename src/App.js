@@ -8,9 +8,9 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 
 function App() {
-  var INITIAL_DRUG_INPUTS = [
-    { i: 0, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
-    { i: 1, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
+  var INITIAL_PROTOCOL_DRUG_LIST = [
+    { i: 0, drugId: "1", dose: "", drugSet: "premed", volume: "", route: "" },
+    { i: 1, drugId: "2", dose: "", drugSet: "premed", volume: "", route: "" },
     { i: 2, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
     { i: 3, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
     { i: 4, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
@@ -22,10 +22,11 @@ function App() {
   ];
 
   const [patientInfo, setPatientInfo] = useState("");
-  // const [patientWeight, setPatientWeight] = useState("");
-  const [newDrugInputs, setNewDrugInputs] = useState(INITIAL_DRUG_INPUTS);
+  const [protocolDrugList, setProtocolDrugList] = useState(
+    INITIAL_PROTOCOL_DRUG_LIST
+  );
   const [drugOptions, setDrugOptions] = useState([]);
-  const [calculationParameters, setCalculationParameters] = useState([]);
+  const [pqqqqqqqqq, setPqqqqqqqqq] = useState([]);
 
   // const addNewPatientInfo = (newPatientInfo) => {
   //   newPatientInfo = {
@@ -47,7 +48,7 @@ function App() {
     // console.log(`2. updateDrugList is being called`);
     //console.log(`😀 ${JSON.stringify(newDrugData)}`);
     const updatedDrugList = [];
-    for (const drug of newDrugInputs) {
+    for (const drug of protocolDrugList) {
       if (drug.i !== newDrugData.i) {
         updatedDrugList.push(drug);
       } else {
@@ -59,14 +60,14 @@ function App() {
         updatedDrugList.push(newDrug);
       }
       // console.log(`updatedDrugList: ${JSON.stringify(updatedDrugList)}`);
-      setNewDrugInputs(updatedDrugList);
+      setProtocolDrugList(updatedDrugList);
     }
   };
 
   const loadDrugOptions = () => {
     axios
-      .get("https://vet-anes.herokuapp.com/drugs") // deployed
-      // .get("http://127.0.0.1:8000/drugs") // local development
+      // .get("https://vet-anes.herokuapp.com/drugs") // deployed
+      .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugOptions = response.data.map((drug) => {
           return {
@@ -85,13 +86,13 @@ function App() {
 
   useEffect(loadDrugOptions, []);
 
-  // console.log(`🤪${JSON.stringify(newDrugInputs)}`);
+  // console.log(`🤪${JSON.stringify(protocolDrugList)}`);
 
   const loadCalculations = () => {
     console.log("load calculations called");
     const params = [];
     let newDrug = {};
-    for (const drug of newDrugInputs) {
+    for (const drug of protocolDrugList) {
       // console.log(`-----> ${JSON.stringify(drug)}`);
       if (drug.drugId !== "") {
         newDrug = {
@@ -107,24 +108,52 @@ function App() {
     // console.log(`😶‍🌫️${JSON.stringify(calculationParameters)}`);
 
     axios
-      .post("https://vet-anes.herokuapp.com/new_protocol", params)
-      // .post("http://127.0.0.1:8000/new_protocol")
+      // .post("https://vet-anes.herokuapp.com/new_protocol", params)
+      .post("http://127.0.0.1:8000/new_protocol", params)
       .then((response) => {
         console.log(`👁️${JSON.stringify(response)}`);
-        const updatedProtocolDrugList = response.data.map((protocol) => {
-          return {
-            ...protocol,
-            // drug: response.data.drug,
-            // concentration: response.data.concentration,
-            // concentration_units: response.data.concentration_units,
-            // dose: response.data.dose,
-            volume: response.data.volume,
-            route: response.data.route,
-          };
-        });
-        console.log(`🤖${JSON.stringify(updatedProtocolDrugList)}`);
-        // setNewDrugInputs(updatedProtocolDrugList);
+
+        let calculatedDrugList = response.data;
+        console.log(`-----> ${JSON.stringify(calculatedDrugList)}`);
+
+        let updatedDrugList = [];
+        for (const drug1 of protocolDrugList) {
+          let newDrug = drug1;
+          for (const drug2 of calculatedDrugList) {
+            if (drug1.drugId === drug2.id) {
+              newDrug = {
+                ...drug1,
+                volume: drug2.volume,
+                route: drug2.route,
+              };
+            }
+          }
+          updatedDrugList.push(newDrug);
+        }
+
+        // if (drug1.drugId === drug2.id) {
+        //   console.log(`drug2.id: ${drug2.id}`);
+        //   const newDrug = {
+        //     ...drug1,
+        //     volume: drug2.volume,
+        //     route: drug2.route,
+        //   };
+        //   updatedDrugList.push(newDrug);
+        // }
+        // else {
+        //   console.log(`drug1.id: ${drug1.id}`);
+        //   updatedDrugList.push(drug1);
+        // }
+        //   }
+        // }
+
+        // const updatedProtocolDrugList = response.data.map((protocol) => {});
+
+        console.log(`🤖🤖 ${JSON.stringify(updatedDrugList)}`);
+        setProtocolDrugList(updatedDrugList);
+        // console.log(`❤️ ${JSON.stringify(pqqqqqqqqq)}`);
       })
+      // .then((updatedPqqqqqqqqq) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -143,9 +172,9 @@ function App() {
         ></PatientWeightForm> */}
       <NewProtocolForm
         drugOptions={drugOptions}
-        newDrugInputs={newDrugInputs}
+        protocolDrugList={protocolDrugList}
         updateDrugList={updateDrugList}
-        // loadCalculations={loadCalculations}
+        pqqqqqqqqq={pqqqqqqqqq}
       ></NewProtocolForm>
       <button
         onClick={() => {
@@ -186,9 +215,9 @@ export default App;
 
 // RETURN TO LOAD DRUG LIST FROM TEST
 // {/* <Test
-//   // protocolDrugList={protocolDrugList}
+//   // pqqqqqqqqq={pqqqqqqqqq}
 //   drugList={drugList}
 //   loadDrugList={loadDrugList}
-//   // loadProtocolDrugList={loadProtocolDrugList}
+//   // loadPqqqqqqqqq={loadPqqqqqqqqq}
 // ></Test> */}
-// {/* <NewProtocolForm loadProtocolCallback={loadProtocolDrugList} /> */}
+// {/* <NewProtocolForm loadProtocolCallback={loadPqqqqqqqqq} /> */}

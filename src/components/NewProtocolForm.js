@@ -2,11 +2,11 @@ import { useState } from "react";
 import NewDrugInput from "./NewDrugInput";
 
 const NewProtocolForm = (props) => {
-  const [formData, setFormData] = useState(props.newDrugInputs);
+  const [formData, setFormData] = useState(props.protocolDrugList);
   const onNewProtocolFormSubmit = (event) => {
     event.preventDefault();
     // props.sendNewProtocolToApp(formData);
-    // props.loadProtocolDrugList(drugs);
+    // props.loadPqqqqqqqqq(drugs);
     setFormData({});
   };
 
@@ -28,22 +28,25 @@ const NewProtocolForm = (props) => {
               <th style={{ width: "25%" }}>Route</th>
             </tr>
             <NewDrugInput
-              drugData={props.newDrugInputs[0]}
+              drugData={props.protocolDrugList[0]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
-              drugData={props.newDrugInputs[1]}
+              drugData={props.protocolDrugList[1]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
-              drugData={props.newDrugInputs[2]}
+              drugData={props.protocolDrugList[2]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
           </tbody>
           <tbody>
@@ -59,22 +62,25 @@ const NewProtocolForm = (props) => {
               <th>Route</th>
             </tr>
             <NewDrugInput
-              drugData={props.newDrugInputs[3]}
+              drugData={props.protocolDrugList[3]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
-              drugData={props.newDrugInputs[4]}
+              drugData={props.protocolDrugList[4]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
-              drugData={props.newDrugInputs[5]}
+              drugData={props.protocolDrugList[5]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
           </tbody>
 
@@ -91,28 +97,32 @@ const NewProtocolForm = (props) => {
               <th>Route</th>
             </tr>
             <NewDrugInput
-              drugData={props.newDrugInputs[6]}
+              drugData={props.protocolDrugList[6]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
-              drugData={props.newDrugInputs[7]}
+              drugData={props.protocolDrugList[7]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
-              drugData={props.newDrugInputs[8]}
+              drugData={props.protocolDrugList[8]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
-              drugData={props.newDrugInputs[9]}
+              drugData={props.protocolDrugList[9]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
               // loadCalculations={props.loadCalculations}
+              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
           </tbody>
         </table>

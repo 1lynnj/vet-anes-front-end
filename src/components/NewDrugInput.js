@@ -4,7 +4,7 @@ import Select from "react-select";
 
 const NewDrugInput = (props) => {
   let drugData = { ...props.drugData };
-  const [newDrugInput, setNewDrugInput] = useState(drugData);
+  const [newDrugInput, setNewDrugInput] = useState(props.drugData);
 
   const onDrugChange = (drugId) => {
     console.log(`😄${drugId}`);
@@ -29,6 +29,19 @@ const NewDrugInput = (props) => {
     props.updateDrugList(updatedDrugData);
     setNewDrugInput(updatedDrugData);
   };
+
+  // console.log(`doot----> ${JSON.stringify(props.pqqqqqqqqq)}`);
+
+  // const updateVolAndRoute = () => {
+  //   for (let drug in pqqqqqqqqq) {
+  //     let updatedDrugData = {
+  //       ...drugData,
+  //       volume: drug.volume,
+  //       route: drug.route,
+  //     };
+  //     setNewDrugInput(updatedDrugData);
+  //   }
+  // };
 
   return (
     <tr>
@@ -57,12 +70,12 @@ const NewDrugInput = (props) => {
           type="number"
           id="dose"
           name="dose"
-          value={newDrugInput.dose}
+          value={drugData.dose}
           onChange={onDoseChange}
         />
       </td>
-      <td>{newDrugInput.volume}</td>
-      <td>{newDrugInput.route}</td>
+      <td>{drugData.volume}</td>
+      <td>{drugData.route}</td>
 
       {/* <label htmlFor="drugSet"></label>
       <input
