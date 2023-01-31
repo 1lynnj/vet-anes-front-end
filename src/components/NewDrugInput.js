@@ -30,31 +30,9 @@ const NewDrugInput = (props) => {
     setNewDrugInput(updatedDrugData);
   };
 
-  // console.log(`doot----> ${JSON.stringify(props.pqqqqqqqqq)}`);
-
-  // const updateVolAndRoute = () => {
-  //   for (let drug in pqqqqqqqqq) {
-  //     let updatedDrugData = {
-  //       ...drugData,
-  //       volume: drug.volume,
-  //       route: drug.route,
-  //     };
-  //     setNewDrugInput(updatedDrugData);
-  //   }
-  // };
-
   return (
     <tr>
       <td>
-        {/* <input
-          className="form-control"
-          type="text"
-          id="drug"
-          name="drug"
-          value={newDrugInput.drug}
-          onChange={onDrugChange}
-          foo="1. when this changes, we call onDrugChange"
-        /> */}
         <Select
           options={props.drugOptions}
           onChange={(selectedOption) =>
@@ -76,15 +54,6 @@ const NewDrugInput = (props) => {
       </td>
       <td>{drugData.volume}</td>
       <td>{drugData.route}</td>
-
-      {/* <label htmlFor="drugSet"></label>
-      <input
-        type="text"
-        id="drugSet"
-        name="drugSet"
-        value={drugData.drugSet}
-        onChange={handleUserEntry}
-      /> */}
     </tr>
   );
 };

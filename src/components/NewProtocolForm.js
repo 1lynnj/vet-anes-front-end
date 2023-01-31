@@ -31,22 +31,16 @@ const NewProtocolForm = (props) => {
               drugData={props.protocolDrugList[0]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.protocolDrugList[1]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.protocolDrugList[2]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
           </tbody>
           <tbody>
@@ -65,22 +59,16 @@ const NewProtocolForm = (props) => {
               drugData={props.protocolDrugList[3]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.protocolDrugList[4]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.protocolDrugList[5]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
           </tbody>
 
@@ -100,29 +88,21 @@ const NewProtocolForm = (props) => {
               drugData={props.protocolDrugList[6]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.protocolDrugList[7]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.protocolDrugList[8]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
             <NewDrugInput
               drugData={props.protocolDrugList[9]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              // loadCalculations={props.loadCalculations}
-              pqqqqqqqqq={props.pqqqqqqqqq}
             ></NewDrugInput>
           </tbody>
         </table>

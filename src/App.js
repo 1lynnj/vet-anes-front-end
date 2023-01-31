@@ -26,27 +26,8 @@ function App() {
     INITIAL_PROTOCOL_DRUG_LIST
   );
   const [drugOptions, setDrugOptions] = useState([]);
-  const [pqqqqqqqqq, setPqqqqqqqqq] = useState([]);
-
-  // const addNewPatientInfo = (newPatientInfo) => {
-  //   newPatientInfo = {
-  //     name: newPatientInfo.name,
-  //     signalment: newPatientInfo.signalment,
-  //     weight: newPatientInfo.weight,
-  //   };
-  //   setPatientInfo(newPatientInfo);
-  // };
-
-  // const addNewPatientWeight = (newPatientWeight) => {
-  //   newPatientWeight = {
-  //     weight: newPatientWeight.weight,
-  //   };
-  //   setPatientWeight(newPatientWeight);
-  // };
 
   const updateDrugList = (newDrugData) => {
-    // console.log(`2. updateDrugList is being called`);
-    //console.log(`😀 ${JSON.stringify(newDrugData)}`);
     const updatedDrugList = [];
     for (const drug of protocolDrugList) {
       if (drug.i !== newDrugData.i) {
@@ -59,7 +40,6 @@ function App() {
         };
         updatedDrugList.push(newDrug);
       }
-      // console.log(`updatedDrugList: ${JSON.stringify(updatedDrugList)}`);
       setProtocolDrugList(updatedDrugList);
     }
   };
@@ -75,9 +55,7 @@ function App() {
             label: drug.name,
           };
         });
-        // console.log(`🤢 ${JSON.stringify(updatedDrugOptions)}`);
         setDrugOptions(updatedDrugOptions);
-        // console.log(`🌸 ${JSON.stringify(drugList)}`);
       })
       .catch((error) => {
         console.log(error);
@@ -85,8 +63,6 @@ function App() {
   };
 
   useEffect(loadDrugOptions, []);
-
-  // console.log(`🤪${JSON.stringify(protocolDrugList)}`);
 
   const loadCalculations = () => {
     console.log("load calculations called");
@@ -103,10 +79,6 @@ function App() {
         params.push(newDrug);
       }
     }
-    // console.log(`🌝 ${JSON.stringify(params)}`);
-    // setCalculationParameters(params);
-    // console.log(`😶‍🌫️${JSON.stringify(calculationParameters)}`);
-
     axios
       // .post("https://vet-anes.herokuapp.com/new_protocol", params)
       .post("http://127.0.0.1:8000/new_protocol", params)
@@ -131,50 +103,22 @@ function App() {
           updatedDrugList.push(newDrug);
         }
 
-        // if (drug1.drugId === drug2.id) {
-        //   console.log(`drug2.id: ${drug2.id}`);
-        //   const newDrug = {
-        //     ...drug1,
-        //     volume: drug2.volume,
-        //     route: drug2.route,
-        //   };
-        //   updatedDrugList.push(newDrug);
-        // }
-        // else {
-        //   console.log(`drug1.id: ${drug1.id}`);
-        //   updatedDrugList.push(drug1);
-        // }
-        //   }
-        // }
-
-        // const updatedProtocolDrugList = response.data.map((protocol) => {});
-
         console.log(`🤖🤖 ${JSON.stringify(updatedDrugList)}`);
         setProtocolDrugList(updatedDrugList);
-        // console.log(`❤️ ${JSON.stringify(pqqqqqqqqq)}`);
       })
-      // .then((updatedPqqqqqqqqq) => {})
       .catch((error) => {
         console.log(error);
       });
   };
 
-  // loadCalculations(calculationParameters);
-
   return (
     <div className="container">
       <Header></Header>
-      {/* <Navbar></Navbar> */}
-
       <PatientInfoForm setPatientInfo={setPatientInfo}></PatientInfoForm>
-      {/* <PatientWeightForm
-          sendPatientWeightToApp={addNewPatientWeight}
-        ></PatientWeightForm> */}
       <NewProtocolForm
         drugOptions={drugOptions}
         protocolDrugList={protocolDrugList}
         updateDrugList={updateDrugList}
-        pqqqqqqqqq={pqqqqqqqqq}
       ></NewProtocolForm>
       <button
         onClick={() => {
@@ -221,3 +165,19 @@ export default App;
 //   // loadPqqqqqqqqq={loadPqqqqqqqqq}
 // ></Test> */}
 // {/* <NewProtocolForm loadProtocolCallback={loadPqqqqqqqqq} /> */}
+
+// const addNewPatientInfo = (newPatientInfo) => {
+//   newPatientInfo = {
+//     name: newPatientInfo.name,
+//     signalment: newPatientInfo.signalment,
+//     weight: newPatientInfo.weight,
+//   };
+//   setPatientInfo(newPatientInfo);
+// };
+
+// const addNewPatientWeight = (newPatientWeight) => {
+//   newPatientWeight = {
+//     weight: newPatientWeight.weight,
+//   };
+//   setPatientWeight(newPatientWeight);
+// };
