@@ -5,13 +5,12 @@ import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
 import NewProtocolForm from "./components/NewProtocolForm";
 import Header from "./components/Header";
-import Navbar from "./components/Navbar";
 import ERDrugs from "./components/ERDrugList";
 
 function App() {
   var INITIAL_PROTOCOL_DRUG_LIST = [
-    { i: 0, drugId: "1", dose: "", drugSet: "premed", volume: "", route: "" },
-    { i: 1, drugId: "2", dose: "", drugSet: "premed", volume: "", route: "" },
+    { i: 0, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
+    { i: 1, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
     { i: 2, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
     { i: 3, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
     { i: 4, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
@@ -59,8 +58,8 @@ function App() {
 
   const loadDrugOptions = () => {
     axios
-      // .get("https://vet-anes.herokuapp.com/drugs") // deployed
-      .get("http://127.0.0.1:8000/drugs") // local development
+      .get("https://vet-anes.herokuapp.com/drugs") // deployed
+      // .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugOptions = response.data.map((drug) => {
           return {
@@ -82,7 +81,6 @@ function App() {
     const params = [];
     let newDrug = {};
     for (const drug of protocolDrugList) {
-      // console.log(`-----> ${JSON.stringify(drug)}`);
       if (drug.drugId !== "") {
         newDrug = {
           drugId: drug.drugId,
@@ -93,13 +91,10 @@ function App() {
       }
     }
     axios
-      // .post("https://vet-anes.herokuapp.com/new_protocol", params)
-      .post("http://127.0.0.1:8000/new_protocol", params)
+      .post("https://vet-anes.herokuapp.com/new_protocol", params)
+      // .post("http://127.0.0.1:8000/new_protocol", params)
       .then((response) => {
-        console.log(`👁️${JSON.stringify(response)}`);
-
         let calculatedDrugList = response.data;
-        console.log(`-----> ${JSON.stringify(calculatedDrugList)}`);
 
         let updatedDrugList = [];
         for (const drug1 of protocolDrugList) {
@@ -116,7 +111,6 @@ function App() {
           updatedDrugList.push(newDrug);
         }
 
-        console.log(`🤖🤖 ${JSON.stringify(updatedDrugList)}`);
         setProtocolDrugList(updatedDrugList);
       })
       .catch((error) => {
@@ -128,30 +122,10 @@ function App() {
     console.log("load er drug calculations called");
     let weight = { weight: patientInfo.weight };
     axios
-      // .post("https://vet-anes.herokuapp.com/er_drugs", weight)
-      .post("http://127.0.0.1:8000/er_drugs", weight)
+      .post("https://vet-anes.herokuapp.com/er_drugs", weight)
+      // .post("http://127.0.0.1:8000/er_drugs", weight)
       .then((response) => {
-        console.log(`------->>>>>>${JSON.stringify(response)}`);
         setERDrugList(response.data);
-        // console.log(`-----> ${JSON.stringify(calculatedDrugList)}`);
-
-        // let updatedDrugList = [];
-        // for (const drug1 of protocolDrugList) {
-        //   let newDrug = drug1;
-        //   for (const drug2 of calculatedDrugList) {
-        //     if (drug1.drugId === drug2.id) {
-        //       newDrug = {
-        //         ...drug1,
-        //         volume: drug2.volume,
-        //         route: drug2.route,
-        //       };
-        //     }
-        //   }
-        //   updatedDrugList.push(newDrug);
-        // }
-
-        // console.log(`🤖🤖 ${JSON.stringify(updatedDrugList)}`);
-        // setProtocolDrugList(updatedDrugList);
       })
       .catch((error) => {
         console.log(error);
@@ -215,15 +189,6 @@ export default App;
 // };
 
 // useEffect(loadDrugList, []);
-
-// RETURN TO LOAD DRUG LIST FROM TEST
-// {/* <Test
-//   // pqqqqqqqqq={pqqqqqqqqq}
-//   drugList={drugList}
-//   loadDrugList={loadDrugList}
-//   // loadPqqqqqqqqq={loadPqqqqqqqqq}
-// ></Test> */}
-// {/* <NewProtocolForm loadProtocolCallback={loadPqqqqqqqqq} /> */}
 
 // const addNewPatientInfo = (newPatientInfo) => {
 //   newPatientInfo = {

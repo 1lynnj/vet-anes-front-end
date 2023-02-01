@@ -3,7 +3,6 @@ import "./ERDrug.css";
 
 const ERDrug = (props) => {
   let drugData = { ...props.drugData };
-  console.log(`***********${JSON.stringify(props)}`);
   return (
     <tr>
       <td>{drugData.drug}</td>

@@ -23,13 +23,6 @@ const PatientInfoForm = (props) => {
     props.setPatientInfo(newFormData);
   };
 
-  // const onPatientInfoChange = (e) => {
-  //   e.preventDefault();
-  //   // props.sendPatientInfoToApp(formData);
-  //   console.log(`👺${JSON.stringify(formData)}`);
-  //   // setFormData({});
-  // };
-
   return (
     <form className="patient-information row">
       <h4>Patient Information:</h4>

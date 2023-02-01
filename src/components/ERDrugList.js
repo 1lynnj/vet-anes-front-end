@@ -3,7 +3,6 @@ import ERDrug from "./ERDrug";
 import "./ERDrugList.css";
 
 const ERDrugList = (props) => {
-  console.log(`🤡${JSON.stringify(props)}`);
   return (
     <table className="table">
       <tbody>

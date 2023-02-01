@@ -5,15 +5,12 @@ const NewProtocolForm = (props) => {
   const [formData, setFormData] = useState(props.protocolDrugList);
   const onNewProtocolFormSubmit = (event) => {
     event.preventDefault();
-    // props.sendNewProtocolToApp(formData);
-    // props.loadPqqqqqqqqq(drugs);
     setFormData({});
   };
 
   return (
     <div>
       <form onChange={onNewProtocolFormSubmit}>
-        {/* <input type="submit" value={"Submit Form"} /> */}
         <table className="table">
           <tbody>
             <tr>

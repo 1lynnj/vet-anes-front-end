@@ -3,19 +3,17 @@ import { useState } from "react";
 import Select from "react-select";
 
 const NewDrugInput = (props) => {
-  // console.log(`😤${JSON.stringify(props)}`);
   let drugData = { ...props.drugData };
   const [newDrugInput, setNewDrugInput] = useState(props.drugData);
 
   const onDrugChange = (drugId) => {
-    console.log(`😄${drugId}`);
     console.log("on drug change called");
     // Update the data with the change from the input
     let updatedDrugData = {
       ...props.drugData,
       drugId: drugId,
     };
-    console.log(`inside component, ${JSON.stringify(updatedDrugData)}`);
+
     props.updateDrugList(updatedDrugData);
     setNewDrugInput(updatedDrugData);
   };
@@ -26,7 +24,6 @@ const NewDrugInput = (props) => {
       ...props.drugData,
       dose: e.target.value,
     };
-    console.log(`inside component, ${JSON.stringify(updatedDrugData)}`);
     props.updateDrugList(updatedDrugData);
     setNewDrugInput(updatedDrugData);
   };
