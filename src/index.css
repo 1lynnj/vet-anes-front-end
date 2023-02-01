@@ -9,19 +9,12 @@ body {
   /* border: 2px lightslategray solid; */
   background-color: #ffff;
   padding: 10px;
-  /* border-radius: 10px; */
   margin: 10px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-
-html {
-  /* background-color: #3c81be; */
-
 }
 
 table td, table th {
@@ -36,3 +29,16 @@ h4 {
   color: darkslategray;
   padding-top: 10px;
 } */
+
+.er-volume {
+  background-color: yellow !important;
+}
+
+.er-drug-col {
+  text-align: center;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}

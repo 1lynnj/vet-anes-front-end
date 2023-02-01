@@ -3,6 +3,7 @@ import { useState } from "react";
 import Select from "react-select";
 
 const NewDrugInput = (props) => {
+  // console.log(`😤${JSON.stringify(props)}`);
   let drugData = { ...props.drugData };
   const [newDrugInput, setNewDrugInput] = useState(props.drugData);
 

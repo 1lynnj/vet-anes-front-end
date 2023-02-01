@@ -6,6 +6,7 @@ import PatientInfoForm from "./components/PatientInfoForm";
 import NewProtocolForm from "./components/NewProtocolForm";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
+import ERDrugs from "./components/ERDrugList";
 
 function App() {
   var INITIAL_PROTOCOL_DRUG_LIST = [
@@ -21,11 +22,23 @@ function App() {
     { i: 9, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
   ];
 
-  const [patientInfo, setPatientInfo] = useState("");
+  const INITIAL_PATIENT_INFO = {
+    name: "",
+    signalment: "",
+    weight: "",
+  };
+
+  const [patientInfo, setPatientInfo] = useState(INITIAL_PATIENT_INFO);
   const [protocolDrugList, setProtocolDrugList] = useState(
     INITIAL_PROTOCOL_DRUG_LIST
   );
   const [drugOptions, setDrugOptions] = useState([]);
+  const [erDrugList, setERDrugList] = useState([]);
+
+  const newPatient = () => {
+    setPatientInfo(INITIAL_PATIENT_INFO);
+    setProtocolDrugList(INITIAL_PROTOCOL_DRUG_LIST);
+  };
 
   const updateDrugList = (newDrugData) => {
     const updatedDrugList = [];
@@ -46,8 +59,8 @@ function App() {
 
   const loadDrugOptions = () => {
     axios
-      .get("https://vet-anes.herokuapp.com/drugs") // deployed
-      // .get("http://127.0.0.1:8000/drugs") // local development
+      // .get("https://vet-anes.herokuapp.com/drugs") // deployed
+      .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugOptions = response.data.map((drug) => {
           return {
@@ -80,8 +93,8 @@ function App() {
       }
     }
     axios
-      .post("https://vet-anes.herokuapp.com/new_protocol", params)
-      // .post("http://127.0.0.1:8000/new_protocol", params)
+      // .post("https://vet-anes.herokuapp.com/new_protocol", params)
+      .post("http://127.0.0.1:8000/new_protocol", params)
       .then((response) => {
         console.log(`👁️${JSON.stringify(response)}`);
 
@@ -111,9 +124,49 @@ function App() {
       });
   };
 
+  const loadERDrugList = () => {
+    console.log("load er drug calculations called");
+    let weight = { weight: patientInfo.weight };
+    axios
+      // .post("https://vet-anes.herokuapp.com/er_drugs", weight)
+      .post("http://127.0.0.1:8000/er_drugs", weight)
+      .then((response) => {
+        console.log(`------->>>>>>${JSON.stringify(response)}`);
+        setERDrugList(response.data);
+        // console.log(`-----> ${JSON.stringify(calculatedDrugList)}`);
+
+        // let updatedDrugList = [];
+        // for (const drug1 of protocolDrugList) {
+        //   let newDrug = drug1;
+        //   for (const drug2 of calculatedDrugList) {
+        //     if (drug1.drugId === drug2.id) {
+        //       newDrug = {
+        //         ...drug1,
+        //         volume: drug2.volume,
+        //         route: drug2.route,
+        //       };
+        //     }
+        //   }
+        //   updatedDrugList.push(newDrug);
+        // }
+
+        // console.log(`🤖🤖 ${JSON.stringify(updatedDrugList)}`);
+        // setProtocolDrugList(updatedDrugList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const submitProtocol = (e) => {
+    e.preventDefault();
+    loadCalculations();
+    loadERDrugList();
+  };
+
   return (
     <div className="container">
-      <Header></Header>
+      <Header newPatient={newPatient}></Header>
       <PatientInfoForm setPatientInfo={setPatientInfo}></PatientInfoForm>
       <NewProtocolForm
         drugOptions={drugOptions}
@@ -121,14 +174,20 @@ function App() {
         updateDrugList={updateDrugList}
       ></NewProtocolForm>
       <button
-        onClick={() => {
-          loadCalculations();
-        }}
+        onClick={submitProtocol}
         className="btn btn-primary"
         type="submit"
       >
         Submit Protocol
       </button>
+      <div className="row">
+        <div className="col-xs-12 col-sm-6">
+          <ERDrugs erDrugList={erDrugList}></ERDrugs>
+        </div>
+        <div className="col-xs-12 col-sm-6">
+          <h4>Fluids:</h4>
+        </div>
+      </div>
     </div>
   );
 }

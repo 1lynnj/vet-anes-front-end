@@ -1,13 +1,13 @@
 .site-header img {
     float: left;
     width: 50px;
-    height: 75px;
-    background: #555;
+    height: 60px;
+    /* background: #555; */
     margin-top: 12px;
   }
   
   .site-header h1 {
-    color: rgb(47, 79, 79);
+    color: #3c81be;
     margin-bottom: 0 !important;
     padding-bottom: 4;
   }
@@ -19,10 +19,10 @@
     margin-bottom: 50px;
     padding-bottom: 20px;
     /* border-bottom: 2px solid #555; */
+    /* background-color: #9be5aa; */
   }
 
   .site-header button {
       background-color: #3c81be;
       padding-bottom: 7px;
     }
-
