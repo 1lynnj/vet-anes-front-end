@@ -27,6 +27,9 @@ const PatientInfoForm = (props) => {
     props.setPatientInfo(newFormData);
   };
 
+  // type select <option>Cat</option>
+  //react hook to reset state react-hook-form
+
   return (
     <form className="patient-information row">
       <h4>Patient Information:</h4>
@@ -97,3 +100,14 @@ const PatientInfoForm = (props) => {
 };
 
 export default PatientInfoForm;
+
+{
+  /* <select>
+type="select" className="form-control" id="patientSpecies"
+aria-describedby="patientSpecies" placeholder="cat or dog"
+name="species" value={formData.species}
+onChange={handleUserEntry}
+<option>cat</option>
+<option>dog</option>
+</select> */
+}
