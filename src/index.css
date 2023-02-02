@@ -42,3 +42,7 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.fluid-rate-rate {
+  text-align: center;
+}

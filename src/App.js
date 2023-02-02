@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
 import NewProtocolForm from "./components/NewProtocolForm";
 import Header from "./components/Header";
-import ERDrugs from "./components/ERDrugList";
+// import ERDrugs from "./components/ERDrugList";
+import ERDrugList from "./components/ERDrugList";
+import FluidRatesList from "./components/FluidRatesList";
 
 function App() {
   var INITIAL_PROTOCOL_DRUG_LIST = [
@@ -25,6 +27,7 @@ function App() {
     name: "",
     signalment: "",
     weight: "",
+    species: "",
   };
 
   const [patientInfo, setPatientInfo] = useState(INITIAL_PATIENT_INFO);
@@ -33,10 +36,13 @@ function App() {
   );
   const [drugOptions, setDrugOptions] = useState([]);
   const [erDrugList, setERDrugList] = useState([]);
+  const [fluidRatesList, setFluidRatesList] = useState([]);
 
   const newPatient = () => {
     setPatientInfo(INITIAL_PATIENT_INFO);
     setProtocolDrugList(INITIAL_PROTOCOL_DRUG_LIST);
+    setERDrugList([]);
+    setFluidRatesList([]);
   };
 
   const updateDrugList = (newDrugData) => {
@@ -58,8 +64,8 @@ function App() {
 
   const loadDrugOptions = () => {
     axios
-      .get("https://vet-anes.herokuapp.com/drugs") // deployed
-      // .get("http://127.0.0.1:8000/drugs") // local development
+      // .get("https://vet-anes.herokuapp.com/drugs") // deployed
+      .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugOptions = response.data.map((drug) => {
           return {
@@ -91,8 +97,8 @@ function App() {
       }
     }
     axios
-      .post("https://vet-anes.herokuapp.com/new_protocol", params)
-      // .post("http://127.0.0.1:8000/new_protocol", params)
+      // .post("https://vet-anes.herokuapp.com/new_protocol", params)
+      .post("http://127.0.0.1:8000/new_protocol", params)
       .then((response) => {
         let calculatedDrugList = response.data;
 
@@ -122,10 +128,27 @@ function App() {
     console.log("load er drug calculations called");
     let weight = { weight: patientInfo.weight };
     axios
-      .post("https://vet-anes.herokuapp.com/er_drugs", weight)
-      // .post("http://127.0.0.1:8000/er_drugs", weight)
+      // .post("https://vet-anes.herokuapp.com/er_drugs", weight)
+      .post("http://127.0.0.1:8000/er_drugs", weight)
       .then((response) => {
         setERDrugList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const loadFluidRatesList = () => {
+    console.log("load fluid rates called");
+    let weight = patientInfo.weight;
+    let species = patientInfo.species;
+    let params = { weight: weight, species: species };
+    console.log(`❤️${JSON.stringify(params)}`);
+    axios
+      // .post("https://vet-anes.herokuapp.com/fluid_rates", params)
+      .post("http://127.0.0.1:8000/fluid_rates", params)
+      .then((response) => {
+        setFluidRatesList(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -136,6 +159,7 @@ function App() {
     e.preventDefault();
     loadCalculations();
     loadERDrugList();
+    loadFluidRatesList();
   };
 
   return (
@@ -156,10 +180,10 @@ function App() {
       </button>
       <div className="row">
         <div className="col-xs-12 col-sm-6">
-          <ERDrugs erDrugList={erDrugList}></ERDrugs>
+          <ERDrugList erDrugList={erDrugList}></ERDrugList>
         </div>
         <div className="col-xs-12 col-sm-6">
-          <h4>Fluids:</h4>
+          <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
         </div>
       </div>
     </div>
@@ -169,7 +193,7 @@ function App() {
 export default App;
 
 // WORKING FUNCTION
-// const loadDrugList = () => {
+// const loadDatabaseDrugList = () => {
 //   axios
 //     // .get("https://vet-anes.herokuapp.com/drugs") // deployed
 //     .get("http://127.0.0.1:8000/drugs") // local development
@@ -188,7 +212,7 @@ export default App;
 //     });
 // };
 
-// useEffect(loadDrugList, []);
+// useEffect(loadDatabaseDrugList, []);
 
 // const addNewPatientInfo = (newPatientInfo) => {
 //   newPatientInfo = {

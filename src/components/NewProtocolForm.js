@@ -20,7 +20,9 @@ const NewProtocolForm = (props) => {
             </tr>
             <tr>
               <th style={{ width: "35%" }}>Drug</th>
-              <th style={{ width: "15%" }}>Dose (mcg or mg/kg)</th>
+              <th style={{ width: "15%" }}>
+                Dose<p>(mcg or mg/kg)</p>
+              </th>
               <th style={{ width: "25%" }}>Vol (ml)</th>
               <th style={{ width: "25%" }}>Route</th>
             </tr>
