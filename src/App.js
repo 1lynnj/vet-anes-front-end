@@ -145,8 +145,8 @@ function App() {
     let params = { weight: weight, species: species };
     console.log(`❤️${JSON.stringify(params)}`);
     axios
-      // .post("https://vet-anes.herokuapp.com/fluid_rates", params)
-      .post("http://127.0.0.1:8000/fluid_rates", params)
+      .post("https://vet-anes.herokuapp.com/fluid_rates", params)
+      // .post("http://127.0.0.1:8000/fluid_rates", params)
       .then((response) => {
         setFluidRatesList(response.data);
       })
