@@ -46,3 +46,18 @@ html, body {
 .fluid-rate-rate {
   text-align: center;
 }
+
+tr {
+  line-height: 20px;
+  min-height: 400px;
+  height: 40px;
+  border:1px lightgrey solid;
+}
+
+table {
+  margin-bottom: 40px;
+}
+
+td {
+  border:1px lightgrey solid;
+}

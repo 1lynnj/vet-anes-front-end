@@ -9,7 +9,16 @@ const INITIAL_FORM_DATA = {
   species: "",
 };
 
-const speciesOptions = ["cat", "dog"];
+const speciesOptions = [
+  {
+    value: "cat",
+    label: "cat",
+  },
+  {
+    value: "dog",
+    label: "dog",
+  },
+];
 
 const PatientInfoForm = (props) => {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
@@ -52,6 +61,12 @@ const PatientInfoForm = (props) => {
         <label htmlFor="patientSpecies" className="form-label">
           Species:
         </label>
+        {/* <Select
+          options={speciesOptions}
+          onChange={(selectedOption) => handleUserEntry(selectedOption.value)}
+          isClearable
+        /> */}
+
         <input
           type="text"
           className="form-control"
