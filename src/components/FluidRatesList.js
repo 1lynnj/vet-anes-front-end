@@ -5,7 +5,7 @@ const FluidRatesList = (props) => {
   return (
     <table className="table">
       <tbody>
-        <tr>
+        <tr className="table-head">
           <td colSpan="5">
             <h4>Fluids:</h4>
           </td>

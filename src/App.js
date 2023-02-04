@@ -5,23 +5,102 @@ import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
 import NewProtocolForm from "./components/NewProtocolForm";
 import Header from "./components/Header";
-// import ERDrugs from "./components/ERDrugList";
 import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 
 function App() {
   var INITIAL_PROTOCOL_DRUG_LIST = [
-    { i: 0, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
-    { i: 1, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
-    { i: 2, drugId: "", dose: "", drugSet: "premed", volume: "", route: "" },
-    { i: 3, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
-    { i: 4, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
-    { i: 5, drugId: "", dose: "", drugSet: "induction", volume: "", route: "" },
-    { i: 6, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
-    { i: 7, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
-    { i: 8, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
-    { i: 9, drugId: "", dose: "", drugSet: "other", volume: "", route: "" },
+    {
+      i: 0,
+      drugId: null,
+      dose: "",
+      drugSet: "premed",
+      volume: "",
+      route: "",
+      selectedOption: null,
+    },
+    {
+      i: 1,
+      drugId: "",
+      dose: "",
+      drugSet: "premed",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 2,
+      drugId: "",
+      dose: "",
+      drugSet: "premed",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 3,
+      drugId: "",
+      dose: "",
+      drugSet: "induction",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 4,
+      drugId: "",
+      dose: "",
+      drugSet: "induction",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 5,
+      drugId: "",
+      dose: "",
+      drugSet: "induction",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 6,
+      drugId: "",
+      dose: "",
+      drugSet: "other",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 7,
+      drugId: "",
+      dose: "",
+      drugSet: "other",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 8,
+      drugId: "",
+      dose: "",
+      drugSet: "other",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
+    {
+      i: 9,
+      drugId: "",
+      dose: "",
+      drugSet: "other",
+      volume: "",
+      route: "",
+      selectedOption: "",
+    },
   ];
 
   const INITIAL_PATIENT_INFO = {
@@ -48,6 +127,10 @@ function App() {
     setFentanylCRIList([]);
   };
 
+  // useEffect(() => {
+  //   setProtocolDrugList();
+  // }, []);
+
   const updateDrugList = (newDrugData) => {
     const updatedDrugList = [];
     for (const drug of protocolDrugList) {
@@ -67,8 +150,8 @@ function App() {
 
   const loadDrugOptions = () => {
     axios
-      .get("https://vet-anes.herokuapp.com/drugs") // deployed
-      // .get("http://127.0.0.1:8000/drugs") // local development
+      // .get("https://vet-anes.herokuapp.com/drugs") // deployed
+      .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugOptions = response.data.map((drug) => {
           return {
@@ -100,8 +183,8 @@ function App() {
       }
     }
     axios
-      .post("https://vet-anes.herokuapp.com/new_protocol", params)
-      // .post("http://127.0.0.1:8000/new_protocol", params)
+      // .post("https://vet-anes.herokuapp.com/new_protocol", params)
+      .post("http://127.0.0.1:8000/new_protocol", params)
       .then((response) => {
         let calculatedDrugList = response.data;
 
@@ -131,8 +214,8 @@ function App() {
     console.log("load er drug calculations called");
     let weight = { weight: patientInfo.weight };
     axios
-      .post("https://vet-anes.herokuapp.com/er_drugs", weight)
-      // .post("http://127.0.0.1:8000/er_drugs", weight)
+      // .post("https://vet-anes.herokuapp.com/er_drugs", weight)
+      .post("http://127.0.0.1:8000/er_drugs", weight)
       .then((response) => {
         setERDrugList(response.data);
       })
@@ -148,8 +231,8 @@ function App() {
     let params = { weight: weight, species: species };
     console.log(`❤️${JSON.stringify(params)}`);
     axios
-      .post("https://vet-anes.herokuapp.com/fluid_rates", params)
-      // .post("http://127.0.0.1:8000/fluid_rates", params)
+      // .post("https://vet-anes.herokuapp.com/fluid_rates", params)
+      .post("http://127.0.0.1:8000/fluid_rates", params)
       .then((response) => {
         setFluidRatesList(response.data);
       })
@@ -162,8 +245,8 @@ function App() {
     console.log("load fentanyl cri list called");
     let weight = { weight: patientInfo.weight };
     axios
-      .post("https://vet-anes.herokuapp.com/fentanyl_cri", weight)
-      // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
+      // .post("https://vet-anes.herokuapp.com/fentanyl_cri", weight)
+      .post("http://127.0.0.1:8000/fentanyl_cri", weight)
       .then((response) => {
         setFentanylCRIList(response.data);
       })
@@ -183,7 +266,10 @@ function App() {
   return (
     <div className="container">
       <Header newPatient={newPatient}></Header>
-      <PatientInfoForm setPatientInfo={setPatientInfo}></PatientInfoForm>
+      <PatientInfoForm
+        setPatientInfo={setPatientInfo}
+        patientInfo={patientInfo}
+      ></PatientInfoForm>
       <NewProtocolForm
         drugOptions={drugOptions}
         protocolDrugList={protocolDrugList}

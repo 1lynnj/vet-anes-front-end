@@ -5,7 +5,7 @@ const FentanylCRIList = (props) => {
   return (
     <table className="table">
       <tbody>
-        <tr>
+        <tr className="table-head">
           <td colSpan="5">
             <h4>Fentanyl CRI (mcg/kg/hr):</h4>
           </td>

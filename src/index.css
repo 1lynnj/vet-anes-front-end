@@ -61,3 +61,20 @@ table {
 td {
   border:1px lightgrey solid;
 }
+
+.table-head {
+  background-color: #3c81be;
+}
+
+.table-head h4 {
+  color:#ffff;
+  padding-top: 10px;
+}
+
+.trailing-row {
+  border: 0px;
+}
+
+.patient-information-row {
+  padding-bottom: 20px;
+}

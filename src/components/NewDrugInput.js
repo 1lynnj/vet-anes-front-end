@@ -4,7 +4,7 @@ import Select from "react-select";
 
 const NewDrugInput = (props) => {
   let drugData = { ...props.drugData };
-  const [newDrugInput, setNewDrugInput] = useState(props.drugData);
+  const [newDrugInput, setNewDrugInput] = useState(drugData);
 
   const onDrugChange = (drugId) => {
     console.log("on drug change called");
@@ -13,7 +13,6 @@ const NewDrugInput = (props) => {
       ...props.drugData,
       drugId: drugId,
     };
-
     props.updateDrugList(updatedDrugData);
     setNewDrugInput(updatedDrugData);
   };
@@ -21,7 +20,7 @@ const NewDrugInput = (props) => {
   const onDoseChange = (e) => {
     // Update the data with the change from the input
     let updatedDrugData = {
-      ...props.drugData,
+      ...drugData,
       dose: e.target.value,
     };
     props.updateDrugList(updatedDrugData);

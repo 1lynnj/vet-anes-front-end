@@ -5,7 +5,7 @@ const NewProtocolForm = (props) => {
   const [formData, setFormData] = useState(props.protocolDrugList);
   const onNewProtocolFormSubmit = (event) => {
     event.preventDefault();
-    setFormData({});
+    setFormData(props.protocolDrugList);
   };
 
   return (
@@ -13,7 +13,7 @@ const NewProtocolForm = (props) => {
       <form onChange={onNewProtocolFormSubmit}>
         <table className="table">
           <tbody>
-            <tr>
+            <tr className="table-head">
               <td colSpan="5">
                 <h4>Premedications:</h4>
               </td>
@@ -39,9 +39,10 @@ const NewProtocolForm = (props) => {
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
             ></NewDrugInput>
+            <tr className="trailing-row"></tr>
           </tbody>
           <tbody>
-            <tr>
+            <tr className="table-head">
               <td colSpan="5">
                 <h4>Induction:</h4>
               </td>
@@ -67,10 +68,11 @@ const NewProtocolForm = (props) => {
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
             ></NewDrugInput>
+            <tr className="trailing-row"></tr>
           </tbody>
 
           <tbody>
-            <tr>
+            <tr className="table-head">
               <td colSpan="5">
                 <h4>Other medications administered at anesthesia:</h4>
               </td>
@@ -101,6 +103,7 @@ const NewProtocolForm = (props) => {
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
             ></NewDrugInput>
+            <tr className="trailing-row"></tr>
           </tbody>
         </table>
       </form>

@@ -6,7 +6,7 @@ const ERDrugList = (props) => {
   return (
     <table className="table">
       <tbody>
-        <tr>
+        <tr className="table-head">
           <td colSpan="5">
             <h4>Emergency Drugs:</h4>
           </td>

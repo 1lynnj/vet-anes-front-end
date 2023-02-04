@@ -21,15 +21,16 @@ const speciesOptions = [
 ];
 
 const PatientInfoForm = (props) => {
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  let patientInfo = { ...props.patientInfo };
+  const [formData, setFormData] = useState(patientInfo);
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
 
   const handleUserEntry = (e) => {
     let formField = e.target.value;
     const newFormData = {
-      ...formData,
+      ...patientInfo,
       [e.target.name]: formField,
     };
     setFormData(newFormData);
@@ -53,7 +54,7 @@ const PatientInfoForm = (props) => {
           aria-describedby="patientName"
           placeholder="Patient First and Last Name"
           name="name"
-          value={formData.name}
+          value={props.patientInfo.name}
           onChange={handleUserEntry}
         />
       </div>
@@ -74,7 +75,7 @@ const PatientInfoForm = (props) => {
           aria-describedby="patientSpecies"
           placeholder="cat or dog"
           name="species"
-          value={formData.species}
+          value={props.patientInfo.species}
           onChange={handleUserEntry}
         />
       </div>
@@ -89,7 +90,7 @@ const PatientInfoForm = (props) => {
           aria-describedby="patientSignalment"
           placeholder="Age, Sex and Reproductive Status, Breed"
           name="signalment"
-          value={formData.signalment}
+          value={props.patientInfo.signalment}
           onChange={handleUserEntry}
         />
       </div>
@@ -104,7 +105,7 @@ const PatientInfoForm = (props) => {
           aria-describedby="patientWeight"
           placeholder="Weight in KG"
           name="weight"
-          value={formData.weight}
+          value={props.patientInfo.weight}
           onChange={handleUserEntry}
         />
       </div>
@@ -116,8 +117,8 @@ const PatientInfoForm = (props) => {
 
 export default PatientInfoForm;
 
-{
-  /* <select>
+// {
+/* <select>
 type="select" className="form-control" id="patientSpecies"
 aria-describedby="patientSpecies" placeholder="cat or dog"
 name="species" value={formData.species}
@@ -125,4 +126,4 @@ onChange={handleUserEntry}
 <option>cat</option>
 <option>dog</option>
 </select> */
-}
+// }
