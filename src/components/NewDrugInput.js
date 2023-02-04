@@ -1,20 +1,27 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 
 const NewDrugInput = (props) => {
-  let drugData = { ...props.drugData };
-  const [newDrugInput, setNewDrugInput] = useState(drugData);
+  let drugData = props.drugData;
+  const emptyDrug = { value: null, label: "" };
+  const [selectedDrug, setSelectedDrug] = useState(emptyDrug);
 
-  const onDrugChange = (drugId) => {
+  useEffect(() => {
+    if (!props.drugData.drugId) {
+      setSelectedDrug(emptyDrug);
+    }
+  }, [props.drugData]);
+
+  const onDrugChange = (drug) => {
     console.log("on drug change called");
     // Update the data with the change from the input
+    setSelectedDrug(drug);
     let updatedDrugData = {
       ...props.drugData,
-      drugId: drugId,
+      drugId: drug.value,
     };
     props.updateDrugList(updatedDrugData);
-    setNewDrugInput(updatedDrugData);
   };
 
   const onDoseChange = (e) => {
@@ -24,7 +31,6 @@ const NewDrugInput = (props) => {
       dose: e.target.value,
     };
     props.updateDrugList(updatedDrugData);
-    setNewDrugInput(updatedDrugData);
   };
 
   return (
@@ -32,8 +38,9 @@ const NewDrugInput = (props) => {
       <td>
         <Select
           options={props.drugOptions}
+          value={selectedDrug}
           onChange={(selectedOption) =>
-            selectedOption ? onDrugChange(selectedOption.value) : null
+            selectedOption.value ? onDrugChange(selectedOption) : null
           }
           isClearable
         />
