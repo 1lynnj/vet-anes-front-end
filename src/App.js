@@ -112,7 +112,7 @@ function App() {
     window.location.hostname
   )
     ? `http://${window.location.hostname}:8000`
-    : "https://vet-anes-front.herokuapp.com";
+    : "https://vet-anes.herokuapp.com";
 
   const newPatient = () => {
     setPatientInfo(INITIAL_PATIENT_INFO);
