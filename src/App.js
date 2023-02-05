@@ -108,6 +108,11 @@ function App() {
   const [erDrugList, setERDrugList] = useState([]);
   const [fluidRatesList, setFluidRatesList] = useState([]);
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
+  const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
+    window.location.hostname
+  )
+    ? `http://${window.location.hostname}:8000`
+    : "https://vet-anes-front.herokuapp.com";
 
   const newPatient = () => {
     setPatientInfo(INITIAL_PATIENT_INFO);
@@ -140,7 +145,7 @@ function App() {
 
   const loadDrugOptions = () => {
     axios
-      .get("https://vet-anes.herokuapp.com/drugs") // deployed
+      .get(`${BACKEND_HOST}/drugs`) // deployed
       // .get("http://127.0.0.1:8000/drugs") // local development
       .then((response) => {
         const updatedDrugOptions = response.data.map((drug) => {
@@ -173,7 +178,7 @@ function App() {
       }
     }
     axios
-      .post("https://vet-anes.herokuapp.com/new_protocol", params)
+      .post(`${BACKEND_HOST}/new_protocol`, params)
       // .post("http://127.0.0.1:8000/new_protocol", params)
       .then((response) => {
         let calculatedDrugList = response.data;
@@ -204,7 +209,7 @@ function App() {
     console.log("load er drug calculations called");
     let weight = { weight: patientInfo.weight };
     axios
-      .post("https://vet-anes.herokuapp.com/er_drugs", weight)
+      .post(`${BACKEND_HOST}/er_drugs`, weight)
       // .post("http://127.0.0.1:8000/er_drugs", weight)
       .then((response) => {
         setERDrugList(response.data);
@@ -221,7 +226,7 @@ function App() {
     let params = { weight: weight, species: species };
     console.log(`❤️${JSON.stringify(params)}`);
     axios
-      .post("https://vet-anes.herokuapp.com/fluid_rates", params)
+      .post(`${BACKEND_HOST}/fluid_rates`, params)
       // .post("http://127.0.0.1:8000/fluid_rates", params)
       .then((response) => {
         setFluidRatesList(response.data);
@@ -235,7 +240,7 @@ function App() {
     console.log("load fentanyl cri list called");
     let weight = { weight: patientInfo.weight };
     axios
-      .post("https://vet-anes.herokuapp.com/fentanyl_cri", weight)
+      .post(`${BACKEND_HOST}/fentanyl_cri`, weight)
       // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
       .then((response) => {
         setFentanylCRIList(response.data);
