@@ -8,13 +8,16 @@ const NewProtocolForm = (props) => {
     setFormData(props.protocolDrugList);
   };
 
+  // TO DO: long-term goal - refactor to allow user to add as many drugs as required
+  // rather than hard coded
+  // TO DO: Move inline styling to css
   return (
     <div>
       <form onChange={onNewProtocolFormSubmit}>
         <table className="table">
           <tbody>
             <tr className="table-head">
-              <td colSpan="5">
+              <td className="table-head-container" colSpan="5">
                 <h4>Premedications:</h4>
               </td>
             </tr>
@@ -43,13 +46,13 @@ const NewProtocolForm = (props) => {
           </tbody>
           <tbody>
             <tr className="table-head">
-              <td colSpan="5">
+              <td className="table-head-container" colSpan="5">
                 <h4>Induction:</h4>
               </td>
             </tr>
-            <tr>
+            <tr className="label-row">
               <th>Drug</th>
-              <th>Dose</th>
+              <th>Dose (mg/kg)</th>
               <th>Vol (ml)</th>
               <th>Route</th>
             </tr>
@@ -73,13 +76,13 @@ const NewProtocolForm = (props) => {
 
           <tbody>
             <tr className="table-head">
-              <td colSpan="5">
+              <td className="table-head-container" colSpan="5">
                 <h4>Other medications administered at anesthesia:</h4>
               </td>
             </tr>
             <tr>
               <th>Drug</th>
-              <th>Dose</th>
+              <th>Dose (mg/kg)</th>
               <th>Vol (ml)</th>
               <th>Route</th>
             </tr>

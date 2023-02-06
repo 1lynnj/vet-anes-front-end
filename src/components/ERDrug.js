@@ -1,5 +1,4 @@
 import React from "react";
-import "./ERDrug.css";
 
 const ERDrug = (props) => {
   let drugData = { ...props.drugData };

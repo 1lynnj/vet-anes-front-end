@@ -7,8 +7,6 @@
   pointer-events: none;
 }
 
-
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -21,7 +19,18 @@
 }
 
 #submit-protocol {
-  background-color: #3c81be;
-  margin-bottom: 15px;
+  background-color:#679871;
+  border-color: #679871;
+  margin-bottom: 30px;
 }
 
+#submit-protocol:hover {
+  background-color: #fff;
+  color:#679871
+}
+
+#submit-protocol:active:hover {
+  border-color:#679871;
+  background-color:#679871;
+  color:#fff;
+}

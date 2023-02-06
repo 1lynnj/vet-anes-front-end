@@ -1,13 +1,16 @@
 .site-header img {
     float: left;
-    width: 50px;
+    width: 60px;
     height: 60px;
     /* background: #555; */
     margin-top: 12px;
+    margin-right: 10px;
   }
   
   .site-header h1 {
-    color: #3c81be;
+    /* color: #3c81be; */
+    color: #679871;
+
     margin-bottom: 0 !important;
     padding-bottom: 4;
   }
@@ -23,6 +26,26 @@
   }
 
   .site-header button {
-      background-color: #3c81be;
+      /* background-color: #3c81be; */
+      background-color: #679871;
       padding-bottom: 7px;
+      border-color: #679871;
+      
     }
+
+    .btn:hover {
+      background-color: #fff;
+      color:#679871;
+      border-color: #679871;
+    }
+
+    .site-header button :active {
+      background-color: #fff;
+      color: #679871;
+    }
+
+.btn.btn-primary:active:hover {
+    border-color:#679871;
+    background-color:#679871;
+    color:#fff;
+}

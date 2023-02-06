@@ -14,8 +14,7 @@ const NewDrugInput = (props) => {
   }, [props.drugData]);
 
   const onDrugChange = (drug) => {
-    console.log("on drug change called");
-    // Update the data with the change from the input
+    // console.log("on drug change called");
     setSelectedDrug(drug);
     let updatedDrugData = {
       ...props.drugData,
@@ -25,7 +24,6 @@ const NewDrugInput = (props) => {
   };
 
   const onDoseChange = (e) => {
-    // Update the data with the change from the input
     let updatedDrugData = {
       ...drugData,
       dose: e.target.value,
@@ -55,8 +53,8 @@ const NewDrugInput = (props) => {
           onChange={onDoseChange}
         />
       </td>
-      <td>{drugData.volume}</td>
-      <td>{drugData.route}</td>
+      <td className="align-middle">{drugData.volume}</td>
+      <td className="align-middle">{drugData.route}</td>
     </tr>
   );
 };

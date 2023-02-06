@@ -1,13 +1,14 @@
 import React from "react";
 import ERDrug from "./ERDrug";
-import "./ERDrugList.css";
+
+// TO DO: Refactor to move inline styles to css
 
 const ERDrugList = (props) => {
   return (
     <table className="table">
       <tbody>
         <tr className="table-head">
-          <td colSpan="5">
+          <td className="table-head-container" colSpan="5">
             <h4>Emergency Drugs:</h4>
           </td>
         </tr>

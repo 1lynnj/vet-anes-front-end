@@ -1,12 +1,13 @@
 import React from "react";
 import FentanylCRI from "./FentanylCRI";
+import "./FentanylCRIList.css";
 
 const FentanylCRIList = (props) => {
   return (
     <table className="table">
       <tbody>
         <tr className="table-head">
-          <td colSpan="5">
+          <td className="table-head-container" colSpan="5">
             <h4>Fentanyl CRI (mcg/kg/hr):</h4>
           </td>
         </tr>

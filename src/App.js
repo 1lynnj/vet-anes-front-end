@@ -1,5 +1,6 @@
 import "./App.css";
-import "./vet_logo.png";
+// import "./vet_logo.png";
+import "./vetLogo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
@@ -9,6 +10,8 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 
+// TO DO: Move constants to data file and import where needed
+// TO DO: Add drugSet category to backend and remove hardcoded data
 function App() {
   const INITIAL_PROTOCOL_DRUG_LIST = [
     {
@@ -108,6 +111,8 @@ function App() {
   const [erDrugList, setERDrugList] = useState([]);
   const [fluidRatesList, setFluidRatesList] = useState([]);
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
+
+  // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
     window.location.hostname
   )
@@ -121,10 +126,6 @@ function App() {
     setFluidRatesList([]);
     setFentanylCRIList([]);
   };
-
-  // useEffect(() => {
-  //   setProtocolDrugList();
-  // }, []);
 
   const updateDrugList = (newDrugData) => {
     const updatedDrugList = [];
@@ -183,6 +184,7 @@ function App() {
       .then((response) => {
         let calculatedDrugList = response.data;
 
+        // TO DO: Refactor to remove nested for loop
         let updatedDrugList = [];
         for (const drug1 of protocolDrugList) {
           let newDrug = drug1;
@@ -279,10 +281,10 @@ function App() {
         Submit Protocol
       </button>
       <div className="row">
-        <div className="col-xs-12 col-sm-6">
+        <div className="col-xs-12 col-sm-7">
           <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
         </div>
-        <div className="col-xs-12 col-sm-6">
+        <div className="col-xs-12 col-sm-3">
           <FentanylCRIList fentanylCRIList={fentanylCRIList}></FentanylCRIList>
         </div>
       </div>
@@ -296,41 +298,3 @@ function App() {
 }
 
 export default App;
-
-// WORKING FUNCTION
-// const loadDatabaseDrugList = () => {
-//   axios
-//     // .get("https://vet-anes.herokuapp.com/drugs") // deployed
-//     .get("http://127.0.0.1:8000/drugs") // local development
-//     .then((response) => {
-//       const updatedDrugList = response.data.map((drug) => {
-//         return {
-//           ...drug,
-//         };
-//       });
-//       // console.log(`🤢 ${JSON.stringify(updatedDrugList)}`);
-//       setDrugList(updatedDrugList);
-//       // console.log(`🌸 ${JSON.stringify(drugList)}`);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
-
-// useEffect(loadDatabaseDrugList, []);
-
-// const addNewPatientInfo = (newPatientInfo) => {
-//   newPatientInfo = {
-//     name: newPatientInfo.name,
-//     signalment: newPatientInfo.signalment,
-//     weight: newPatientInfo.weight,
-//   };
-//   setPatientInfo(newPatientInfo);
-// };
-
-// const addNewPatientWeight = (newPatientWeight) => {
-//   newPatientWeight = {
-//     weight: newPatientWeight.weight,
-//   };
-//   setPatientWeight(newPatientWeight);
-// };

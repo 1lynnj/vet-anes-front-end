@@ -5,7 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #3c81be;
+  /* color: #3c81be; */
+  /* color: #679871; */
+  color:black;
   /* border: 2px lightslategray solid; */
   background-color: #ffff;
   padding: 10px;
@@ -18,7 +20,9 @@ code {
 }
 
 table td, table th {
-  color: #3c81be;
+  /* color: #3c81be; */
+  /* color: #679871; */
+  color:black
 }
 
 h4 {
@@ -54,6 +58,7 @@ tr {
   border:1px lightgrey solid;
 }
 
+
 table {
   margin-bottom: 40px;
 }
@@ -63,7 +68,17 @@ td {
 }
 
 .table-head {
-  background-color: #3c81be;
+  /* background-color: #3c81be; */
+  background-color: #679871;
+}
+
+.table-head-container {
+  border-radius: 8px 8px 0px 0px;
+  border: #ffff 1px solid;
+}
+
+th {
+    font-weight: normal;
 }
 
 .table-head h4 {
@@ -77,4 +92,8 @@ td {
 
 .patient-information-row {
   padding-bottom: 20px;
+}
+
+#protocol-drug-vol {
+  vertical-align: center;
 }
