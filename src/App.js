@@ -226,7 +226,6 @@ function App() {
     let weight = patientInfo.weight;
     let species = patientInfo.species;
     let params = { weight: weight, species: species };
-    console.log(`❤️${JSON.stringify(params)}`);
     axios
       .post(`${BACKEND_HOST}/fluid_rates`, params)
       // .post("http://127.0.0.1:8000/fluid_rates", params)
