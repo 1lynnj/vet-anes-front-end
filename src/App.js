@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
+import Footer from "./components/Footer";
 
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
@@ -292,6 +293,7 @@ function App() {
           <ERDrugList erDrugList={erDrugList}></ERDrugList>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

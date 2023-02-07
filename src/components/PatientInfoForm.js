@@ -27,11 +27,11 @@ const PatientInfoForm = (props) => {
           className="form-control"
           id="patientName"
           aria-describedby="patientName"
-          placeholder="Patient First and Last Name"
           name="name"
           value={props.patientInfo.name}
           onChange={handleUserEntry}
         />
+        <p id="form-descriptions">Patient First and Last Name</p>
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-species">
         <label htmlFor="patientSpecies" className="form-label">
@@ -43,11 +43,11 @@ const PatientInfoForm = (props) => {
           className="form-control"
           id="patientSpecies"
           aria-describedby="patientSpecies"
-          placeholder="cat or dog"
           name="species"
           value={props.patientInfo.species}
           onChange={handleUserEntry}
         />
+        <p id="form-descriptions">Cat or Dog</p>
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-signalment">
         <label htmlFor="patientSignalment" className="form-label">
@@ -58,11 +58,11 @@ const PatientInfoForm = (props) => {
           className="form-control"
           id="patientSignalment"
           aria-describedby="patientSignalment"
-          placeholder="Age, Sex and Reproductive Status, Breed"
           name="signalment"
           value={props.patientInfo.signalment}
           onChange={handleUserEntry}
         />
+        <p id="form-descriptions">Age, Sex and Reproductive Status, Breed</p>
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-weight">
         <label htmlFor="patientWeight" className="form-label">
@@ -73,11 +73,11 @@ const PatientInfoForm = (props) => {
           className="form-control"
           id="patientWeight"
           aria-describedby="patientWeight"
-          placeholder="Weight in KG"
           name="weight"
           value={props.patientInfo.weight}
           onChange={handleUserEntry}
         />
+        <p id="form-descriptions">Weight in kg</p>
       </div>
     </form>
   );
