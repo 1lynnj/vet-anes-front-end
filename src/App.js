@@ -10,6 +10,7 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
+import DrugInteractionsForm from "./components/DrugInteractionsForm";
 
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
@@ -95,6 +96,46 @@ function App() {
       volume: "",
       route: "",
     },
+    {
+      i: 10,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 11,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 12,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 13,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 14,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+    },
   ];
 
   const INITIAL_PATIENT_INFO = {
@@ -112,6 +153,7 @@ function App() {
   const [erDrugList, setERDrugList] = useState([]);
   const [fluidRatesList, setFluidRatesList] = useState([]);
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
+  const [interactionsDrugList, setInteractionsDrugList] = useState([]);
 
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
@@ -145,6 +187,22 @@ function App() {
     }
   };
 
+  const updateInteractionsDrugList = (newDrugData) => {
+    const updatedDrugList = [];
+    for (const drug of protocolDrugList) {
+      if (drug.i !== newDrugData.i) {
+        updatedDrugList.push(drug);
+      } else {
+        const newDrug = {
+          ...drug,
+          drugId: newDrugData.drugId,
+        };
+        updatedDrugList.push(newDrug);
+      }
+      setInteractionsDrugList(updatedDrugList);
+    }
+  };
+
   const loadDrugOptions = () => {
     axios
       .get(`${BACKEND_HOST}/drugs`) // deployed
@@ -154,6 +212,7 @@ function App() {
           return {
             value: drug.id,
             label: drug.name,
+            rxcui_code: drug.rxcui_code,
           };
         });
         setDrugOptions(updatedDrugOptions);
@@ -200,8 +259,39 @@ function App() {
           }
           updatedDrugList.push(newDrug);
         }
-
         setProtocolDrugList(updatedDrugList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // console.log(JSON.stringify(drugOptions[0].rxcui_code));
+
+  Service domainhttps://rxnav.nlm.nih.gov
+HTTP requestGET  /REST/interaction/list.xml?rxcuis=rxcuis&sources=sources
+
+  const loadDrugInteractions = () => {
+    console.log("load drug interactions called");
+    const params = [];
+    let newDrug = {};
+    for (const drug of interactionsDrugList) {
+      if (drug.drugId !== "") {
+        newDrug = {
+          rxcui_code: drugOptions.drug.rxcui_code,
+        };
+        params.push(newDrug);
+      }
+    }
+    axios
+      .get("https://rxnav.nlm.nih.gov/REST/interaction/list.json", params)
+      .then((response) => {
+        const updatedInteractionsList = response.data.map((drug) => {
+          return {
+            interactions: drug.interactions,
+          };
+        });
+        setInteractionsDrugList(updatedInteractionsList);
       })
       .catch((error) => {
         console.log(error);
@@ -271,6 +361,8 @@ function App() {
         drugOptions={drugOptions}
         protocolDrugList={protocolDrugList}
         updateDrugList={updateDrugList}
+        interactionsDrugList={interactionsDrugList}
+        updateInteractionsDrugList={updateInteractionsDrugList}
       ></NewProtocolForm>
       <button
         onClick={submitProtocol}
@@ -291,6 +383,17 @@ function App() {
       <div className="row">
         <div className="col-xs-12 col-sm-6">
           <ERDrugList erDrugList={erDrugList}></ERDrugList>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-12 col-sm-12">
+          <DrugInteractionsForm
+            drugOptions={drugOptions}
+            protocolDrugList={protocolDrugList}
+            updateDrugList={updateDrugList}
+            interactionsDrugList={interactionsDrugList}
+            updateInteractionsDrugList={updateInteractionsDrugList}
+          ></DrugInteractionsForm>
         </div>
       </div>
       <Footer></Footer>
