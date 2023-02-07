@@ -97,3 +97,9 @@ th {
 #protocol-drug-vol {
   vertical-align: center;
 }
+
+#form-descriptions {
+  padding-left: 7px;
+  color:#ABABAB;
+  text-decoration: italic;
+}
