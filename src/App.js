@@ -23,6 +23,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 1,
@@ -31,6 +32,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 2,
@@ -39,6 +41,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 3,
@@ -47,6 +50,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 4,
@@ -55,6 +59,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 5,
@@ -63,6 +68,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 6,
@@ -71,6 +77,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 7,
@@ -79,6 +86,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 8,
@@ -87,6 +95,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 9,
@@ -95,6 +104,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
   ];
 
@@ -106,6 +116,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 1,
@@ -114,6 +125,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 2,
@@ -122,6 +134,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 3,
@@ -130,6 +143,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 4,
@@ -138,6 +152,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 5,
@@ -146,6 +161,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 6,
@@ -154,6 +170,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 7,
@@ -162,6 +179,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 8,
@@ -170,6 +188,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 9,
@@ -178,6 +197,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
   ];
 
@@ -189,6 +209,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 1,
@@ -197,6 +218,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 2,
@@ -205,6 +227,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 3,
@@ -213,6 +236,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 4,
@@ -221,6 +245,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 5,
@@ -229,6 +254,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 6,
@@ -237,6 +263,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 7,
@@ -245,6 +272,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 8,
@@ -253,6 +281,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 9,
@@ -261,6 +290,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 10,
@@ -269,6 +299,7 @@ function App() {
       drugSet: "oral",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 11,
@@ -277,6 +308,7 @@ function App() {
       drugSet: "oral",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 12,
@@ -285,6 +317,7 @@ function App() {
       drugSet: "oral",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 13,
@@ -293,6 +326,7 @@ function App() {
       drugSet: "oral",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 14,
@@ -301,6 +335,7 @@ function App() {
       drugSet: "oral",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
   ];
 
@@ -355,6 +390,7 @@ function App() {
           ...drug,
           drugId: newDrugData.drugId,
           dose: newDrugData.dose,
+          rxcui_code: newDrugData.rxcui_code,
         };
         updatedDrugList.push(newDrug);
       }
@@ -362,20 +398,15 @@ function App() {
     }
   };
 
-  const updateInteractionsDrugList = (newDrugData) => {
+  const updateInteractionsDrugList = () => {
     const updatedDrugList = [];
-    for (const drug of protocolDrugList) {
-      if (drug.i !== newDrugData.i) {
-        updatedDrugList.push(drug);
-      } else {
-        const newDrug = {
-          ...drug,
-          drugId: newDrugData.drugId,
-        };
-        updatedDrugList.push(newDrug);
+    for (const protocolDrug of protocolDrugList) {
+      if (protocolDrug.rxcui_code) {
+        const rxcuiCode = protocolDrug.rxcui_code;
+        updatedDrugList.push(rxcuiCode);
       }
-      setInteractionsDrugList(updatedDrugList);
     }
+    setInteractionsDrugList(updatedDrugList);
   };
 
   const loadDrugOptions = () => {
@@ -441,32 +472,14 @@ function App() {
       });
   };
 
-  // console.log(JSON.stringify(drugOptions[0].rxcui_code));
-
-  Service domainhttps://rxnav.nlm.nih.gov
-HTTP requestGET  /REST/interaction/list.xml?rxcuis=rxcuis&sources=sources
-
   const loadDrugInteractions = () => {
-    console.log("load drug interactions called");
-    const params = [];
-    let newDrug = {};
-    for (const drug of interactionsDrugList) {
-      if (drug.drugId !== "") {
-        newDrug = {
-          rxcui_code: drugOptions.drug.rxcui_code,
-        };
-        params.push(newDrug);
-      }
-    }
+    let rxcuiCodes = interactionsDrugList.join("+");
     axios
-      .get("https://rxnav.nlm.nih.gov/REST/interaction/list.json", params)
+      .get(
+        `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
+      )
       .then((response) => {
-        const updatedInteractionsList = response.data.map((drug) => {
-          return {
-            interactions: drug.interactions,
-          };
-        });
-        setInteractionsDrugList(updatedInteractionsList);
+        console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
       })
       .catch((error) => {
         console.log(error);
@@ -523,6 +536,7 @@ HTTP requestGET  /REST/interaction/list.xml?rxcuis=rxcuis&sources=sources
     loadERDrugList();
     loadFluidRatesList();
     loadFentanylCRIList();
+    loadDrugInteractions();
   };
 
   return (

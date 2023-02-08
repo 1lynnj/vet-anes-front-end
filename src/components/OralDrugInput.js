@@ -3,24 +3,25 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 
 const OralDrugInput = (props) => {
+  let drugData = props.drugData;
   const emptyDrug = { value: null, label: "" };
   const [selectedDrug, setSelectedDrug] = useState(emptyDrug);
 
   useEffect(() => {
-    if (!props.drugData.drugId) {
+    if (!drugData.drugId) {
       setSelectedDrug(emptyDrug);
     }
-  }, [props.drugData]);
+  }, [drugData]);
 
   const onDrugChange = (drug) => {
-    console.log(`on oral meds change called ${JSON.stringify(drug)}`);
+    console.log(`on oral meds change called`);
     setSelectedDrug(drug);
     let updatedDrugData = {
-      ...props.drugData,
+      ...drugData,
       drugId: drug.value,
+      rxcui_code: drug.rxcui_code,
     };
     props.updateDrugList(updatedDrugData);
-    props.updateInteractionsDrugList(updatedDrugData);
   };
   return (
     <tr>

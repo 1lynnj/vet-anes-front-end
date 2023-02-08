@@ -6,6 +6,7 @@ const DrugInteractionsForm = (props) => {
   const onDrugInteractionsSubmit = (event) => {
     event.preventDefault();
     setFormData(props.protocolDrugList);
+    props.updateInteractionsDrugList(formData);
   };
   return (
     <div>
@@ -24,26 +25,31 @@ const DrugInteractionsForm = (props) => {
               drugData={props.protocolDrugList[10]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></OralDrugInput>
             <OralDrugInput
               drugData={props.protocolDrugList[11]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></OralDrugInput>
             <OralDrugInput
               drugData={props.protocolDrugList[12]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></OralDrugInput>
             <OralDrugInput
               drugData={props.protocolDrugList[13]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></OralDrugInput>
             <OralDrugInput
               drugData={props.protocolDrugList[14]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></OralDrugInput>
             <tr className="trailing-row"></tr>
           </tbody>
