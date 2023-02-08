@@ -14,6 +14,89 @@ import Footer from "./components/Footer";
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
 function App() {
+  const CAT_PROTOCOL_DRUG_LIST = [
+    {
+      i: 0,
+      drugId: 42,
+      dose: 1,
+      drugSet: "premed",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 1,
+      drugId: 15,
+      dose: 0.2,
+      drugSet: "premed",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 2,
+      drugId: 21,
+      dose: 0.2,
+      drugSet: "premed",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 3,
+      drugId: 23,
+      dose: 4,
+      drugSet: "induction",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 4,
+      drugId: null,
+      dose: "",
+      drugSet: "induction",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 5,
+      drugId: null,
+      dose: "",
+      drugSet: "induction",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 6,
+      drugId: 26,
+      dose: 22,
+      drugSet: "other",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 7,
+      drugId: null,
+      dose: "",
+      drugSet: "other",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 8,
+      drugId: null,
+      dose: "",
+      drugSet: "other",
+      volume: "",
+      route: "",
+    },
+    {
+      i: 9,
+      drugId: null,
+      dose: "",
+      drugSet: "other",
+      volume: "",
+      route: "",
+    },
+  ];
+
   const INITIAL_PROTOCOL_DRUG_LIST = [
     {
       i: 0,
@@ -119,6 +202,10 @@ function App() {
   )
     ? `http://${window.location.hostname}:8000`
     : "https://vet-anes.herokuapp.com";
+
+  const populateCat = () => {
+    setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
+  };
 
   const newPatient = () => {
     setPatientInfo(INITIAL_PATIENT_INFO);
@@ -266,6 +353,7 @@ function App() {
       <PatientInfoForm
         setPatientInfo={setPatientInfo}
         patientInfo={patientInfo}
+        populateCat={populateCat}
       ></PatientInfoForm>
       <NewProtocolForm
         drugOptions={drugOptions}

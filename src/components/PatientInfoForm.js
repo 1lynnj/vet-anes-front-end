@@ -47,7 +47,10 @@ const PatientInfoForm = (props) => {
           value={props.patientInfo.species}
           onChange={handleUserEntry}
         />
-        <p id="form-descriptions">Cat or Dog</p>
+        <p id="form-descriptions">
+          <button onClick={props.populateCat}>Cat</button>
+          or Dog
+        </p>
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-signalment">
         <label htmlFor="patientSignalment" className="form-label">
