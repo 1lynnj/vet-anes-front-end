@@ -203,7 +203,8 @@ function App() {
     ? `http://${window.location.hostname}:8000`
     : "https://vet-anes.herokuapp.com";
 
-  const populateCat = () => {
+  const populateCat = (e) => {
+    e.preventDefault();
     setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
   };
 
