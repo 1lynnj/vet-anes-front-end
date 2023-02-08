@@ -46,7 +46,6 @@ const NewDrugInput = (props) => {
   return (
     <tr>
       <td>
-        {JSON.stringify(props.drugData)}
         <Select
           options={props.drugOptions}
           value={selectedDrug}

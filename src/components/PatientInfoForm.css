@@ -1,0 +1,25 @@
+.patient-information button {
+    /* background-color: #3c81be; */
+    /* background-color: #679871; */
+    background-color: aquamarine;
+    padding-bottom: 7px;
+    border-color: #679871;
+    
+  }
+
+.btn:hover {
+  background-color: #fff;
+  color:#679871;
+  border-color: #679871;
+}
+
+.patient-information button :active {
+  background-color: #fff;
+  color: #679871;
+}
+
+.btn.btn-primary:active:hover {
+  border-color:#679871;
+  background-color:#679871;
+  color:#fff;
+}
