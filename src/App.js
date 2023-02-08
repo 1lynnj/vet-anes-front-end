@@ -286,7 +286,7 @@ function App() {
     ? `http://${window.location.hostname}:8000`
     : "https://vet-anes.herokuapp.com";
 
-  const populateCat = (e) => {
+  const populateHealthyPet = (e) => {
     e.preventDefault();
     if (patientInfo.species === "cat") {
       setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
@@ -441,7 +441,7 @@ function App() {
       <PatientInfoForm
         setPatientInfo={setPatientInfo}
         patientInfo={patientInfo}
-        populateCat={populateCat}
+        populateHealthyPet={populateHealthyPet}
       ></PatientInfoForm>
       <NewProtocolForm
         drugOptions={drugOptions}

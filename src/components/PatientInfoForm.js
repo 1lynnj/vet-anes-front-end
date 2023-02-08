@@ -83,7 +83,7 @@ const PatientInfoForm = (props) => {
         <button
           id="submit-protocol"
           className="btn btn-primary"
-          onClick={props.populateCat}
+          onClick={props.populateHealthyPet}
         >
           Healthy Pet
         </button>
