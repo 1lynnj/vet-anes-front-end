@@ -11,6 +11,7 @@ import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
 import DrugInteractionsForm from "./components/DrugInteractionsForm";
+import DrugInteractions from "./components/DrugInteractions";
 
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
@@ -355,6 +356,7 @@ function App() {
   const [fluidRatesList, setFluidRatesList] = useState([]);
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
   const [interactionsDrugList, setInteractionsDrugList] = useState([]);
+  const [drugInteractions, setDrugInteractions] = useState([]);
 
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
@@ -479,7 +481,8 @@ function App() {
         `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
       )
       .then((response) => {
-        console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
+        // console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
+        setDrugInteractions(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -586,6 +589,7 @@ function App() {
           ></DrugInteractionsForm>
         </div>
       </div>
+      <DrugInteractions drugInteractions={drugInteractions}></DrugInteractions>
       <Footer></Footer>
     </div>
   );
