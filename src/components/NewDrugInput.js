@@ -7,9 +7,21 @@ const NewDrugInput = (props) => {
   const emptyDrug = { value: null, label: "" };
   const [selectedDrug, setSelectedDrug] = useState(emptyDrug);
 
+  const autoPopulateDrug = () => {
+    if (props.drugData.drugId) {
+      for (let drugOption of props.drugOptions) {
+        if (drugOption.value === props.drugData.drugId) {
+          setSelectedDrug(drugOption);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if (!props.drugData.drugId) {
       setSelectedDrug(emptyDrug);
+    } else {
+      autoPopulateDrug();
     }
   }, [props.drugData]);
 
