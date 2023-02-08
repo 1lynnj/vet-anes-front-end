@@ -79,6 +79,15 @@ const PatientInfoForm = (props) => {
         />
         <p id="form-descriptions">Weight in kg</p>
       </div>
+      <div>
+        <button
+          id="submit-protocol"
+          className="btn btn-primary"
+          onClick={props.populateCat}
+        >
+          Healthy Pet
+        </button>
+      </div>
     </form>
   );
 };
