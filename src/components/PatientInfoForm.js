@@ -44,7 +44,7 @@ const PatientInfoForm = (props) => {
           id="patientSpecies"
           aria-describedby="patientSpecies"
           name="species"
-          value={props.patientInfo.species}
+          value={props.patientInfo.species.toLowerCase()}
           onChange={handleUserEntry}
         />
         <p id="form-descriptions">Cat or Dog</p>

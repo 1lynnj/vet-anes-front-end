@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import DrugPair from "./DrugPair";
 // import { useState, useEffect } from "react";
 
 const DrugInteractions = (props) => {
@@ -15,14 +16,26 @@ const DrugInteractions = (props) => {
       )}`
     );
 
+    // const drugComponents = [];
+    // for (const pairs of interactions.fullInteractionTypeGroup[0]
+    //   .fullInteractionType) {
+    //   drugComponents.push(pairs.interactionPair[0].description);
+    // }
+
     const drugComponents = [];
     for (const pairs of interactions.fullInteractionTypeGroup[0]
       .fullInteractionType) {
-      drugComponents.push(pairs.interactionPair[0].description);
+      drugComponents.push(
+        <DrugPair
+          drugInteractions={props.drugInteractions}
+          description={pairs.interactionPair[0].description}
+        ></DrugPair>
+      );
     }
+
     return (
       <div>
-        <code>-- {JSON.stringify(drugComponents)}</code>
+        {/* <code>-- {JSON.stringify(drugComponents)}</code> */}
         <h4>Drug Interactions:</h4>
         <h5>Source:{source}</h5>
         <p>{disclaimer}</p>
