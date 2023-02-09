@@ -474,19 +474,21 @@ function App() {
       });
   };
 
-  const loadDrugInteractions = async () => {
+  const loadDrugInteractions = () => {
     let rxcuiCodes = interactionsDrugList.join("+");
-    axios
-      .get(
-        `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
-      )
-      .then((response) => {
-        // console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
-        setDrugInteractions(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (rxcuiCodes.length > 0) {
+      axios
+        .get(
+          `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
+        )
+        .then((response) => {
+          // console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
+          setDrugInteractions(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const loadERDrugList = () => {
@@ -589,7 +591,11 @@ function App() {
           ></DrugInteractionsForm>
         </div>
       </div>
-      <DrugInteractions drugInteractions={drugInteractions}></DrugInteractions>
+
+      <DrugInteractions
+        loadDrugInteractions={loadDrugInteractions}
+        drugInteractions={drugInteractions}
+      ></DrugInteractions>
       <Footer></Footer>
     </div>
   );
