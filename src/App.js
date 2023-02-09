@@ -474,7 +474,7 @@ function App() {
       });
   };
 
-  const loadDrugInteractions = () => {
+  const loadDrugInteractions = async () => {
     let rxcuiCodes = interactionsDrugList.join("+");
     axios
       .get(
