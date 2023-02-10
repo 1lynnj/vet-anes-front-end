@@ -380,6 +380,7 @@ function App() {
     setERDrugList([]);
     setFluidRatesList([]);
     setFentanylCRIList([]);
+    setDrugInteractions([]);
   };
 
   const updateDrugList = (newDrugData) => {
