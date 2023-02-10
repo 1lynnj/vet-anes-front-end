@@ -581,7 +581,7 @@ function App() {
         </div>
       </div>
       <div className="row">
-        <div className="col-xs-12 col-sm-12">
+        {/* <div className="col-xs-12 col-sm-12">
           <DrugInteractionsForm
             drugOptions={drugOptions}
             protocolDrugList={protocolDrugList}
@@ -589,7 +589,7 @@ function App() {
             interactionsDrugList={interactionsDrugList}
             updateInteractionsDrugList={updateInteractionsDrugList}
           ></DrugInteractionsForm>
-        </div>
+        </div> */}
       </div>
 
       <DrugInteractions

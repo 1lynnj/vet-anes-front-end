@@ -6,6 +6,7 @@ const NewProtocolForm = (props) => {
   const onNewProtocolFormSubmit = (event) => {
     event.preventDefault();
     setFormData(props.protocolDrugList);
+    props.updateInteractionsDrugList(props.protocolDrugList);
   };
 
   // TO DO: long-term goal - refactor to allow user to add as many drugs as required
@@ -116,6 +117,7 @@ const NewProtocolForm = (props) => {
               drugOptions={props.drugOptions}
               updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
+            <tr className="trailing-row"></tr>
             <tr className="trailing-row"></tr>
           </tbody>
         </table>
