@@ -10,6 +10,8 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
+import DrugInteractionsForm from "./components/DrugInteractionsForm";
+import DrugInteractions from "./components/DrugInteractions";
 
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
@@ -22,6 +24,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 1,
@@ -30,6 +33,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 2,
@@ -38,6 +42,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 3,
@@ -46,6 +51,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 4,
@@ -54,6 +60,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 5,
@@ -62,6 +69,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 6,
@@ -70,6 +78,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 7,
@@ -78,6 +87,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 8,
@@ -86,6 +96,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 9,
@@ -94,6 +105,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
   ];
 
@@ -105,6 +117,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 1,
@@ -113,6 +126,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 2,
@@ -121,6 +135,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 3,
@@ -129,6 +144,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 4,
@@ -137,6 +153,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 5,
@@ -145,6 +162,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 6,
@@ -153,6 +171,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 7,
@@ -161,6 +180,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 8,
@@ -169,6 +189,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 9,
@@ -177,6 +198,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
   ];
 
@@ -188,6 +210,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 1,
@@ -196,6 +219,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 2,
@@ -204,6 +228,7 @@ function App() {
       drugSet: "premed",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 3,
@@ -212,6 +237,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 4,
@@ -220,6 +246,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 5,
@@ -228,6 +255,7 @@ function App() {
       drugSet: "induction",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 6,
@@ -236,6 +264,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 7,
@@ -244,6 +273,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 8,
@@ -252,6 +282,7 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
     },
     {
       i: 9,
@@ -260,6 +291,52 @@ function App() {
       drugSet: "other",
       volume: "",
       route: "",
+      rxcui_code: "",
+    },
+    {
+      i: 10,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+      rxcui_code: "",
+    },
+    {
+      i: 11,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+      rxcui_code: "",
+    },
+    {
+      i: 12,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+      rxcui_code: "",
+    },
+    {
+      i: 13,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+      rxcui_code: "",
+    },
+    {
+      i: 14,
+      drugId: null,
+      dose: "",
+      drugSet: "oral",
+      volume: "",
+      route: "",
+      rxcui_code: "",
     },
   ];
 
@@ -278,6 +355,8 @@ function App() {
   const [erDrugList, setERDrugList] = useState([]);
   const [fluidRatesList, setFluidRatesList] = useState([]);
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
+  const [interactionsDrugList, setInteractionsDrugList] = useState([]);
+  const [drugInteractions, setDrugInteractions] = useState([]);
 
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
@@ -288,9 +367,9 @@ function App() {
 
   const populateHealthyPet = (e) => {
     e.preventDefault();
-    if (patientInfo.species === "cat") {
+    if (patientInfo.species === "cat" || patientInfo.species === "Cat") {
       setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
-    } else if (patientInfo.species === "dog") {
+    } else if (patientInfo.species === "dog" || patientInfo.species === "Dog") {
       setProtocolDrugList(DOG_PROTOCOL_DRUG_LIST);
     }
   };
@@ -313,11 +392,23 @@ function App() {
           ...drug,
           drugId: newDrugData.drugId,
           dose: newDrugData.dose,
+          rxcui_code: newDrugData.rxcui_code,
         };
         updatedDrugList.push(newDrug);
       }
       setProtocolDrugList(updatedDrugList);
     }
+  };
+
+  const updateInteractionsDrugList = () => {
+    const updatedDrugList = [];
+    for (const protocolDrug of protocolDrugList) {
+      if (protocolDrug.rxcui_code) {
+        const rxcuiCode = protocolDrug.rxcui_code;
+        updatedDrugList.push(rxcuiCode);
+      }
+    }
+    setInteractionsDrugList(updatedDrugList);
   };
 
   const loadDrugOptions = () => {
@@ -329,6 +420,7 @@ function App() {
           return {
             value: drug.id,
             label: drug.name,
+            rxcui_code: drug.rxcui_code,
           };
         });
         setDrugOptions(updatedDrugOptions);
@@ -339,6 +431,23 @@ function App() {
   };
 
   useEffect(loadDrugOptions, []);
+
+  const loadDrugInteractions = () => {
+    let rxcuiCodes = interactionsDrugList.join("+");
+    if (rxcuiCodes.length > 0) {
+      axios
+        .get(
+          `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
+        )
+        .then((response) => {
+          // console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
+          setDrugInteractions(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   const loadCalculations = () => {
     console.log("load calculations called");
@@ -447,6 +556,8 @@ function App() {
         drugOptions={drugOptions}
         protocolDrugList={protocolDrugList}
         updateDrugList={updateDrugList}
+        interactionsDrugList={interactionsDrugList}
+        updateInteractionsDrugList={updateInteractionsDrugList}
       ></NewProtocolForm>
       <button
         onClick={submitProtocol}
@@ -469,6 +580,22 @@ function App() {
           <ERDrugList erDrugList={erDrugList}></ERDrugList>
         </div>
       </div>
+      <div className="row">
+        <div className="col-xs-12 col-sm-12">
+          <DrugInteractionsForm
+            drugOptions={drugOptions}
+            protocolDrugList={protocolDrugList}
+            updateDrugList={updateDrugList}
+            interactionsDrugList={interactionsDrugList}
+            updateInteractionsDrugList={updateInteractionsDrugList}
+          ></DrugInteractionsForm>
+        </div>
+      </div>
+
+      <DrugInteractions
+        loadDrugInteractions={loadDrugInteractions}
+        drugInteractions={drugInteractions}
+      ></DrugInteractions>
       <Footer></Footer>
     </div>
   );

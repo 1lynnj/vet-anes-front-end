@@ -31,6 +31,7 @@ const NewDrugInput = (props) => {
     let updatedDrugData = {
       ...props.drugData,
       drugId: drug.value,
+      rxcui_code: drug.rxcui_code,
     };
     props.updateDrugList(updatedDrugData);
   };
