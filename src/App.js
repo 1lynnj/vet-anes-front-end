@@ -367,9 +367,9 @@ function App() {
 
   const populateHealthyPet = (e) => {
     e.preventDefault();
-    if (patientInfo.species === "cat") {
+    if (patientInfo.species === "cat" || patientInfo.species === "Cat") {
       setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
-    } else if (patientInfo.species === "dog") {
+    } else if (patientInfo.species === "dog" || patientInfo.species === "Dog") {
       setProtocolDrugList(DOG_PROTOCOL_DRUG_LIST);
     }
   };

@@ -35,9 +35,8 @@ const DrugInteractions = (props) => {
 
     return (
       <div>
-        {/* <code>-- {JSON.stringify(drugComponents)}</code> */}
         <h4>Drug Interactions:</h4>
-        <h5>Source:{source}</h5>
+        <h5>Source: {source}</h5>
         <p>{disclaimer}</p>
         <ul>{drugComponents}</ul>
       </div>

@@ -8,7 +8,7 @@ const OralDrugInput = (props) => {
   const [selectedDrug, setSelectedDrug] = useState(emptyDrug);
 
   useEffect(() => {
-    if (!drugData.drugId) {
+    if (!props.drugData.drugId) {
       setSelectedDrug(emptyDrug);
     }
   }, [drugData]);
@@ -17,7 +17,7 @@ const OralDrugInput = (props) => {
     console.log(`on oral meds change called`);
     setSelectedDrug(drug);
     let updatedDrugData = {
-      ...drugData,
+      ...props.drugData,
       drugId: drug.value,
       rxcui_code: drug.rxcui_code,
     };

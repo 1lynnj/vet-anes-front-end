@@ -10,7 +10,7 @@ const NewDrugInput = (props) => {
   const autoPopulateDrug = () => {
     if (props.drugData.drugId) {
       for (let drugOption of props.drugOptions) {
-        if (drugOption.value === drugData.drugId) {
+        if (drugOption.value === props.drugData.drugId) {
           setSelectedDrug(drugOption);
         }
       }
@@ -18,31 +18,31 @@ const NewDrugInput = (props) => {
   };
 
   useEffect(() => {
-    if (!drugData.drugId) {
+    if (!props.drugData.drugId) {
       setSelectedDrug(emptyDrug);
     } else {
       autoPopulateDrug();
     }
-  }, [drugData]);
+  }, [props.drugData]);
 
   const onDrugChange = (drug) => {
     setSelectedDrug(drug);
     let updatedDrugData = {
-      ...drugData,
+      ...props.drugData,
       drugId: drug.value,
       rxcui_code: drug.rxcui_code,
     };
-    console.log(
-      `🩴${JSON.stringify(updatedDrugData)} ${JSON.stringify(
-        updatedDrugData.drugId
-      )} ${JSON.stringify(updatedDrugData.rxcui_code)}`
-    );
+    // console.log(
+    //   `🩴${JSON.stringify(updatedDrugData)} ${JSON.stringify(
+    //     updatedDrugData.drugId
+    //   )} ${JSON.stringify(updatedDrugData.rxcui_code)}`
+    // );
     props.updateDrugList(updatedDrugData);
   };
 
   const onDoseChange = (e) => {
     let updatedDrugData = {
-      ...drugData,
+      ...props.drugData,
       dose: e.target.value,
     };
     props.updateDrugList(updatedDrugData);
