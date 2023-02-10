@@ -15,11 +15,12 @@ const DrugInteractionsForm = (props) => {
           <tbody>
             <tr className="table-head">
               <td className="table-head-container" colSpan="5">
-                <h4>Current Oral Medications:</h4>
+                <h4>Other medications administered in last 24 hours:</h4>
               </td>
             </tr>
             <tr>
               <th style={{ width: "35%" }}>Drug</th>
+              <th>Total Dose (mg)</th>
             </tr>
             <OralDrugInput
               drugData={props.protocolDrugList[10]}

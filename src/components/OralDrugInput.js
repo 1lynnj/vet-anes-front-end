@@ -11,7 +11,7 @@ const OralDrugInput = (props) => {
     if (!props.drugData.drugId) {
       setSelectedDrug(emptyDrug);
     }
-  }, [drugData]);
+  }, [props.drugData]);
 
   const onDrugChange = (drug) => {
     console.log(`on oral meds change called`);
@@ -20,6 +20,14 @@ const OralDrugInput = (props) => {
       ...props.drugData,
       drugId: drug.value,
       rxcui_code: drug.rxcui_code,
+    };
+    props.updateDrugList(updatedDrugData);
+  };
+
+  const onDoseChange = (e) => {
+    let updatedDrugData = {
+      ...props.drugData,
+      dose: e.target.value,
     };
     props.updateDrugList(updatedDrugData);
   };
@@ -33,6 +41,16 @@ const OralDrugInput = (props) => {
             selectedOption.value ? onDrugChange(selectedOption) : null
           }
           isClearable
+        />
+      </td>
+      <td>
+        <input
+          className="form-control"
+          type="number"
+          id="dose"
+          name="dose"
+          value={drugData.dose}
+          onChange={onDoseChange}
         />
       </td>
     </tr>

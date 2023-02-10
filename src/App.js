@@ -491,6 +491,8 @@ function App() {
     }
   };
 
+  useEffect(loadDrugInteractions, []);
+
   const loadERDrugList = () => {
     console.log("load er drug calculations called");
     let weight = { weight: patientInfo.weight };
@@ -559,6 +561,15 @@ function App() {
         interactionsDrugList={interactionsDrugList}
         updateInteractionsDrugList={updateInteractionsDrugList}
       ></NewProtocolForm>
+      <div>
+        <DrugInteractionsForm
+          drugOptions={drugOptions}
+          protocolDrugList={protocolDrugList}
+          updateDrugList={updateDrugList}
+          interactionsDrugList={interactionsDrugList}
+          updateInteractionsDrugList={updateInteractionsDrugList}
+        ></DrugInteractionsForm>
+      </div>
       <button
         onClick={submitProtocol}
         className="btn btn-primary"
@@ -578,17 +589,6 @@ function App() {
       <div className="row">
         <div className="col-xs-12 col-sm-6">
           <ERDrugList erDrugList={erDrugList}></ERDrugList>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-xs-12 col-sm-12">
-          <DrugInteractionsForm
-            drugOptions={drugOptions}
-            protocolDrugList={protocolDrugList}
-            updateDrugList={updateDrugList}
-            interactionsDrugList={interactionsDrugList}
-            updateInteractionsDrugList={updateInteractionsDrugList}
-          ></DrugInteractionsForm>
         </div>
       </div>
 
