@@ -9,16 +9,24 @@ const DrugInteractions = (props) => {
     const disclaimer =
       interactions.fullInteractionTypeGroup[0].sourceDisclaimer;
 
-    const drugComponents = [];
-    for (const pairs of interactions.fullInteractionTypeGroup[0]
-      .fullInteractionType) {
-      drugComponents.push(
-        <DrugPair
-          drugInteractions={props.drugInteractions}
-          description={pairs.interactionPair[0].description}
-        ></DrugPair>
+    const comment =
+      interactions.fullInteractionTypeGroup[0].fullInteractionType[0].comment;
+    console.log(`🪲${JSON.stringify(comment[0].split())}`);
+
+    const drugComponents =
+      interactions.fullInteractionTypeGroup[0].fullInteractionType.map(
+        (pair, i) => {
+          return (
+            <DrugPair
+              key={i}
+              drugInteractions={props.drugInteractions}
+              description={pair.interactionPair[0].description}
+              drugOne={pair.comment.split()[-1]}
+              drugTwo={pair.comment.split()[-3]}
+            ></DrugPair>
+          );
+        }
       );
-    }
 
     return (
       <div>
