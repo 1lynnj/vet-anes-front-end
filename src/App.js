@@ -1,5 +1,4 @@
 import "./App.css";
-// import "./vet_logo.png";
 import "./vetLogo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -12,6 +11,7 @@ import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
 import DrugInteractionsForm from "./components/DrugInteractionsForm";
 import DrugInteractions from "./components/DrugInteractions";
+import Popup from "react-popup";
 
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
@@ -549,7 +549,13 @@ function App() {
 
   return (
     <div className="container">
+      {/* <script>
+        {alert(
+          "This is a student project. Use of this project acknowledges you assume all risk associated with the use of this app."
+        )}
+      </script> */}
       <Header newPatient={newPatient}></Header>
+      <p id="page-divider"></p>
       <PatientInfoForm
         setPatientInfo={setPatientInfo}
         patientInfo={patientInfo}
@@ -579,6 +585,8 @@ function App() {
       >
         Submit Protocol
       </button>
+
+      <p id="page-divider"></p>
       <div className="row">
         <div className="col-xs-12 col-sm-7">
           <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
@@ -593,11 +601,16 @@ function App() {
         </div>
       </div>
 
-      <DrugInteractions
-        loadDrugInteractions={loadDrugInteractions}
-        drugInteractions={drugInteractions}
-      ></DrugInteractions>
-      <Footer></Footer>
+      <div id="drug-reactions-container">
+        <DrugInteractions
+          loadDrugInteractions={loadDrugInteractions}
+          drugInteractions={drugInteractions}
+        ></DrugInteractions>
+      </div>
+
+      <div className="footer">
+        <Footer></Footer>
+      </div>
     </div>
   );
 }

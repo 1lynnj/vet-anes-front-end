@@ -11,7 +11,7 @@ const DrugInteractions = (props) => {
 
     const comment =
       interactions.fullInteractionTypeGroup[0].fullInteractionType[0].comment;
-    console.log(`🪲${JSON.stringify(comment[0].split())}`);
+    console.log(`🪲${JSON.stringify(comment.split(" ")[0])}`);
 
     const drugComponents =
       interactions.fullInteractionTypeGroup[0].fullInteractionType.map(
@@ -21,8 +21,8 @@ const DrugInteractions = (props) => {
               key={i}
               drugInteractions={props.drugInteractions}
               description={pair.interactionPair[0].description}
-              drugOne={pair.comment.split()[-1]}
-              drugTwo={pair.comment.split()[-3]}
+              drugOne={pair.comment.split(" ")[-1]}
+              drugTwo={pair.comment.split(" ")[-3]}
             ></DrugPair>
           );
         }
@@ -30,9 +30,12 @@ const DrugInteractions = (props) => {
 
     return (
       <div>
+        <p id="page-divider"></p>
         <h4>Drug Interactions:</h4>
+        <p></p>
         <h5>Source: {source}</h5>
-        <p>{disclaimer}</p>
+        <p id="drug-interactions-disclaimer">{disclaimer}</p>
+        <p>Additional interactions may exist but are not listed here.</p>
         <ul>{drugComponents}</ul>
       </div>
     );

@@ -80,6 +80,7 @@ const PatientInfoForm = (props) => {
         <p id="form-descriptions">Weight in kg</p>
       </div>
       <div>
+        <p id="page-divider"></p>
         <button
           id="submit-protocol"
           className="btn btn-primary"
