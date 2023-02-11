@@ -1,5 +1,5 @@
 import "./App.css";
-import "./vetLogo.png";
+import vetLogo from "./vetLogo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
@@ -36,6 +36,7 @@ function App() {
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
   const [interactionsDrugList, setInteractionsDrugList] = useState([]);
   const [drugInteractions, setDrugInteractions] = useState([]);
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
 
   useEffect(() => {
     updateInteractionsDrugList(protocolDrugList);
@@ -232,74 +233,109 @@ function App() {
     loadDrugInteractions();
   };
 
+  const hideDisclaimer = (e) => {
+    setShowDisclaimer(false);
+  };
+
   return (
-    <div className="container">
-      {/* <script>
-        {alert(
-          "This is a student project. Use of this project acknowledges you assume all risk associated with the use of this app."
-        )}
-      </script> */}
-      <Header newPatient={newPatient}></Header>
-      <p id="page-divider"></p>
-      <PatientInfoForm
-        setPatientInfo={setPatientInfo}
-        patientInfo={patientInfo}
-        populateHealthyPet={populateHealthyPet}
-      ></PatientInfoForm>
-      <NewProtocolForm
-        drugOptions={drugOptions}
-        protocolDrugList={protocolDrugList}
-        updateDrugList={updateDrugList}
-        interactionsDrugList={interactionsDrugList}
-        updateInteractionsDrugList={updateInteractionsDrugList}
-      ></NewProtocolForm>
-      <div>
-        <DrugInteractionsForm
+    <div className="outer-container">
+      <div
+        className={
+          showDisclaimer
+            ? "disclaimer-container d-flex d-column align-items-center"
+            : "d-none"
+        }
+      >
+        <div className="container disclaimer">
+          <div className="row">
+            <div className="col">
+              <div
+                className="bubble text-center d-flex flex-column align-items-center justify-content-center"
+                style={{ height: "100%" }}
+              >
+                <img src={vetLogo} alt="logo" />
+                <h1>Veterinary Anesthesia Protocol</h1>
+                <h3>
+                  This is a student project in development.<br></br> Any use of
+                  this web application is at your own risk.
+                </h3>
+                <br></br>
+                <button
+                  className="btn btn-primary"
+                  id="submit-protocol"
+                  onClick={hideDisclaimer}
+                >
+                  Agree to proceed
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={"container " + (!showDisclaimer ? "" : "d-none")}>
+        <Header newPatient={newPatient}></Header>
+        <p id="page-divider"></p>
+        <PatientInfoForm
+          setPatientInfo={setPatientInfo}
+          patientInfo={patientInfo}
+          populateHealthyPet={populateHealthyPet}
+        ></PatientInfoForm>
+        <NewProtocolForm
           drugOptions={drugOptions}
           protocolDrugList={protocolDrugList}
           updateDrugList={updateDrugList}
           interactionsDrugList={interactionsDrugList}
           updateInteractionsDrugList={updateInteractionsDrugList}
-        ></DrugInteractionsForm>
-      </div>
-      <button
-        onClick={submitProtocol}
-        className="btn btn-primary float-end"
-        id="submit-protocol"
-        type="submit"
-      >
-        Submit Protocol
-      </button>
-      <br></br>
-      <br></br>
-      <br></br>
-      <p id="page-divider"></p>
-      <h4 id="fluid-rates-header">
-        Fluid Rates, Pain CRI and Emergency Drug Dosages:
-      </h4>
-      <div className="row">
-        <div className="col-xs-12 col-sm-7">
-          <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
+        ></NewProtocolForm>
+        <div>
+          <DrugInteractionsForm
+            drugOptions={drugOptions}
+            protocolDrugList={protocolDrugList}
+            updateDrugList={updateDrugList}
+            interactionsDrugList={interactionsDrugList}
+            updateInteractionsDrugList={updateInteractionsDrugList}
+          ></DrugInteractionsForm>
         </div>
-        <div className="col-xs-12 col-sm-3">
-          <FentanylCRIList fentanylCRIList={fentanylCRIList}></FentanylCRIList>
+        <button
+          onClick={submitProtocol}
+          className="btn btn-primary float-end"
+          id="submit-protocol"
+          type="submit"
+        >
+          Submit Protocol
+        </button>
+        <br></br>
+        <br></br>
+        <p id="page-divider"></p>
+        <h4 id="fluid-rates-header">
+          Fluid Rates, Pain CRI and Emergency Drug Dosages:
+        </h4>
+        <div className="row">
+          <div className="col-xs-12 col-sm-7">
+            <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
+          </div>
+          <div className="col-xs-12 col-sm-3">
+            <FentanylCRIList
+              fentanylCRIList={fentanylCRIList}
+            ></FentanylCRIList>
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-xs-12 col-sm-6">
-          <ERDrugList erDrugList={erDrugList}></ERDrugList>
+        <div className="row">
+          <div className="col-xs-12 col-sm-6">
+            <ERDrugList erDrugList={erDrugList}></ERDrugList>
+          </div>
         </div>
-      </div>
 
-      <div id="drug-reactions-container">
-        <DrugInteractions
-          loadDrugInteractions={loadDrugInteractions}
-          drugInteractions={drugInteractions}
-        ></DrugInteractions>
-      </div>
+        <div id="drug-reactions-container">
+          <DrugInteractions
+            loadDrugInteractions={loadDrugInteractions}
+            drugInteractions={drugInteractions}
+          ></DrugInteractions>
+        </div>
 
-      <div className="footer">
-        <Footer></Footer>
+        <div className="footer">
+          <Footer></Footer>
+        </div>
       </div>
     </div>
   );

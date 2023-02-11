@@ -35,4 +35,47 @@
   color:#fff;
 }
 
+body, html, #root, .outer-container {
+  width:100%;
+  height:100%;
+}
 
+
+
+.outer-container p {
+  color:#fff;
+  font-size: larger;
+}
+
+.outer-container h1 {
+  color:#679871;
+}
+
+.outer-container button {
+  align-items: center;
+}
+
+.outer-container img {
+  height: 60px;
+  width: 60px;
+}
+.disclaimer-container {
+  background-color: #679871;
+  padding: 1em 1em 3em;
+}
+
+.bubble {
+  margin: 20px 0;
+  background-color: #fff;
+  border: 5px solid #fff;
+  border-radius: 15px;
+}
+
+.disclaimer {
+  display: flex;
+  justify-content: center;
+}
+
+.disclaimer h3 {
+  padding: 15px;
+}

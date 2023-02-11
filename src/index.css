@@ -107,20 +107,27 @@ th {
   padding-left: 7px;
   color:#ABABAB;
   text-decoration: italic;
+  font-size:1em;
 }
 
 #drug-interactions-disclaimer {
   font-style: italic;
   padding-left: 15px;
+  color: black;
 }
 
-.footer {
-  padding-top: 30px;
+#drug-interactions-additional-disclaimer {
+  color:black;
 }
+
+/* .footer {
+  padding-top: 30px;
+} */
 
 #protocol-instructions {
   font-style: italic;
   color:#ABABAB;
+  font-size: 1em;
 }
 
 #drug-pair {
@@ -141,4 +148,14 @@ th {
 
 #fluid-rates-header {
   padding-bottom:15px;
+}
+
+#footer-text {
+  color:black;
+  font-size: .75em;
+  /* padding-bottom: 20px; */
+}
+
+footer #page-divider {
+ margin:0; 
 }

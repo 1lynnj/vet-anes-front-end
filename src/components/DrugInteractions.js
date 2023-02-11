@@ -35,7 +35,9 @@ const DrugInteractions = (props) => {
         <p></p>
         <h5>Source: {source}</h5>
         <p id="drug-interactions-disclaimer">{disclaimer}</p>
-        <p>Additional interactions may exist but are not listed here.</p>
+        <p id="drug-interactions-additional-disclaimer">
+          Additional interactions may exist but are not listed here.
+        </p>
         <ul>{drugComponents}</ul>
       </div>
     );
