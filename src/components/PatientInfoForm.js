@@ -1,26 +1,46 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Select from "react-select";
 
 const PatientInfoForm = (props) => {
   let patientInfo = { ...props.patientInfo };
   const [formData, setFormData] = useState(patientInfo);
+  const clearSpecies = { value: null, label: "" };
+  const [selectedSpecies, setSelectedSpecies] = useState(clearSpecies);
+
+  // const speciesOptions = [
+  //   {
+  //     label: "Cat",
+  //     value: "Cat",
+  //   },
+  //   {
+  //     label: "Dog",
+  //     value: "Dog",
+  //   },
+  // ];
 
   const handleUserEntry = (e) => {
-    let formField = e.target.value;
+    let formFieldValue = e.target.value;
+    console.log(`formFieldValue: ${JSON.stringify(formFieldValue)}`);
     const newFormData = {
       ...patientInfo,
-      [e.target.name]: formField,
+      [e.target.name]: formFieldValue,
     };
+    console.log(`🤡${JSON.stringify(newFormData)}`);
     setFormData(newFormData);
     props.setPatientInfo(newFormData);
   };
+
+  useEffect(() => {
+    setSelectedSpecies(patientInfo.species);
+  }, [props.patientInfo]);
 
   return (
     <form className="patient-information row">
       <h4 className="patient-information-header">Patient Information:</h4>
       <div className="mb-3 col-12 col-sm-3 patient-name">
         <label htmlFor="patientName" className="form-label">
-          Name:
+          Name
         </label>
         <input
           type="text"
@@ -35,10 +55,19 @@ const PatientInfoForm = (props) => {
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-species">
         <label htmlFor="patientSpecies" className="form-label">
-          Species:
+          Species
         </label>
-
-        <input
+        <select
+          className="form-select"
+          name="species"
+          value={selectedSpecies}
+          onChange={handleUserEntry}
+        >
+          <option value=""></option>
+          <option value="Cat">Cat</option>
+          <option value="Dog">Dog</option>
+        </select>
+        {/* <input
           type="text"
           className="form-control"
           id="patientSpecies"
@@ -46,12 +75,12 @@ const PatientInfoForm = (props) => {
           name="species"
           value={props.patientInfo.species}
           onChange={handleUserEntry}
-        />
-        <p id="form-descriptions">Cat or Dog</p>
+        /> */}
+        <p id="form-descriptions">Select Cat or Dog</p>
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-signalment">
         <label htmlFor="patientSignalment" className="form-label">
-          Signalment:
+          Signalment
         </label>
         <input
           type="text"
@@ -66,7 +95,7 @@ const PatientInfoForm = (props) => {
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-weight">
         <label htmlFor="patientWeight" className="form-label">
-          Weight:
+          Weight
         </label>
         <input
           type="number"

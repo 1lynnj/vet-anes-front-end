@@ -256,8 +256,8 @@ function App() {
                 <img src={vetLogo} alt="logo" />
                 <h1>Veterinary Anesthesia Protocol</h1>
                 <h3>
-                  This is a student project in development.<br></br> Any use of
-                  this web application is at your own risk.
+                  This is a DEMO project in development.<br></br> Not meant for
+                  use.
                 </h3>
                 <br></br>
                 <button
@@ -265,7 +265,7 @@ function App() {
                   id="submit-protocol"
                   onClick={hideDisclaimer}
                 >
-                  Agree to proceed
+                  OK
                 </button>
               </div>
             </div>
