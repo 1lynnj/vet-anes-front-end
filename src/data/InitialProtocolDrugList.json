@@ -1,0 +1,137 @@
+[
+    {
+        "i": 0,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "premed",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 1,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "premed",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 2,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "premed",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 3,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "induction",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 4,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "induction",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 5,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "induction",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 6,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "other",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 7,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "other",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 8,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "other",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 9,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "other",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 10,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "oral",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 11,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "oral",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 12,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "oral",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 13,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "oral",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    },
+    {
+        "i": 14,
+        "drugId": null,
+        "dose": "",
+        "drugSet": "oral",
+        "volume": "",
+        "route": "",
+        "rxcui_code": ""
+    }
+]

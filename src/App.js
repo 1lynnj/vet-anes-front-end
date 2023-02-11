@@ -16,329 +16,9 @@ import Popup from "react-popup";
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
 function App() {
-  const DOG_PROTOCOL_DRUG_LIST = [
-    {
-      i: 0,
-      drugId: 35,
-      dose: 1,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 1,
-      drugId: 34,
-      dose: 0.05,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 2,
-      drugId: 26,
-      dose: 0.2,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 3,
-      drugId: 24,
-      dose: 4,
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 4,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 5,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 6,
-      drugId: 21,
-      dose: 22,
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 7,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 8,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 9,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-  ];
-
-  const CAT_PROTOCOL_DRUG_LIST = [
-    {
-      i: 0,
-      drugId: 42,
-      dose: 1,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 1,
-      drugId: 32,
-      dose: 0.2,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 2,
-      drugId: 26,
-      dose: 0.2,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 3,
-      drugId: 24,
-      dose: 4,
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 4,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 5,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 6,
-      drugId: 21,
-      dose: 22,
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 7,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 8,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 9,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-  ];
-
-  const INITIAL_PROTOCOL_DRUG_LIST = [
-    {
-      i: 0,
-      drugId: null,
-      dose: "",
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 1,
-      drugId: null,
-      dose: "",
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 2,
-      drugId: null,
-      dose: "",
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 3,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 4,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 5,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 6,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 7,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 8,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 9,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 10,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 11,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 12,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 13,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 14,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-  ];
+  const INITIAL_PROTOCOL_DRUG_LIST = require("./data/InitialProtocolDrugList.json");
+  const CAT_PROTOCOL_DRUG_LIST = require("./data/CatProtocolDrugList.json");
+  const DOG_PROTOCOL_DRUG_LIST = require("./data/DogProtocolDrugList.json");
 
   const INITIAL_PATIENT_INFO = {
     name: "",
@@ -369,8 +49,10 @@ function App() {
     e.preventDefault();
     if (patientInfo.species === "cat" || patientInfo.species === "Cat") {
       setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
+      // updateDrugList(CAT_PROTOCOL_DRUG_LIST);
     } else if (patientInfo.species === "dog" || patientInfo.species === "Dog") {
       setProtocolDrugList(DOG_PROTOCOL_DRUG_LIST);
+      // updateDrugList(DOG_PROTOCOL_DRUG_LIST);
     }
   };
 
@@ -399,10 +81,12 @@ function App() {
       }
       setProtocolDrugList(updatedDrugList);
     }
+    updateInteractionsDrugList();
   };
 
   const updateInteractionsDrugList = () => {
     const updatedDrugList = [];
+    console.log(`pprotocolDrugList: ${JSON.stringify(protocolDrugList)}`);
     for (const protocolDrug of protocolDrugList) {
       if (protocolDrug.rxcui_code) {
         const rxcuiCode = protocolDrug.rxcui_code;
@@ -477,6 +161,7 @@ function App() {
 
   const loadDrugInteractions = () => {
     let rxcuiCodes = interactionsDrugList.join("+");
+    console.log(`rxcuiCodes: ${rxcuiCodes}`);
     if (rxcuiCodes.length > 0) {
       axios
         .get(
