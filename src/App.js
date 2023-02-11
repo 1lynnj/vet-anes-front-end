@@ -11,7 +11,6 @@ import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
 import DrugInteractionsForm from "./components/DrugInteractionsForm";
 import DrugInteractions from "./components/DrugInteractions";
-import Popup from "react-popup";
 
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
@@ -53,7 +52,6 @@ function App() {
     e.preventDefault();
     if (patientInfo.species === "cat" || patientInfo.species === "Cat") {
       setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
-      console.log(`1. protocolDrugList: ${JSON.stringify(protocolDrugList)}`);
     } else if (patientInfo.species === "dog" || patientInfo.species === "Dog") {
       setProtocolDrugList(DOG_PROTOCOL_DRUG_LIST);
     }
@@ -120,6 +118,23 @@ function App() {
 
   useEffect(loadDrugOptions, []);
 
+  const loadDrugInteractions = () => {
+    let rxcuiCodes = interactionsDrugList.join("+");
+    if (rxcuiCodes.length > 0) {
+      axios
+        .get(
+          `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
+        )
+        .then((response) => {
+          // console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
+          setDrugInteractions(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   const loadCalculations = () => {
     console.log("load calculations called");
     const params = [];
@@ -160,25 +175,6 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  const loadDrugInteractions = () => {
-    console.log(`rxcuiCodes: ${JSON.stringify(interactionsDrugList)}`);
-    let rxcuiCodes = interactionsDrugList.join("+");
-
-    if (rxcuiCodes.length > 0) {
-      axios
-        .get(
-          `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
-        )
-        .then((response) => {
-          // console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
-          setDrugInteractions(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
   };
 
   useEffect(loadDrugInteractions, []);
