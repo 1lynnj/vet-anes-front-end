@@ -21,7 +21,7 @@
 #submit-protocol {
   background-color:#679871;
   border-color: #679871;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 #submit-protocol:hover {
@@ -34,3 +34,5 @@
   background-color:#679871;
   color:#fff;
 }
+
+

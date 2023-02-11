@@ -16,6 +16,7 @@ const NewProtocolForm = (props) => {
   // TO DO: Move inline styling to css
   return (
     <div>
+      <h4>Protocol:</h4>
       <p id="protocol-instructions">
         Enter drugs and dosages as indicated for custom anesthestic protocol or
         use Healthy Pet protocol for routine surgeries. Submit protocol when

@@ -579,14 +579,19 @@ function App() {
       </div>
       <button
         onClick={submitProtocol}
-        className="btn btn-primary"
+        className="btn btn-primary float-end"
         id="submit-protocol"
         type="submit"
       >
         Submit Protocol
       </button>
-
+      <br></br>
+      <br></br>
+      <br></br>
       <p id="page-divider"></p>
+      <h4 id="fluid-rates-header">
+        Fluid Rates, Pain CRI and Emergency Drug Dosages:
+      </h4>
       <div className="row">
         <div className="col-xs-12 col-sm-7">
           <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>

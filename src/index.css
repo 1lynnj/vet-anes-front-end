@@ -138,3 +138,7 @@ th {
   border-radius: 8px;
   margin-bottom: 30px;
 }
+
+#fluid-rates-header {
+  padding-bottom:15px;
+}
