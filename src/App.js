@@ -19,7 +19,7 @@ function App() {
   const DOG_PROTOCOL_DRUG_LIST = [
     {
       i: 0,
-      drugId: 42,
+      drugId: 35,
       dose: 1,
       drugSet: "premed",
       volume: "",
@@ -28,7 +28,7 @@ function App() {
     },
     {
       i: 1,
-      drugId: 13,
+      drugId: 34,
       dose: 0.05,
       drugSet: "premed",
       volume: "",
@@ -37,7 +37,7 @@ function App() {
     },
     {
       i: 2,
-      drugId: 21,
+      drugId: 26,
       dose: 0.2,
       drugSet: "premed",
       volume: "",
@@ -46,7 +46,7 @@ function App() {
     },
     {
       i: 3,
-      drugId: 23,
+      drugId: 24,
       dose: 4,
       drugSet: "induction",
       volume: "",
@@ -73,7 +73,7 @@ function App() {
     },
     {
       i: 6,
-      drugId: 26,
+      drugId: 21,
       dose: 22,
       drugSet: "other",
       volume: "",
@@ -121,7 +121,7 @@ function App() {
     },
     {
       i: 1,
-      drugId: 15,
+      drugId: 32,
       dose: 0.2,
       drugSet: "premed",
       volume: "",
@@ -130,7 +130,7 @@ function App() {
     },
     {
       i: 2,
-      drugId: 21,
+      drugId: 26,
       dose: 0.2,
       drugSet: "premed",
       volume: "",
@@ -139,7 +139,7 @@ function App() {
     },
     {
       i: 3,
-      drugId: 23,
+      drugId: 24,
       dose: 4,
       drugSet: "induction",
       volume: "",
@@ -166,7 +166,7 @@ function App() {
     },
     {
       i: 6,
-      drugId: 26,
+      drugId: 21,
       dose: 22,
       drugSet: "other",
       volume: "",
