@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 const DrugPair = ({ description, drugOne, drugTwo }) => {
   console.log(`🐝${JSON.stringify(drugOne)}`);
   return (
-    <li className="list-unstyled" id="drug-pair">
-      {description} {drugOne} {drugTwo}
+    <li
+      className="list-unstyled bg-warning-subtle text-warning-emphasis"
+      id="drug-pair"
+    >
+      <i className="fa-regular fa-triangle-exclamation"></i> {description}{" "}
+      {drugOne} {drugTwo}
     </li>
   );
 };

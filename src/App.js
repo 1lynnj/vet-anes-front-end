@@ -38,6 +38,10 @@ function App() {
   const [interactionsDrugList, setInteractionsDrugList] = useState([]);
   const [drugInteractions, setDrugInteractions] = useState([]);
 
+  useEffect(() => {
+    updateInteractionsDrugList(protocolDrugList);
+  }, [protocolDrugList]);
+
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
     window.location.hostname
@@ -49,10 +53,9 @@ function App() {
     e.preventDefault();
     if (patientInfo.species === "cat" || patientInfo.species === "Cat") {
       setProtocolDrugList(CAT_PROTOCOL_DRUG_LIST);
-      // updateDrugList(CAT_PROTOCOL_DRUG_LIST);
+      console.log(`1. protocolDrugList: ${JSON.stringify(protocolDrugList)}`);
     } else if (patientInfo.species === "dog" || patientInfo.species === "Dog") {
       setProtocolDrugList(DOG_PROTOCOL_DRUG_LIST);
-      // updateDrugList(DOG_PROTOCOL_DRUG_LIST);
     }
   };
 
@@ -86,7 +89,7 @@ function App() {
 
   const updateInteractionsDrugList = () => {
     const updatedDrugList = [];
-    console.log(`pprotocolDrugList: ${JSON.stringify(protocolDrugList)}`);
+    console.log(`2. protocolDrugList: ${JSON.stringify(protocolDrugList)}`);
     for (const protocolDrug of protocolDrugList) {
       if (protocolDrug.rxcui_code) {
         const rxcuiCode = protocolDrug.rxcui_code;
@@ -160,8 +163,9 @@ function App() {
   };
 
   const loadDrugInteractions = () => {
+    console.log(`rxcuiCodes: ${JSON.stringify(interactionsDrugList)}`);
     let rxcuiCodes = interactionsDrugList.join("+");
-    console.log(`rxcuiCodes: ${rxcuiCodes}`);
+
     if (rxcuiCodes.length > 0) {
       axios
         .get(
