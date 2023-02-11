@@ -26,7 +26,8 @@ table td, table th {
 }
 
 h4 {
-  padding-top: 30px;
+  margin: 0;
+  padding-top: 0px;
 }
 
 /* h4, table h4 {
@@ -77,6 +78,10 @@ td {
   border: #ffff 1px solid;
 }
 
+.table-head-container p {
+  font-size: small;
+}
+
 th {
     font-weight: normal;
 }
@@ -102,4 +107,38 @@ th {
   padding-left: 7px;
   color:#ABABAB;
   text-decoration: italic;
+}
+
+#drug-interactions-disclaimer {
+  font-style: italic;
+  padding-left: 15px;
+}
+
+.footer {
+  padding-top: 30px;
+}
+
+#protocol-instructions {
+  font-style: italic;
+  color:#ABABAB;
+}
+
+#drug-pair {
+  margin: 30px;
+  padding: 30px;
+  /* background-color: #679871;
+  border:#679871 solid 3px; */
+  border-radius: 8px;
+  color:#ffff;
+}
+
+#page-divider {
+  border-top: #679871 solid 5px;
+  margin-top: 10px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+#fluid-rates-header {
+  padding-bottom:15px;
 }

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import NewDrugInput from "./NewDrugInput";
+import "../index.css";
+// import OralDrugInput from "./OralDrugInput";
 
 const NewProtocolForm = (props) => {
   const [formData, setFormData] = useState(props.protocolDrugList);
   const onNewProtocolFormSubmit = (event) => {
     event.preventDefault();
     setFormData(props.protocolDrugList);
+    props.updateInteractionsDrugList(props.protocolDrugList);
   };
 
   // TO DO: long-term goal - refactor to allow user to add as many drugs as required
@@ -13,6 +16,12 @@ const NewProtocolForm = (props) => {
   // TO DO: Move inline styling to css
   return (
     <div>
+      <h4>Protocol:</h4>
+      <p id="protocol-instructions">
+        Enter drugs and dosages as indicated for custom anesthestic protocol or
+        use Healthy Pet protocol for routine surgeries. Submit protocol when
+        complete.
+      </p>
       <form onChange={onNewProtocolFormSubmit}>
         <table className="table">
           <tbody>
@@ -116,6 +125,43 @@ const NewProtocolForm = (props) => {
               drugOptions={props.drugOptions}
               updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
+          </tbody>
+          <tbody>
+            {/* <tr className="table-head">
+              <td className="table-head-container" colSpan="5">
+                <h4>Other medications administered in last 24 hours:</h4>
+              </td>
+            </tr>
+            <OralDrugInput
+              drugData={props.protocolDrugList[10]}
+              updateDrugList={props.updateDrugList}
+              drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
+            ></OralDrugInput>
+            <OralDrugInput
+              drugData={props.protocolDrugList[11]}
+              updateDrugList={props.updateDrugList}
+              drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
+            ></OralDrugInput>
+            <OralDrugInput
+              drugData={props.protocolDrugList[12]}
+              updateDrugList={props.updateDrugList}
+              drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
+            ></OralDrugInput>
+            <OralDrugInput
+              drugData={props.protocolDrugList[13]}
+              updateDrugList={props.updateDrugList}
+              drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
+            ></OralDrugInput>
+            <OralDrugInput
+              drugData={props.protocolDrugList[14]}
+              updateDrugList={props.updateDrugList}
+              drugOptions={props.drugOptions}
+              updateInteractionsDrugList={props.updateInteractionsDrugList}
+            ></OralDrugInput> */}
             <tr className="trailing-row"></tr>
           </tbody>
         </table>

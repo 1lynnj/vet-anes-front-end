@@ -82,12 +82,13 @@ const PatientInfoForm = (props) => {
       <div>
         <button
           id="submit-protocol"
-          className="btn btn-primary"
+          className="btn btn-primary float-end"
           onClick={props.populateHealthyPet}
         >
           Healthy Pet
         </button>
       </div>
+      <p id="page-divider"></p>
     </form>
   );
 };

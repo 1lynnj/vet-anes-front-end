@@ -1,5 +1,4 @@
 import "./App.css";
-// import "./vet_logo.png";
 import "./vetLogo.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -16,329 +15,9 @@ import DrugInteractions from "./components/DrugInteractions";
 // TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
 function App() {
-  const DOG_PROTOCOL_DRUG_LIST = [
-    {
-      i: 0,
-      drugId: 42,
-      dose: 1,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 1,
-      drugId: 13,
-      dose: 0.05,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 2,
-      drugId: 21,
-      dose: 0.2,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 3,
-      drugId: 23,
-      dose: 4,
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 4,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 5,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 6,
-      drugId: 26,
-      dose: 22,
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 7,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 8,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 9,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-  ];
-
-  const CAT_PROTOCOL_DRUG_LIST = [
-    {
-      i: 0,
-      drugId: 42,
-      dose: 1,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 1,
-      drugId: 15,
-      dose: 0.2,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 2,
-      drugId: 21,
-      dose: 0.2,
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 3,
-      drugId: 23,
-      dose: 4,
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 4,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 5,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 6,
-      drugId: 26,
-      dose: 22,
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 7,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 8,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 9,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-  ];
-
-  const INITIAL_PROTOCOL_DRUG_LIST = [
-    {
-      i: 0,
-      drugId: null,
-      dose: "",
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 1,
-      drugId: null,
-      dose: "",
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 2,
-      drugId: null,
-      dose: "",
-      drugSet: "premed",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 3,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 4,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 5,
-      drugId: null,
-      dose: "",
-      drugSet: "induction",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 6,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 7,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 8,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 9,
-      drugId: null,
-      dose: "",
-      drugSet: "other",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 10,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 11,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 12,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 13,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-    {
-      i: 14,
-      drugId: null,
-      dose: "",
-      drugSet: "oral",
-      volume: "",
-      route: "",
-      rxcui_code: "",
-    },
-  ];
+  const INITIAL_PROTOCOL_DRUG_LIST = require("./data/InitialProtocolDrugList.json");
+  const CAT_PROTOCOL_DRUG_LIST = require("./data/CatProtocolDrugList.json");
+  const DOG_PROTOCOL_DRUG_LIST = require("./data/DogProtocolDrugList.json");
 
   const INITIAL_PATIENT_INFO = {
     name: "",
@@ -357,6 +36,10 @@ function App() {
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
   const [interactionsDrugList, setInteractionsDrugList] = useState([]);
   const [drugInteractions, setDrugInteractions] = useState([]);
+
+  useEffect(() => {
+    updateInteractionsDrugList(protocolDrugList);
+  }, [protocolDrugList]);
 
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
@@ -380,6 +63,7 @@ function App() {
     setERDrugList([]);
     setFluidRatesList([]);
     setFentanylCRIList([]);
+    setDrugInteractions([]);
   };
 
   const updateDrugList = (newDrugData) => {
@@ -398,10 +82,12 @@ function App() {
       }
       setProtocolDrugList(updatedDrugList);
     }
+    updateInteractionsDrugList();
   };
 
   const updateInteractionsDrugList = () => {
     const updatedDrugList = [];
+    console.log(`2. protocolDrugList: ${JSON.stringify(protocolDrugList)}`);
     for (const protocolDrug of protocolDrugList) {
       if (protocolDrug.rxcui_code) {
         const rxcuiCode = protocolDrug.rxcui_code;
@@ -484,13 +170,14 @@ function App() {
           }
           updatedDrugList.push(newDrug);
         }
-
         setProtocolDrugList(updatedDrugList);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  useEffect(loadDrugInteractions, []);
 
   const loadERDrugList = () => {
     console.log("load er drug calculations called");
@@ -542,11 +229,18 @@ function App() {
     loadERDrugList();
     loadFluidRatesList();
     loadFentanylCRIList();
+    loadDrugInteractions();
   };
 
   return (
     <div className="container">
+      {/* <script>
+        {alert(
+          "This is a student project. Use of this project acknowledges you assume all risk associated with the use of this app."
+        )}
+      </script> */}
       <Header newPatient={newPatient}></Header>
+      <p id="page-divider"></p>
       <PatientInfoForm
         setPatientInfo={setPatientInfo}
         patientInfo={patientInfo}
@@ -559,14 +253,30 @@ function App() {
         interactionsDrugList={interactionsDrugList}
         updateInteractionsDrugList={updateInteractionsDrugList}
       ></NewProtocolForm>
+      <div>
+        <DrugInteractionsForm
+          drugOptions={drugOptions}
+          protocolDrugList={protocolDrugList}
+          updateDrugList={updateDrugList}
+          interactionsDrugList={interactionsDrugList}
+          updateInteractionsDrugList={updateInteractionsDrugList}
+        ></DrugInteractionsForm>
+      </div>
       <button
         onClick={submitProtocol}
-        className="btn btn-primary"
+        className="btn btn-primary float-end"
         id="submit-protocol"
         type="submit"
       >
         Submit Protocol
       </button>
+      <br></br>
+      <br></br>
+      <br></br>
+      <p id="page-divider"></p>
+      <h4 id="fluid-rates-header">
+        Fluid Rates, Pain CRI and Emergency Drug Dosages:
+      </h4>
       <div className="row">
         <div className="col-xs-12 col-sm-7">
           <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
@@ -580,23 +290,17 @@ function App() {
           <ERDrugList erDrugList={erDrugList}></ERDrugList>
         </div>
       </div>
-      <div className="row">
-        <div className="col-xs-12 col-sm-12">
-          <DrugInteractionsForm
-            drugOptions={drugOptions}
-            protocolDrugList={protocolDrugList}
-            updateDrugList={updateDrugList}
-            interactionsDrugList={interactionsDrugList}
-            updateInteractionsDrugList={updateInteractionsDrugList}
-          ></DrugInteractionsForm>
-        </div>
+
+      <div id="drug-reactions-container">
+        <DrugInteractions
+          loadDrugInteractions={loadDrugInteractions}
+          drugInteractions={drugInteractions}
+        ></DrugInteractions>
       </div>
 
-      <DrugInteractions
-        loadDrugInteractions={loadDrugInteractions}
-        drugInteractions={drugInteractions}
-      ></DrugInteractions>
-      <Footer></Footer>
+      <div className="footer">
+        <Footer></Footer>
+      </div>
     </div>
   );
 }

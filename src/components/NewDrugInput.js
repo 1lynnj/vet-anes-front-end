@@ -26,19 +26,23 @@ const NewDrugInput = (props) => {
   }, [props.drugData]);
 
   const onDrugChange = (drug) => {
-    // console.log("on drug change called");
     setSelectedDrug(drug);
     let updatedDrugData = {
       ...props.drugData,
       drugId: drug.value,
       rxcui_code: drug.rxcui_code,
     };
+    // console.log(
+    //   `🩴${JSON.stringify(updatedDrugData)} ${JSON.stringify(
+    //     updatedDrugData.drugId
+    //   )} ${JSON.stringify(updatedDrugData.rxcui_code)}`
+    // );
     props.updateDrugList(updatedDrugData);
   };
 
   const onDoseChange = (e) => {
     let updatedDrugData = {
-      ...drugData,
+      ...props.drugData,
       dose: e.target.value,
     };
     props.updateDrugList(updatedDrugData);
