@@ -11,7 +11,7 @@
     {
         "i": 1,
         "drugId": 32,
-        "dose": 0.2,
+        "dose": 0.02,
         "drugSet": "premed",
         "volume": "",
         "route": "",
