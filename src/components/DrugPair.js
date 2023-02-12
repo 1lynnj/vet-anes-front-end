@@ -8,7 +8,7 @@ const DrugPair = ({ description, drugOne, drugTwo }) => {
       className="list-unstyled bg-warning-subtle text-warning-emphasis"
       id="drug-pair"
     >
-      <i className="fa-regular fa-triangle-exclamation"></i> {description}{" "}
+      <i className="fa-solid fa-triangle-exclamation"></i> {description}{" "}
       {drugOne} {drugTwo}
     </li>
   );
