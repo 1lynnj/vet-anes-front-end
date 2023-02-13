@@ -17,7 +17,7 @@ The app goes further by pulling drug interactions from the National Institutes o
 
 ## Dependencies
 
-This app is written using create-react-app
+This app is written using React and create-react-app.
 
 - axios
 - react-select
