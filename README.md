@@ -19,22 +19,27 @@ The app goes further by pulling drug interactions from the National Institutes o
 
 Initial setup. 
 More information can be found at 
-[Create React App](https://github.com/facebook/create-react-app#creating-an-app)
+[Create React App](https://github.com/facebook/create-react-app#creating-an-app).
 
-npm
-`npm init react-app my-app
-cd my-app
-npm start`
+**npm**
 
-Yarn
+`npm init react-app my-app`
+`cd my-app`
+`npm start`
+
+**Yarn**
+
 `yarn create react-app my-app
 cd my-app
 yarn start`
 
-Additional dependencies
-`yarn add axios
-yarn add react-select
-yarn add react-script`
+**Additional dependencies**
+
+`yarn add axios`
+
+`yarn add react-select`
+
+`yarn add react-script`
 
 ## Database and Backend
 
