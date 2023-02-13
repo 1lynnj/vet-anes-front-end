@@ -15,13 +15,26 @@ The app goes further by pulling drug interactions from the National Institutes o
  - Drug Interactions check from the National Institutes Of Health drug interactions API.
  - Calculates drug dosages for anesthesia, Fentanyl (pain) continuous rate infusion, fluid rates, and emergency drugs.
 
-## Dependencies
+## Setup and Dependencies
 
-This app is written using React and create-react-app.
+Initial setup. 
+More information can be found at 
+[Create React App](https://github.com/facebook/create-react-app#creating-an-app)
 
-- axios
-- react-select
-- react-script
+npm
+`npm init react-app my-app
+cd my-app
+npm start`
+
+Yarn
+`yarn create react-app my-app
+cd my-app
+yarn start`
+
+Additional dependencies
+`yarn add axios
+yarn add react-select
+yarn add react-script`
 
 ## Database and Backend
 
