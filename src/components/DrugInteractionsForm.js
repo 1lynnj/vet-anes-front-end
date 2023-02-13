@@ -20,7 +20,9 @@ const DrugInteractionsForm = (props) => {
             </tr>
             <tr>
               <th style={{ width: "35%" }}>Drug</th>
-              <th>Total Dose (mg)</th>
+              <th>
+                Total Dose<sup>*</sup> (mg)
+              </th>
             </tr>
             <OralDrugInput
               drugData={props.protocolDrugList[10]}

@@ -159,3 +159,7 @@ th {
 footer #page-divider {
  margin:0; 
 }
+
+sup {
+  color: red;
+}

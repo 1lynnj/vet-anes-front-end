@@ -8,17 +8,6 @@ const PatientInfoForm = (props) => {
   const clearSpecies = { value: null, label: "" };
   const [selectedSpecies, setSelectedSpecies] = useState(clearSpecies);
 
-  // const speciesOptions = [
-  //   {
-  //     label: "Cat",
-  //     value: "Cat",
-  //   },
-  //   {
-  //     label: "Dog",
-  //     value: "Dog",
-  //   },
-  // ];
-
   const handleUserEntry = (e) => {
     let formFieldValue = e.target.value;
     console.log(`formFieldValue: ${JSON.stringify(formFieldValue)}`);
@@ -55,7 +44,7 @@ const PatientInfoForm = (props) => {
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-species">
         <label htmlFor="patientSpecies" className="form-label">
-          Species
+          Species<sup>*</sup>
         </label>
         <select
           className="form-select"
@@ -95,7 +84,7 @@ const PatientInfoForm = (props) => {
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-weight">
         <label htmlFor="patientWeight" className="form-label">
-          Weight
+          Weight<sup>*</sup>
         </label>
         <input
           type="number"

@@ -32,7 +32,9 @@ const NewProtocolForm = (props) => {
             </tr>
             <tr>
               <th style={{ width: "35%" }}>Drug</th>
-              <th style={{ width: "15%" }}>Dose (mg/kg)</th>
+              <th style={{ width: "15%" }}>
+                Dose<sup>*</sup> (mg/kg)
+              </th>
               <th style={{ width: "25%" }}>Vol (ml)</th>
               <th style={{ width: "25%" }}>Route</th>
             </tr>
@@ -64,7 +66,9 @@ const NewProtocolForm = (props) => {
             </tr>
             <tr className="label-row">
               <th>Drug</th>
-              <th>Dose (mg/kg)</th>
+              <th>
+                Dose<sup>*</sup> (mg/kg)
+              </th>
               <th>Vol (ml)</th>
               <th>Route</th>
             </tr>
@@ -97,7 +101,9 @@ const NewProtocolForm = (props) => {
             </tr>
             <tr>
               <th>Drug</th>
-              <th>Dose (mg/kg)</th>
+              <th>
+                Dose<sup>*</sup> (mg/kg)
+              </th>
               <th>Vol (ml)</th>
               <th>Route</th>
             </tr>
@@ -127,41 +133,6 @@ const NewProtocolForm = (props) => {
             ></NewDrugInput>
           </tbody>
           <tbody>
-            {/* <tr className="table-head">
-              <td className="table-head-container" colSpan="5">
-                <h4>Other medications administered in last 24 hours:</h4>
-              </td>
-            </tr>
-            <OralDrugInput
-              drugData={props.protocolDrugList[10]}
-              updateDrugList={props.updateDrugList}
-              drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
-            ></OralDrugInput>
-            <OralDrugInput
-              drugData={props.protocolDrugList[11]}
-              updateDrugList={props.updateDrugList}
-              drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
-            ></OralDrugInput>
-            <OralDrugInput
-              drugData={props.protocolDrugList[12]}
-              updateDrugList={props.updateDrugList}
-              drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
-            ></OralDrugInput>
-            <OralDrugInput
-              drugData={props.protocolDrugList[13]}
-              updateDrugList={props.updateDrugList}
-              drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
-            ></OralDrugInput>
-            <OralDrugInput
-              drugData={props.protocolDrugList[14]}
-              updateDrugList={props.updateDrugList}
-              drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
-            ></OralDrugInput> */}
             <tr className="trailing-row"></tr>
           </tbody>
         </table>
