@@ -12,7 +12,6 @@ import Footer from "./components/Footer";
 import DrugInteractionsForm from "./components/DrugInteractionsForm";
 import DrugInteractions from "./components/DrugInteractions";
 
-// TO DO: Move constants to data file and import where needed
 // TO DO: Add drugSet category to backend and remove hardcoded data
 function App() {
   const INITIAL_PROTOCOL_DRUG_LIST = require("./data/InitialProtocolDrugList.json");
@@ -58,6 +57,7 @@ function App() {
     }
   };
 
+  //Clears the state of all components to start a new patient
   const newPatient = () => {
     setPatientInfo(INITIAL_PATIENT_INFO);
     setProtocolDrugList(INITIAL_PROTOCOL_DRUG_LIST);
@@ -67,6 +67,7 @@ function App() {
     setDrugInteractions([]);
   };
 
+  //Updates drug list for use in protocol drug list
   const updateDrugList = (newDrugData) => {
     const updatedDrugList = [];
     for (const drug of protocolDrugList) {
@@ -86,9 +87,9 @@ function App() {
     updateInteractionsDrugList();
   };
 
+  //Updates list of rxcui codes for NIH API call
   const updateInteractionsDrugList = () => {
     const updatedDrugList = [];
-    console.log(`2. protocolDrugList: ${JSON.stringify(protocolDrugList)}`);
     for (const protocolDrug of protocolDrugList) {
       if (protocolDrug.rxcui_code) {
         const rxcuiCode = protocolDrug.rxcui_code;
@@ -98,6 +99,7 @@ function App() {
     setInteractionsDrugList(updatedDrugList);
   };
 
+  // Options for react Select element in DrugInput form fields
   const loadDrugOptions = () => {
     axios
       .get(`${BACKEND_HOST}/drugs`) // deployed
@@ -119,6 +121,7 @@ function App() {
 
   useEffect(loadDrugOptions, []);
 
+  //API call to NIH drug interactions
   const loadDrugInteractions = () => {
     let rxcuiCodes = interactionsDrugList.join("+");
     if (rxcuiCodes.length > 0) {
@@ -127,7 +130,6 @@ function App() {
           `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
         )
         .then((response) => {
-          // console.log(`------------->>>>>> ${JSON.stringify(response.data)}`);
           setDrugInteractions(response.data);
         })
         .catch((error) => {
@@ -136,8 +138,8 @@ function App() {
     }
   };
 
+  //Calculations for user required protocol
   const loadCalculations = () => {
-    console.log("load calculations called");
     const params = [];
     let newDrug = {};
     for (const drug of protocolDrugList) {
@@ -180,8 +182,8 @@ function App() {
 
   useEffect(loadDrugInteractions, []);
 
+  //Returns calculations for ER Drug Doses
   const loadERDrugList = () => {
-    console.log("load er drug calculations called");
     let weight = { weight: patientInfo.weight };
     axios
       .post(`${BACKEND_HOST}/er_drugs`, weight)
@@ -194,8 +196,8 @@ function App() {
       });
   };
 
+  //Returns calculations for fluid rates
   const loadFluidRatesList = () => {
-    console.log("load fluid rates called");
     let weight = patientInfo.weight;
     let species = patientInfo.species;
     let params = { weight: weight, species: species };
@@ -210,8 +212,8 @@ function App() {
       });
   };
 
+  //Returns calculations for fentanyl CRI
   const loadFentanylCRIList = () => {
-    console.log("load fentanyl cri list called");
     let weight = { weight: patientInfo.weight };
     axios
       .post(`${BACKEND_HOST}/fentanyl_cri`, weight)
@@ -224,6 +226,7 @@ function App() {
       });
   };
 
+  //Calls functions for all calculations and NIH API call
   const submitProtocol = (e) => {
     e.preventDefault();
     loadCalculations();
@@ -233,6 +236,7 @@ function App() {
     loadDrugInteractions();
   };
 
+  //Shows disclaimer on initial page load
   const hideDisclaimer = (e) => {
     setShowDisclaimer(false);
   };

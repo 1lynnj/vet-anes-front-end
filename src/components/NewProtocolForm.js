@@ -1,7 +1,6 @@
 import { useState } from "react";
 import NewDrugInput from "./NewDrugInput";
 import "../index.css";
-// import OralDrugInput from "./OralDrugInput";
 
 const NewProtocolForm = (props) => {
   const [formData, setFormData] = useState(props.protocolDrugList);

@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DrugPair from "./DrugPair";
-// import { useState, useEffect } from "react";
 
 const DrugInteractions = (props) => {
   let interactions = props.drugInteractions;
@@ -8,10 +7,6 @@ const DrugInteractions = (props) => {
     const source = interactions.fullInteractionTypeGroup[0].sourceName;
     const disclaimer =
       interactions.fullInteractionTypeGroup[0].sourceDisclaimer;
-
-    const comment =
-      interactions.fullInteractionTypeGroup[0].fullInteractionType[0].comment;
-    console.log(`🪲${JSON.stringify(comment.split(" ")[0])}`);
 
     const drugComponents =
       interactions.fullInteractionTypeGroup[0].fullInteractionType.map(
@@ -21,8 +16,6 @@ const DrugInteractions = (props) => {
               key={i}
               drugInteractions={props.drugInteractions}
               description={pair.interactionPair[0].description}
-              drugOne={pair.comment.split(" ")[-1]}
-              drugTwo={pair.comment.split(" ")[-3]}
             ></DrugPair>
           );
         }

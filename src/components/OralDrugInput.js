@@ -14,7 +14,6 @@ const OralDrugInput = (props) => {
   }, [props.drugData]);
 
   const onDrugChange = (drug) => {
-    console.log(`on oral meds change called`);
     setSelectedDrug(drug);
     let updatedDrugData = {
       ...props.drugData,

@@ -32,11 +32,6 @@ const NewDrugInput = (props) => {
       drugId: drug.value,
       rxcui_code: drug.rxcui_code,
     };
-    // console.log(
-    //   `🩴${JSON.stringify(updatedDrugData)} ${JSON.stringify(
-    //     updatedDrugData.drugId
-    //   )} ${JSON.stringify(updatedDrugData.rxcui_code)}`
-    // );
     props.updateDrugList(updatedDrugData);
   };
 

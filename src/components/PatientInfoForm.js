@@ -10,12 +10,10 @@ const PatientInfoForm = (props) => {
 
   const handleUserEntry = (e) => {
     let formFieldValue = e.target.value;
-    console.log(`formFieldValue: ${JSON.stringify(formFieldValue)}`);
     const newFormData = {
       ...patientInfo,
       [e.target.name]: formFieldValue,
     };
-    console.log(`🤡${JSON.stringify(newFormData)}`);
     setFormData(newFormData);
     props.setPatientInfo(newFormData);
   };
@@ -56,15 +54,7 @@ const PatientInfoForm = (props) => {
           <option value="Cat">Cat</option>
           <option value="Dog">Dog</option>
         </select>
-        {/* <input
-          type="text"
-          className="form-control"
-          id="patientSpecies"
-          aria-describedby="patientSpecies"
-          name="species"
-          value={props.patientInfo.species}
-          onChange={handleUserEntry}
-        /> */}
+
         <p id="form-descriptions">Select Cat or Dog</p>
       </div>
       <div className="mb-3 col-12 col-sm-3 patient-signalment">
