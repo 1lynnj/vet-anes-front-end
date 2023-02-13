@@ -28,16 +28,6 @@ This app is written using create-react-app
 This app uses a postgreSQL database of a limited number of drugs with a backend written in Django.
 
 [Veterinary Anesthesia Protocol - Backend](https://github.com/1lynnj/vet-anes.git)
-
-### Dependencies for backend
- - Django
- - Django Rest Framework
- - Django CORS Headers
- - Python Dotenv
- - Psycopg2pi
- - DJ Database URL
- - Whitenoise
- - venv
   
 ## Future Versions
 
@@ -45,4 +35,4 @@ This app uses a postgreSQL database of a limited number of drugs with a backend 
 - Ability by user to store protocols for individual patients to recall for reference or usage at a later time.
 - Ability by user to add drugs to the database.
 - User login and authentication to allow above actions.
-- Printable document with monitoring grid for use by anesthetist on the medical floor.
+- Printable document with generated protocol and monitoring grid for use by anesthetist on the medical floor.
