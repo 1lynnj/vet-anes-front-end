@@ -82,7 +82,6 @@ function App() {
           volume: newDrugData.drugId ? newDrugData.volume : "",
           route: newDrugData.drugId ? newDrugData.route : "",
         };
-        console.log(`hello`);
         updatedDrugList.push(newDrug);
       }
       setProtocolDrugList(updatedDrugList);
