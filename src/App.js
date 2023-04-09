@@ -67,7 +67,7 @@ function App() {
     setDrugInteractions([]);
   };
 
-  //Updates drug list for use in protocol drug list
+  //Updates drug list for use in protocol drug list and interactions drug list
   const updateDrugList = (newDrugData) => {
     const updatedDrugList = [];
     for (const drug of protocolDrugList) {
@@ -99,7 +99,7 @@ function App() {
     setInteractionsDrugList(updatedDrugList);
   };
 
-  // Options for react Select element in DrugInput form fields
+  // Options for react Select element in DrugInput and OralDrugInput form fields
   const loadDrugOptions = () => {
     axios
       .get(`${BACKEND_HOST}/drugs`) // deployed
@@ -138,7 +138,7 @@ function App() {
     }
   };
 
-  //Calculations for user required protocol
+  //Drug calculations for user required protocol
   const loadCalculations = () => {
     const params = [];
     let newDrug = {};
