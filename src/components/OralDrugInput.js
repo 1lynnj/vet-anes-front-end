@@ -37,7 +37,9 @@ const OralDrugInput = (props) => {
           options={props.drugOptions}
           value={selectedDrug}
           onChange={(selectedOption) =>
-            selectedOption.value ? onDrugChange(selectedOption) : null
+            selectedOption && selectedOption.value
+              ? onDrugChange(selectedOption)
+              : onDrugChange(emptyDrug)
           }
           isClearable
         />
