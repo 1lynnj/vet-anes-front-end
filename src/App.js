@@ -77,8 +77,10 @@ function App() {
         const newDrug = {
           ...drug,
           drugId: newDrugData.drugId,
-          dose: newDrugData.dose,
+          dose: newDrugData.drugId ? newDrugData.dose : "",
           rxcui_code: newDrugData.rxcui_code,
+          volume: newDrugData.drugId ? newDrugData.volume : "",
+          route: newDrugData.drugId ? newDrugData.route : "",
         };
         updatedDrugList.push(newDrug);
       }
