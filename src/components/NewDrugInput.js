@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 
 const NewDrugInput = (props) => {
+  const species = props.patientInfo.species;
   let drugData = props.drugData;
   const emptyDrug = { value: null, label: "" };
   const [selectedDrug, setSelectedDrug] = useState(emptyDrug);
+  const [lowDose, setLowDose] = useState(null);
+  const [highDose, setHighDose] = useState(null);
 
   const autoPopulateDrug = () => {
     if (props.drugData.drugId) {
@@ -28,10 +31,21 @@ const NewDrugInput = (props) => {
   // TODO: Add dose ranges to drug table to alert user when out of range
   const onDrugChange = (drug) => {
     setSelectedDrug(drug);
+
+    if (species === "Cat") {
+      setLowDose(drug.cat_low_dose);
+      setHighDose(drug.cat_high_dose);
+    } else {
+      setLowDose(drug.dog_low_dose);
+      setHighDose(drug.dog_high_dose);
+    }
+    // console.log(`after: ${lowDose}`);
     let updatedDrugData = {
       ...props.drugData,
       drugId: drug.value,
       rxcui_code: drug.rxcui_code,
+      lowDose: drug.cat_low_dose,
+      highDose: highDose,
     };
     props.updateDrugList(updatedDrugData);
   };
@@ -57,6 +71,7 @@ const NewDrugInput = (props) => {
           }
           isClearable
         />
+        Dose Range:{lowDose} mg/kg - {highDose} mg/kg
       </td>
       <td>
         <input
