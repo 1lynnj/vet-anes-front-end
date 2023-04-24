@@ -28,6 +28,7 @@ const NewDrugInput = (props) => {
     }
   }, [props.drugData]);
 
+  // TODO: Add dose ranges to drug table to alert user when out of range
   const onDrugChange = (drug) => {
     setSelectedDrug(drug);
 
@@ -58,7 +59,7 @@ const NewDrugInput = (props) => {
   };
 
   let doseWarningHTML = null;
-  if (drugData.dose < lowDose || drugData.dose > highDose) {
+  if (drugData.dose && (drugData.dose < lowDose || drugData.dose > highDose)) {
     doseWarningHTML = (
       <div className="alert alert-warning p-1 mt-1 mb-0">
         ALERT Dose Range: {lowDose} - {highDose} mg/kg
