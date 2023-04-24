@@ -25,7 +25,6 @@ const NewDrugInput = (props) => {
     }
   }, [props.drugData]);
 
-  // TODO: Add dose ranges to drug table to alert user when out of range
   const onDrugChange = (drug) => {
     setSelectedDrug(drug);
     let updatedDrugData = {
