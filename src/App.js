@@ -112,6 +112,10 @@ function App() {
             value: drug.id,
             label: drug.name,
             rxcui_code: drug.rxcui_code,
+            cat_low_dose: drug.cat_low_dose,
+            cat_high_dose: drug.cat_high_dose,
+            dog_low_dose: drug.dog_low_dose,
+            dog_high_dose: drug.dog_high_dose,
           };
         });
         setDrugOptions(updatedDrugOptions);
@@ -140,6 +144,7 @@ function App() {
     }
   };
 
+  // TODO: Add species to trigger dose range warning
   //Drug calculations for user required protocol
   const loadCalculations = () => {
     const params = [];
@@ -150,6 +155,7 @@ function App() {
           drugId: drug.drugId,
           dose: drug.dose,
           weight: patientInfo.weight,
+          species: patientInfo.species,
         };
         params.push(newDrug);
       }
@@ -287,6 +293,7 @@ function App() {
           populateHealthyPet={populateHealthyPet}
         ></PatientInfoForm>
         <NewProtocolForm
+          patientInfo={patientInfo}
           drugOptions={drugOptions}
           protocolDrugList={protocolDrugList}
           updateDrugList={updateDrugList}
