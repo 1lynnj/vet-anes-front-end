@@ -62,7 +62,7 @@ const NewDrugInput = (props) => {
   if (drugData.dose < lowDose || drugData.dose > highDose) {
     doseWarningHTML = (
       <div className="alert alert-warning p-1 mt-1 mb-0">
-        ALERT Dose Range: {lowDose} mg/kg - {highDose} mg/kg
+        ALERT Dose Range: {lowDose} - {highDose} mg/kg
       </div>
     );
   }
@@ -91,8 +91,8 @@ const NewDrugInput = (props) => {
           onChange={onDoseChange}
         />
       </td>
-      <td className="align-middle">{drugData.volume}</td>
-      <td className="align-middle">{drugData.route}</td>
+      <td className="align-top p-3">{drugData.volume}</td>
+      <td className="align-top p-3">{drugData.route}</td>
     </tr>
   );
 };
