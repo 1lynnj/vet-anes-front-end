@@ -58,6 +58,14 @@ const NewDrugInput = (props) => {
     props.updateDrugList(updatedDrugData);
   };
 
+  let doseWarningHTML = null;
+  if (drugData.dose < lowDose || drugData.dose > highDose) {
+    doseWarningHTML = (
+      <div className="alert alert-warning p-1 mt-1 mb-0">
+        ALERT Dose Range: {lowDose} mg/kg - {highDose} mg/kg
+      </div>
+    );
+  }
   return (
     <tr>
       <td>
@@ -71,7 +79,7 @@ const NewDrugInput = (props) => {
           }
           isClearable
         />
-        Dose Range:{lowDose} mg/kg - {highDose} mg/kg
+        {doseWarningHTML}
       </td>
       <td>
         <input

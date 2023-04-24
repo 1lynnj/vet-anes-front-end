@@ -155,6 +155,7 @@ function App() {
           drugId: drug.drugId,
           dose: drug.dose,
           weight: patientInfo.weight,
+          species: patientInfo.species,
         };
         params.push(newDrug);
       }
