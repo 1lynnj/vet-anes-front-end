@@ -14,7 +14,15 @@ const NewDrugInput = (props) => {
     if (props.drugData.drugId) {
       for (let drugOption of props.drugOptions) {
         if (drugOption.value === props.drugData.drugId) {
+          console.log(`drugOption: ${drugOption.value}`);
           setSelectedDrug(drugOption);
+          if (species === "Cat") {
+            setLowDose(drugOption.cat_low_dose);
+            setHighDose(drugOption.cat_high_dose);
+          } else {
+            setLowDose(drugOption.dog_low_dose);
+            setHighDose(drugOption.dog_high_dose);
+          }
         }
       }
     }
