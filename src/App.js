@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import vetLogo from "./vetLogo.png";
 import axios from "axios";
@@ -11,6 +13,9 @@ import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
 import DrugInteractionsForm from "./components/DrugInteractionsForm";
 import DrugInteractions from "./components/DrugInteractions";
+import CalcTabs from "./components/CalcTabs";
+import reactSelect from "react-select";
+import Home from "./components/Home"; // Assuming you have a Home component
 
 // TO DO: Add drugSet category to backend and remove hardcoded data
 function App() {
@@ -287,14 +292,30 @@ function App() {
         </div>
       </div>
       <div className={"container " + (!showDisclaimer ? "" : "d-none")}>
-        <Header newPatient={newPatient}></Header>
+        <Router>
+          <div className={"container " + (!showDisclaimer ? "" : "d-none")}>
+            <Header newPatient={newPatient} />
+            <p id="page-divider"></p>
+            <PatientInfoForm
+              setPatientInfo={setPatientInfo}
+              patientInfo={patientInfo}
+              populateHealthyPet={populateHealthyPet}
+            />
+            <CalcTabs />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/fluids" element={<FluidRatesList />} />
+            </Routes>
+          </div>
+        </Router>
+        {/* <Header newPatient={newPatient}></Header>
         <p id="page-divider"></p>
         <PatientInfoForm
           setPatientInfo={setPatientInfo}
           patientInfo={patientInfo}
           populateHealthyPet={populateHealthyPet}
-        ></PatientInfoForm>
-        <NewProtocolForm
+        ></PatientInfoForm> */}
+        {/* <NewProtocolForm
           patientInfo={patientInfo}
           drugOptions={drugOptions}
           protocolDrugList={protocolDrugList}
@@ -310,7 +331,7 @@ function App() {
             interactionsDrugList={interactionsDrugList}
             updateInteractionsDrugList={updateInteractionsDrugList}
           ></DrugInteractionsForm>
-        </div>
+        </div> */}
         <button
           onClick={submitProtocol}
           className="btn btn-primary float-end"
