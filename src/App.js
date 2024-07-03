@@ -262,14 +262,16 @@ function App() {
           <div className="row">
             <div className="col">
               <div
-                className="bubble text-center d-flex flex-column align-items-center justify-content-center"
+                className="bubble text-left d-flex flex-column align-items-center justify-content-center"
                 style={{ height: "100%" }}
               >
                 <img src={vetLogo} alt="logo" />
                 <h1>Veterinary Anesthesia Protocol</h1>
                 <h3>
-                  This is a DEMO project in development.<br></br> Not meant for
-                  use.
+                  This project is currently a DEMO in the development phase and
+                  is not intended for operational use. The developers and
+                  associated parties disclaim any and all liability for any use
+                  or reliance on this project in its current state.
                 </h3>
                 <br></br>
                 <button
