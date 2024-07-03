@@ -1,5 +1,5 @@
 import "./App.css";
-import vetLogo from "./vetLogo.png";
+import disclaimerLogo from "./vetLogo7.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
@@ -265,7 +265,7 @@ function App() {
                 className="bubble text-left d-flex flex-column align-items-center justify-content-center"
                 style={{ height: "100%" }}
               >
-                <img src={vetLogo} alt="logo" />
+                <img src={disclaimerLogo} alt="logo" />
                 <h1>Veterinary Anesthesia Protocol</h1>
                 <h3>
                   This project is currently a DEMO in the development phase and
