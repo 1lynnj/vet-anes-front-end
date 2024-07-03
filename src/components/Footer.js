@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div>
       <p className="mb-10" id="page-divider"></p>
-      <p id="footer-text">Copyright 2023 Lynn Jansheski</p>
+      <p id="footer-text">Copyright ©️ 2023 Lynn Jansheski</p>
       {/* Removing NIH API disclaimers for now. Drug interaction api deprecated. 
       TODO: Replace with human/vet drug classification */}
       {/* <p id="footer-text">
