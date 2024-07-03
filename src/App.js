@@ -1,5 +1,5 @@
 import "./App.css";
-import vetLogo from "./vetLogo.png";
+import vetLogo from "./vetLogo7.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PatientInfoForm from "./components/PatientInfoForm";
