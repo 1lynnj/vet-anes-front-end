@@ -45,7 +45,6 @@ function App() {
   const handlePatientInfoUpdate = async (newPatientInfo) => {
     setPatientInfo(newPatientInfo);
     const loadERDrugList = () => {
-      // Ensure weight is a float
       let weight = parseFloat(newPatientInfo.weight);
       let species = newPatientInfo.species;
       if (!isNaN(weight) && species) {
@@ -68,8 +67,94 @@ function App() {
     
     // Call loadERDrugList after its declaration
     loadERDrugList();
-  }
 
+  const loadFluidRatesList = () => {
+    let weight = parseFloat(newPatientInfo.weight);
+    let species = newPatientInfo.species;
+    if (!isNaN(weight) && species) {
+      // Construct the payload correctly
+      const params = {
+        weight: weight,
+        species: species
+      };
+    
+    axios
+      .post(`${BACKEND_HOST}/fluid_rates`, params)
+      // .post("http://127.0.0.1:8000/fluid_rates", params)
+      .then((response) => {
+        setFluidRatesList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  };
+    loadFluidRatesList();
+
+  const loadFentanylCRIList = () => {
+    let weight = parseFloat(newPatientInfo.weight);      
+    if (weight) {
+      axios
+      .post(`${BACKEND_HOST}/fentanyl_cri`, { weight: weight })
+      // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
+      .then((response) => {
+        setFentanylCRIList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  };
+  loadFentanylCRIList();
+    
+
+  // TODO: Needs dose in addition to weight and species
+  //   const loadCalculations = () => {
+  //     let weight = parseFloat(newPatientInfo.weight);
+  //     let species = newPatientInfo.species;
+  //     const params = [];
+  //     let newDrug = {};
+  //     for (const drug of protocolDrugList) {
+  //       if (drug.drugId !== "") {
+  //         newDrug = {
+  //           drugId: drug.drugId,
+  //           dose: drug.dose,
+  //           weight: weight,
+  //           species: species,
+  //         };
+  //         params.push(newDrug);
+  //       }
+  //     }
+  //     console.log(params);
+  //     axios
+  //       .post(`${BACKEND_HOST}/new_protocol`, params)
+  //       // .post("http://127.0.0.1:8000/new_protocol", params)
+  //       .then((response) => {
+  //         let calculatedDrugList = response.data;
+  
+  //         // TO DO: Refactor to remove nested for loop
+  //         let updatedDrugList = [];
+  //         for (const drug1 of protocolDrugList) {
+  //           let newDrug = drug1;
+  //           for (const drug2 of calculatedDrugList) {
+  //             if (drug1.drugId === drug2.id) {
+  //               newDrug = {
+  //                 ...drug1,
+  //                 volume: drug2.volume,
+  //                 route: drug2.route,
+  //               };
+  //             }
+  //           }
+  //           updatedDrugList.push(newDrug);
+  //         }
+  //         setProtocolDrugList(updatedDrugList);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //     }
+  // loadCalculations();
+  };
   
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
@@ -216,7 +301,7 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  };
+    }
 
   // useEffect(loadDrugInteractions, []);
 
@@ -256,42 +341,42 @@ function App() {
 
 
   //Returns calculations for fluid rates
-  const loadFluidRatesList = () => {
-    let weight = patientInfo.weight;
-    let species = patientInfo.species;
-    let params = { weight: weight, species: species };
-    axios
-      .post(`${BACKEND_HOST}/fluid_rates`, params)
-      // .post("http://127.0.0.1:8000/fluid_rates", params)
-      .then((response) => {
-        setFluidRatesList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const loadFluidRatesList = () => {
+  //   let weight = patientInfo.weight;
+  //   let species = patientInfo.species;
+  //   let params = { weight: weight, species: species };
+  //   axios
+  //     .post(`${BACKEND_HOST}/fluid_rates`, params)
+  //     // .post("http://127.0.0.1:8000/fluid_rates", params)
+  //     .then((response) => {
+  //       setFluidRatesList(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
-  //Returns calculations for fentanyl CRI
-  const loadFentanylCRIList = () => {
-    let weight = { weight: patientInfo.weight };
-    axios
-      .post(`${BACKEND_HOST}/fentanyl_cri`, weight)
-      // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
-      .then((response) => {
-        setFentanylCRIList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // //Returns calculations for fentanyl CRI
+  // const loadFentanylCRIList = () => {
+  //   let weight = { weight: patientInfo.weight };
+  //   axios
+  //     .post(`${BACKEND_HOST}/fentanyl_cri`, weight)
+  //     // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
+  //     .then((response) => {
+  //       setFentanylCRIList(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   //Calls functions for all calculations and NIH API call
   const submitProtocol = (e) => {
     e.preventDefault();
     loadCalculations();
     // loadERDrugList();
-    loadFluidRatesList();
-    loadFentanylCRIList();
+    // loadFluidRatesList();
+    // loadFentanylCRIList();
     loadDrugInteractions();
   };
 
