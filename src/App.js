@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 import DrugInteractionsForm from "./components/DrugInteractionsForm";
 import DrugInteractions from "./components/DrugInteractions";
 
-// TO DO: Add drugSet category to backend and remove hardcoded data
+// TODO: Add drugSet category to backend and remove hardcoded data
 function App() {
   const INITIAL_PROTOCOL_DRUG_LIST = require("./data/InitialProtocolDrugList.json");
   const CAT_PROTOCOL_DRUG_LIST = require("./data/CatProtocolDrugList.json");
@@ -37,10 +37,40 @@ function App() {
   const [drugInteractions, setDrugInteractions] = useState([]);
   const [showDisclaimer, setShowDisclaimer] = useState(true);
 
-  useEffect(() => {
-    updateInteractionsDrugList(protocolDrugList);
-  }, [protocolDrugList]);
+  // useEffect(() => {
+  //   updateInteractionsDrugList(protocolDrugList);
+  // }, [protocolDrugList]);
 
+
+  const handlePatientInfoUpdate = async (newPatientInfo) => {
+    setPatientInfo(newPatientInfo);
+    const loadERDrugList = () => {
+      // Ensure weight is a float
+      let weight = parseFloat(newPatientInfo.weight);
+      let species = newPatientInfo.species;
+      if (!isNaN(weight) && species) {
+        // Construct the payload correctly
+        const payload = {
+          weight: weight,
+          species: species
+        };
+
+        axios
+          .post(`${BACKEND_HOST}/er_drugs`, payload)
+          .then((response) => {
+            setERDrugList(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    };
+    
+    // Call loadERDrugList after its declaration
+    loadERDrugList();
+  }
+
+  
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
     window.location.hostname
@@ -188,21 +218,42 @@ function App() {
       });
   };
 
-  useEffect(loadDrugInteractions, []);
+  // useEffect(loadDrugInteractions, []);
 
   //Returns calculations for ER Drug Doses
-  const loadERDrugList = () => {
-    let weight = { weight: patientInfo.weight };
-    axios
-      .post(`${BACKEND_HOST}/er_drugs`, weight)
-      // .post("http://127.0.0.1:8000/er_drugs", weight)
-      .then((response) => {
-        setERDrugList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const loadERDrugList = async () => {
+  //   let weight = patientInfo.weight;
+  //   let species = patientInfo.species;
+  
+  //   try {
+  //     const response = await axios.post(`${BACKEND_HOST}/er_drugs`, weight, species);
+  //     setERDrugList(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // const loadERDrugList = () => {
+  //   let weight = patientInfo.weight;
+  //   let species = patientInfo.species;
+  //   let params = { weight: weight, species: species };
+  //   axios
+  //     .post(`${BACKEND_HOST}/er_drugs`, params)
+  //     // .post("http://127.0.0.1:8000/er_drugs", weight)
+  //     .then((response) => {
+  //       setERDrugList(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+
+  //   useEffect(() => {
+  //     if (weight && species) {
+  //       loadERDrugList();
+  //     }
+  //   }, [weight, species]);
+  // };
+
 
   //Returns calculations for fluid rates
   const loadFluidRatesList = () => {
@@ -238,7 +289,7 @@ function App() {
   const submitProtocol = (e) => {
     e.preventDefault();
     loadCalculations();
-    loadERDrugList();
+    // loadERDrugList();
     loadFluidRatesList();
     loadFentanylCRIList();
     loadDrugInteractions();
@@ -268,10 +319,10 @@ function App() {
                 <img src={vetLogo} alt="logo" />
                 <h1>Veterinary Anesthesia Protocol</h1>
                 <h3>
-                  This project is currently a DEMO in the development phase and
-                  is not intended for operational use. The developers and
-                  associated parties disclaim any and all liability for any use
-                  or reliance on this project in its current state.
+                  This project is currently a DEMO in the development phase and is
+                  not intended for operational use. The developers and associated
+                  parties disclaim any and all liability for any use or reliance
+                  on this project in its current state.
                 </h3>
                 <br></br>
                 <button
@@ -292,6 +343,7 @@ function App() {
         <PatientInfoForm
           setPatientInfo={setPatientInfo}
           patientInfo={patientInfo}
+          onPatientInfoChange={handlePatientInfoUpdate}
           populateHealthyPet={populateHealthyPet}
         ></PatientInfoForm>
         <NewProtocolForm
@@ -330,9 +382,7 @@ function App() {
             <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
           </div>
           <div className="col-xs-12 col-sm-3">
-            <FentanylCRIList
-              fentanylCRIList={fentanylCRIList}
-            ></FentanylCRIList>
+            <FentanylCRIList fentanylCRIList={fentanylCRIList}></FentanylCRIList>
           </div>
         </div>
         <div className="row">

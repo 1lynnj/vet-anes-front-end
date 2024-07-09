@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Select from "react-select";
 
 const PatientInfoForm = (props) => {
   let patientInfo = { ...props.patientInfo };
@@ -11,16 +10,21 @@ const PatientInfoForm = (props) => {
   const handleUserEntry = (e) => {
     let formFieldValue = e.target.value;
     const newFormData = {
-      ...patientInfo,
+      ...formData,
       [e.target.name]: formFieldValue,
     };
     setFormData(newFormData);
     props.setPatientInfo(newFormData);
+    props.onPatientInfoChange(newFormData);
+
+    if (e.target.name === "species") {
+      setSelectedSpecies({ value: formFieldValue, label: formFieldValue });
+    }
   };
 
   useEffect(() => {
     setSelectedSpecies(patientInfo.species);
-  }, [props.patientInfo]);
+  }, [patientInfo.species]);
 
   return (
     <form className="patient-information row">

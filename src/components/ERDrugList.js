@@ -1,7 +1,7 @@
 import React from "react";
 import ERDrug from "./ERDrug";
 
-// TO DO: Refactor to move inline styles to css
+// TODO: Refactor to move inline styles to css
 
 const ERDrugList = (props) => {
   return (
