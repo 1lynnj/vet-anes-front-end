@@ -9,8 +9,6 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
-import DrugInteractionsForm from "./components/DrugInteractionsForm";
-import DrugInteractions from "./components/DrugInteractions";
 
 // TODO: Add drugSet category to backend and remove hardcoded data
 function App() {
@@ -33,14 +31,7 @@ function App() {
   const [erDrugList, setERDrugList] = useState([]);
   const [fluidRatesList, setFluidRatesList] = useState([]);
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
-  const [interactionsDrugList, setInteractionsDrugList] = useState([]);
-  const [drugInteractions, setDrugInteractions] = useState([]);
   const [showDisclaimer, setShowDisclaimer] = useState(true);
-
-  // useEffect(() => {
-  //   updateInteractionsDrugList(protocolDrugList);
-  // }, [protocolDrugList]);
-
 
   const handlePatientInfoUpdate = async (newPatientInfo) => {
     setPatientInfo(newPatientInfo);
@@ -179,7 +170,6 @@ function App() {
     setERDrugList([]);
     setFluidRatesList([]);
     setFentanylCRIList([]);
-    setDrugInteractions([]);
   };
 
   //Updates drug list for use in protocol drug list and interactions drug list
@@ -201,19 +191,6 @@ function App() {
       }
       setProtocolDrugList(updatedDrugList);
     }
-    updateInteractionsDrugList();
-  };
-
-  //Updates list of rxcui codes for NIH API call
-  const updateInteractionsDrugList = () => {
-    const updatedDrugList = [];
-    for (const protocolDrug of protocolDrugList) {
-      if (protocolDrug.rxcui_code) {
-        const rxcuiCode = protocolDrug.rxcui_code;
-        updatedDrugList.push(rxcuiCode);
-      }
-    }
-    setInteractionsDrugList(updatedDrugList);
   };
 
   // Options for react Select element in DrugInput and OralDrugInput form fields
@@ -241,23 +218,6 @@ function App() {
   };
 
   useEffect(loadDrugOptions, []);
-
-  //API call to NIH drug interactions
-  const loadDrugInteractions = () => {
-    let rxcuiCodes = interactionsDrugList.join("+");
-    if (rxcuiCodes.length > 0) {
-      axios
-        .get(
-          `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
-        )
-        .then((response) => {
-          setDrugInteractions(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
 
   // TODO: Add species to trigger dose range warning
   //Drug calculations for user required protocol
@@ -303,81 +263,10 @@ function App() {
       });
     }
 
-  // useEffect(loadDrugInteractions, []);
-
-  //Returns calculations for ER Drug Doses
-  // const loadERDrugList = async () => {
-  //   let weight = patientInfo.weight;
-  //   let species = patientInfo.species;
-  
-  //   try {
-  //     const response = await axios.post(`${BACKEND_HOST}/er_drugs`, weight, species);
-  //     setERDrugList(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const loadERDrugList = () => {
-  //   let weight = patientInfo.weight;
-  //   let species = patientInfo.species;
-  //   let params = { weight: weight, species: species };
-  //   axios
-  //     .post(`${BACKEND_HOST}/er_drugs`, params)
-  //     // .post("http://127.0.0.1:8000/er_drugs", weight)
-  //     .then((response) => {
-  //       setERDrugList(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-
-  //   useEffect(() => {
-  //     if (weight && species) {
-  //       loadERDrugList();
-  //     }
-  //   }, [weight, species]);
-  // };
-
-
-  //Returns calculations for fluid rates
-  // const loadFluidRatesList = () => {
-  //   let weight = patientInfo.weight;
-  //   let species = patientInfo.species;
-  //   let params = { weight: weight, species: species };
-  //   axios
-  //     .post(`${BACKEND_HOST}/fluid_rates`, params)
-  //     // .post("http://127.0.0.1:8000/fluid_rates", params)
-  //     .then((response) => {
-  //       setFluidRatesList(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // //Returns calculations for fentanyl CRI
-  // const loadFentanylCRIList = () => {
-  //   let weight = { weight: patientInfo.weight };
-  //   axios
-  //     .post(`${BACKEND_HOST}/fentanyl_cri`, weight)
-  //     // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
-  //     .then((response) => {
-  //       setFentanylCRIList(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   //Calls functions for all calculations and NIH API call
   const submitProtocol = (e) => {
     e.preventDefault();
     loadCalculations();
-    // loadERDrugList();
-    // loadFluidRatesList();
-    // loadFentanylCRIList();
-    loadDrugInteractions();
   };
 
   //Shows disclaimer on initial page load
@@ -436,18 +325,7 @@ function App() {
           drugOptions={drugOptions}
           protocolDrugList={protocolDrugList}
           updateDrugList={updateDrugList}
-          interactionsDrugList={interactionsDrugList}
-          updateInteractionsDrugList={updateInteractionsDrugList}
         ></NewProtocolForm>
-        <div>
-          <DrugInteractionsForm
-            drugOptions={drugOptions}
-            protocolDrugList={protocolDrugList}
-            updateDrugList={updateDrugList}
-            interactionsDrugList={interactionsDrugList}
-            updateInteractionsDrugList={updateInteractionsDrugList}
-          ></DrugInteractionsForm>
-        </div>
         <button
           onClick={submitProtocol}
           className="btn btn-primary float-end"
@@ -475,14 +353,6 @@ function App() {
             <ERDrugList erDrugList={erDrugList}></ERDrugList>
           </div>
         </div>
-
-        <div id="drug-reactions-container">
-          <DrugInteractions
-            loadDrugInteractions={loadDrugInteractions}
-            drugInteractions={drugInteractions}
-          ></DrugInteractions>
-        </div>
-
         <div className="footer">
           <Footer></Footer>
         </div>
