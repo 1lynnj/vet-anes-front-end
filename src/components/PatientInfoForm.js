@@ -1,26 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Select from "react-select";
 
-const PatientInfoForm = (props) => {
-  let patientInfo = { ...props.patientInfo };
-  const [formData, setFormData] = useState(patientInfo);
-  const clearSpecies = { value: null, label: "" };
-  const [selectedSpecies, setSelectedSpecies] = useState(clearSpecies);
-
+const PatientInfoForm = ({ patientInfo, onPatientInfoChange, populateHealthyPet }) => { 
   const handleUserEntry = (e) => {
-    let formFieldValue = e.target.value;
-    const newFormData = {
+    const { name, value } = e.target;
+    const newPatientInfo = {
       ...patientInfo,
-      [e.target.name]: formFieldValue,
+      [name]: value
     };
-    setFormData(newFormData);
-    props.setPatientInfo(newFormData);
+    onPatientInfoChange(newPatientInfo);
   };
-
-  useEffect(() => {
-    setSelectedSpecies(patientInfo.species);
-  }, [props.patientInfo]);
 
   return (
     <form className="patient-information row">
@@ -35,7 +24,7 @@ const PatientInfoForm = (props) => {
           id="patientName"
           aria-describedby="patientName"
           name="name"
-          value={props.patientInfo.name}
+          value={patientInfo.name}
           onChange={handleUserEntry}
         />
         <p id="form-descriptions">Patient First and Last Name</p>
@@ -47,7 +36,7 @@ const PatientInfoForm = (props) => {
         <select
           className="form-select"
           name="species"
-          value={selectedSpecies}
+          value={patientInfo.species}
           onChange={handleUserEntry}
         >
           <option value=""></option>
@@ -67,7 +56,7 @@ const PatientInfoForm = (props) => {
           id="patientSignalment"
           aria-describedby="patientSignalment"
           name="signalment"
-          value={props.patientInfo.signalment}
+          value={patientInfo.signalment}
           onChange={handleUserEntry}
         />
         <p id="form-descriptions">Age, Sex and Reproductive Status, Breed</p>
@@ -82,7 +71,7 @@ const PatientInfoForm = (props) => {
           id="patientWeight"
           aria-describedby="patientWeight"
           name="weight"
-          value={props.patientInfo.weight}
+          value={patientInfo.weight}
           onChange={handleUserEntry}
         />
         <p id="form-descriptions">Weight in kg</p>
@@ -91,7 +80,7 @@ const PatientInfoForm = (props) => {
         <button
           id="submit-protocol"
           className="btn btn-primary float-end"
-          onClick={props.populateHealthyPet}
+          onClick={populateHealthyPet}
         >
           Healthy Pet
         </button>

@@ -9,21 +9,14 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
-import DrugInteractionsForm from "./components/DrugInteractionsForm";
-import DrugInteractions from "./components/DrugInteractions";
+import { INITIAL_PATIENT_INFO } from "./data/constants";
 
-// TO DO: Add drugSet category to backend and remove hardcoded data
+// TODO: Add drugSet category to backend and remove hardcoded data
 function App() {
   const INITIAL_PROTOCOL_DRUG_LIST = require("./data/InitialProtocolDrugList.json");
   const CAT_PROTOCOL_DRUG_LIST = require("./data/CatProtocolDrugList.json");
   const DOG_PROTOCOL_DRUG_LIST = require("./data/DogProtocolDrugList.json");
 
-  const INITIAL_PATIENT_INFO = {
-    name: "",
-    signalment: "",
-    weight: "",
-    species: "",
-  };
 
   const [patientInfo, setPatientInfo] = useState(INITIAL_PATIENT_INFO);
   const [protocolDrugList, setProtocolDrugList] = useState(
@@ -33,14 +26,120 @@ function App() {
   const [erDrugList, setERDrugList] = useState([]);
   const [fluidRatesList, setFluidRatesList] = useState([]);
   const [fentanylCRIList, setFentanylCRIList] = useState([]);
-  const [interactionsDrugList, setInteractionsDrugList] = useState([]);
-  const [drugInteractions, setDrugInteractions] = useState([]);
   const [showDisclaimer, setShowDisclaimer] = useState(true);
 
-  useEffect(() => {
-    updateInteractionsDrugList(protocolDrugList);
-  }, [protocolDrugList]);
+  const handlePatientInfoUpdate = async (newPatientInfo) => {
+    setPatientInfo(newPatientInfo);
+    const loadERDrugList = () => {
+      let weight = parseFloat(newPatientInfo.weight);
+      let species = newPatientInfo.species;
+      if (!isNaN(weight) && species) {
+        // Construct the payload correctly
+        const payload = {
+          weight: weight,
+          species: species
+        };
 
+        axios
+          .post(`${BACKEND_HOST}/er_drugs`, payload)
+          .then((response) => {
+            setERDrugList(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    };
+    
+    // Call loadERDrugList after its declaration
+    loadERDrugList();
+
+  const loadFluidRatesList = () => {
+    let weight = parseFloat(newPatientInfo.weight);
+    let species = newPatientInfo.species;
+    if (!isNaN(weight) && species) {
+      // Construct the payload correctly
+      const params = {
+        weight: weight,
+        species: species
+      };
+    
+    axios
+      .post(`${BACKEND_HOST}/fluid_rates`, params)
+      // .post("http://127.0.0.1:8000/fluid_rates", params)
+      .then((response) => {
+        setFluidRatesList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  };
+    loadFluidRatesList();
+
+  const loadFentanylCRIList = () => {
+    let weight = parseFloat(newPatientInfo.weight);      
+    if (weight) {
+      axios
+      .post(`${BACKEND_HOST}/fentanyl_cri`, { weight: weight })
+      // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
+      .then((response) => {
+        setFentanylCRIList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  };
+  loadFentanylCRIList();
+    
+    const loadCalculations = () => {
+      let weight = parseFloat(newPatientInfo.weight);
+      let species = newPatientInfo.species;
+      const params = [];
+      let newDrug = {};
+      for (const drug of protocolDrugList) {
+        if (drug.drugId !== "") {
+          newDrug = {
+            drugId: drug.drugId,
+            dose: drug.dose,
+            weight: weight,
+            species: species,
+          };
+          params.push(newDrug);
+        }
+      }
+      console.log(params);
+      axios
+        .post(`${BACKEND_HOST}/new_protocol`, params)
+        // .post("http://127.0.0.1:8000/new_protocol", params)
+        .then((response) => {
+          let calculatedDrugList = response.data;
+  
+          // TO DO: Refactor to remove nested for loop
+          let updatedDrugList = [];
+          for (const drug1 of protocolDrugList) {
+            let newDrug = drug1;
+            for (const drug2 of calculatedDrugList) {
+              if (drug1.drugId === drug2.id) {
+                newDrug = {
+                  ...drug1,
+                  volume: drug2.volume,
+                  route: drug2.route,
+                };
+              }
+            }
+            updatedDrugList.push(newDrug);
+          }
+          setProtocolDrugList(updatedDrugList);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+  loadCalculations();
+  };
+  
   // For development
   const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
     window.location.hostname
@@ -64,7 +163,6 @@ function App() {
     setERDrugList([]);
     setFluidRatesList([]);
     setFentanylCRIList([]);
-    setDrugInteractions([]);
   };
 
   //Updates drug list for use in protocol drug list and interactions drug list
@@ -86,19 +184,6 @@ function App() {
       }
       setProtocolDrugList(updatedDrugList);
     }
-    updateInteractionsDrugList();
-  };
-
-  //Updates list of rxcui codes for NIH API call
-  const updateInteractionsDrugList = () => {
-    const updatedDrugList = [];
-    for (const protocolDrug of protocolDrugList) {
-      if (protocolDrug.rxcui_code) {
-        const rxcuiCode = protocolDrug.rxcui_code;
-        updatedDrugList.push(rxcuiCode);
-      }
-    }
-    setInteractionsDrugList(updatedDrugList);
   };
 
   // Options for react Select element in DrugInput and OralDrugInput form fields
@@ -126,23 +211,6 @@ function App() {
   };
 
   useEffect(loadDrugOptions, []);
-
-  //API call to NIH drug interactions
-  const loadDrugInteractions = () => {
-    let rxcuiCodes = interactionsDrugList.join("+");
-    if (rxcuiCodes.length > 0) {
-      axios
-        .get(
-          `https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuiCodes}`
-        )
-        .then((response) => {
-          setDrugInteractions(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
 
   // TODO: Add species to trigger dose range warning
   //Drug calculations for user required protocol
@@ -186,62 +254,12 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  useEffect(loadDrugInteractions, []);
-
-  //Returns calculations for ER Drug Doses
-  const loadERDrugList = () => {
-    let weight = { weight: patientInfo.weight };
-    axios
-      .post(`${BACKEND_HOST}/er_drugs`, weight)
-      // .post("http://127.0.0.1:8000/er_drugs", weight)
-      .then((response) => {
-        setERDrugList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  //Returns calculations for fluid rates
-  const loadFluidRatesList = () => {
-    let weight = patientInfo.weight;
-    let species = patientInfo.species;
-    let params = { weight: weight, species: species };
-    axios
-      .post(`${BACKEND_HOST}/fluid_rates`, params)
-      // .post("http://127.0.0.1:8000/fluid_rates", params)
-      .then((response) => {
-        setFluidRatesList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  //Returns calculations for fentanyl CRI
-  const loadFentanylCRIList = () => {
-    let weight = { weight: patientInfo.weight };
-    axios
-      .post(`${BACKEND_HOST}/fentanyl_cri`, weight)
-      // .post("http://127.0.0.1:8000/fentanyl_cri", weight)
-      .then((response) => {
-        setFentanylCRIList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    }
 
   //Calls functions for all calculations and NIH API call
   const submitProtocol = (e) => {
     e.preventDefault();
     loadCalculations();
-    loadERDrugList();
-    loadFluidRatesList();
-    loadFentanylCRIList();
-    loadDrugInteractions();
   };
 
   //Shows disclaimer on initial page load
@@ -268,10 +286,10 @@ function App() {
                 <img src={vetLogo} alt="logo" />
                 <h1>Veterinary Anesthesia Protocol</h1>
                 <h3>
-                  This project is currently a DEMO in the development phase and
-                  is not intended for operational use. The developers and
-                  associated parties disclaim any and all liability for any use
-                  or reliance on this project in its current state.
+                  This project is currently a DEMO in the development phase and is
+                  not intended for operational use. The developers and associated
+                  parties disclaim any and all liability for any use or reliance
+                  on this project in its current state.
                 </h3>
                 <br></br>
                 <button
@@ -290,8 +308,9 @@ function App() {
         <Header newPatient={newPatient}></Header>
         <p id="page-divider"></p>
         <PatientInfoForm
-          setPatientInfo={setPatientInfo}
+          initialPatientInfo={INITIAL_PATIENT_INFO}
           patientInfo={patientInfo}
+          onPatientInfoChange={handlePatientInfoUpdate}
           populateHealthyPet={populateHealthyPet}
         ></PatientInfoForm>
         <NewProtocolForm
@@ -299,18 +318,7 @@ function App() {
           drugOptions={drugOptions}
           protocolDrugList={protocolDrugList}
           updateDrugList={updateDrugList}
-          interactionsDrugList={interactionsDrugList}
-          updateInteractionsDrugList={updateInteractionsDrugList}
         ></NewProtocolForm>
-        <div>
-          <DrugInteractionsForm
-            drugOptions={drugOptions}
-            protocolDrugList={protocolDrugList}
-            updateDrugList={updateDrugList}
-            interactionsDrugList={interactionsDrugList}
-            updateInteractionsDrugList={updateInteractionsDrugList}
-          ></DrugInteractionsForm>
-        </div>
         <button
           onClick={submitProtocol}
           className="btn btn-primary float-end"
@@ -330,9 +338,7 @@ function App() {
             <FluidRatesList fluidRatesList={fluidRatesList}></FluidRatesList>
           </div>
           <div className="col-xs-12 col-sm-3">
-            <FentanylCRIList
-              fentanylCRIList={fentanylCRIList}
-            ></FentanylCRIList>
+            <FentanylCRIList fentanylCRIList={fentanylCRIList}></FentanylCRIList>
           </div>
         </div>
         <div className="row">
@@ -340,14 +346,6 @@ function App() {
             <ERDrugList erDrugList={erDrugList}></ERDrugList>
           </div>
         </div>
-
-        <div id="drug-reactions-container">
-          <DrugInteractions
-            loadDrugInteractions={loadDrugInteractions}
-            drugInteractions={drugInteractions}
-          ></DrugInteractions>
-        </div>
-
         <div className="footer">
           <Footer></Footer>
         </div>
