@@ -9,6 +9,7 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
+import { INITIAL_PATIENT_INFO } from "./data/constants";
 
 // TODO: Add drugSet category to backend and remove hardcoded data
 function App() {
@@ -16,12 +17,6 @@ function App() {
   const CAT_PROTOCOL_DRUG_LIST = require("./data/CatProtocolDrugList.json");
   const DOG_PROTOCOL_DRUG_LIST = require("./data/DogProtocolDrugList.json");
 
-  const INITIAL_PATIENT_INFO = {
-    name: "",
-    signalment: "",
-    weight: "",
-    species: "",
-  };
 
   const [patientInfo, setPatientInfo] = useState(INITIAL_PATIENT_INFO);
   const [protocolDrugList, setProtocolDrugList] = useState(
@@ -98,53 +93,51 @@ function App() {
   };
   loadFentanylCRIList();
     
-
-  // TODO: Needs dose in addition to weight and species
-  //   const loadCalculations = () => {
-  //     let weight = parseFloat(newPatientInfo.weight);
-  //     let species = newPatientInfo.species;
-  //     const params = [];
-  //     let newDrug = {};
-  //     for (const drug of protocolDrugList) {
-  //       if (drug.drugId !== "") {
-  //         newDrug = {
-  //           drugId: drug.drugId,
-  //           dose: drug.dose,
-  //           weight: weight,
-  //           species: species,
-  //         };
-  //         params.push(newDrug);
-  //       }
-  //     }
-  //     console.log(params);
-  //     axios
-  //       .post(`${BACKEND_HOST}/new_protocol`, params)
-  //       // .post("http://127.0.0.1:8000/new_protocol", params)
-  //       .then((response) => {
-  //         let calculatedDrugList = response.data;
+    const loadCalculations = () => {
+      let weight = parseFloat(newPatientInfo.weight);
+      let species = newPatientInfo.species;
+      const params = [];
+      let newDrug = {};
+      for (const drug of protocolDrugList) {
+        if (drug.drugId !== "") {
+          newDrug = {
+            drugId: drug.drugId,
+            dose: drug.dose,
+            weight: weight,
+            species: species,
+          };
+          params.push(newDrug);
+        }
+      }
+      console.log(params);
+      axios
+        .post(`${BACKEND_HOST}/new_protocol`, params)
+        // .post("http://127.0.0.1:8000/new_protocol", params)
+        .then((response) => {
+          let calculatedDrugList = response.data;
   
-  //         // TO DO: Refactor to remove nested for loop
-  //         let updatedDrugList = [];
-  //         for (const drug1 of protocolDrugList) {
-  //           let newDrug = drug1;
-  //           for (const drug2 of calculatedDrugList) {
-  //             if (drug1.drugId === drug2.id) {
-  //               newDrug = {
-  //                 ...drug1,
-  //                 volume: drug2.volume,
-  //                 route: drug2.route,
-  //               };
-  //             }
-  //           }
-  //           updatedDrugList.push(newDrug);
-  //         }
-  //         setProtocolDrugList(updatedDrugList);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //     }
-  // loadCalculations();
+          // TO DO: Refactor to remove nested for loop
+          let updatedDrugList = [];
+          for (const drug1 of protocolDrugList) {
+            let newDrug = drug1;
+            for (const drug2 of calculatedDrugList) {
+              if (drug1.drugId === drug2.id) {
+                newDrug = {
+                  ...drug1,
+                  volume: drug2.volume,
+                  route: drug2.route,
+                };
+              }
+            }
+            updatedDrugList.push(newDrug);
+          }
+          setProtocolDrugList(updatedDrugList);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+  loadCalculations();
   };
   
   // For development
@@ -315,7 +308,7 @@ function App() {
         <Header newPatient={newPatient}></Header>
         <p id="page-divider"></p>
         <PatientInfoForm
-          setPatientInfo={setPatientInfo}
+          initialPatientInfo={INITIAL_PATIENT_INFO}
           patientInfo={patientInfo}
           onPatientInfoChange={handlePatientInfoUpdate}
           populateHealthyPet={populateHealthyPet}
