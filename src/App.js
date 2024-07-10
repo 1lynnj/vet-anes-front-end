@@ -112,7 +112,7 @@ function App() {
     setFentanylCRIList([]);
   };
 
-  //Updates drug list for use in protocol drug list and interactions drug list
+  //Updates drug list for use in protocol drug list
   const updateDrugList = (newDrugData) => {
     const updatedDrugList = [];
     for (const drug of protocolDrugList) {
