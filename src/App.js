@@ -9,15 +9,10 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
-import { INITIAL_PATIENT_INFO } from "./data/constants";
+import { INITIAL_PATIENT_INFO, INITIAL_PROTOCOL_DRUG_LIST, CAT_PROTOCOL_DRUG_LIST, DOG_PROTOCOL_DRUG_LIST } from "./data/constants";
 
 // TODO: Add drugSet category to backend and remove hardcoded data
 function App() {
-  const INITIAL_PROTOCOL_DRUG_LIST = require("./data/InitialProtocolDrugList.json");
-  const CAT_PROTOCOL_DRUG_LIST = require("./data/CatProtocolDrugList.json");
-  const DOG_PROTOCOL_DRUG_LIST = require("./data/DogProtocolDrugList.json");
-
-
   const [patientInfo, setPatientInfo] = useState(INITIAL_PATIENT_INFO);
   const [protocolDrugList, setProtocolDrugList] = useState(
     INITIAL_PROTOCOL_DRUG_LIST
@@ -49,16 +44,13 @@ function App() {
             console.log(error);
           });
       }
-    };
-    
-    // Call loadERDrugList after its declaration
+    };    
     loadERDrugList();
 
   const loadFluidRatesList = () => {
     let weight = parseFloat(newPatientInfo.weight);
     let species = newPatientInfo.species;
     if (!isNaN(weight) && species) {
-      // Construct the payload correctly
       const params = {
         weight: weight,
         species: species
@@ -92,52 +84,7 @@ function App() {
     }
   };
   loadFentanylCRIList();
-    
-    const loadCalculations = () => {
-      let weight = parseFloat(newPatientInfo.weight);
-      let species = newPatientInfo.species;
-      const params = [];
-      let newDrug = {};
-      for (const drug of protocolDrugList) {
-        if (drug.drugId !== "") {
-          newDrug = {
-            drugId: drug.drugId,
-            dose: drug.dose,
-            weight: weight,
-            species: species,
-          };
-          params.push(newDrug);
-        }
-      }
-      console.log(params);
-      axios
-        .post(`${BACKEND_HOST}/new_protocol`, params)
-        // .post("http://127.0.0.1:8000/new_protocol", params)
-        .then((response) => {
-          let calculatedDrugList = response.data;
-  
-          // TO DO: Refactor to remove nested for loop
-          let updatedDrugList = [];
-          for (const drug1 of protocolDrugList) {
-            let newDrug = drug1;
-            for (const drug2 of calculatedDrugList) {
-              if (drug1.drugId === drug2.id) {
-                newDrug = {
-                  ...drug1,
-                  volume: drug2.volume,
-                  route: drug2.route,
-                };
-              }
-            }
-            updatedDrugList.push(newDrug);
-          }
-          setProtocolDrugList(updatedDrugList);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-  loadCalculations();
+
   };
   
   // For development

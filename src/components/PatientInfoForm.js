@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 
 const PatientInfoForm = ({ patientInfo, onPatientInfoChange, populateHealthyPet }) => { 
   const handleUserEntry = (e) => {
