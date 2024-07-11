@@ -418,3 +418,9 @@ export const DOG_PROTOCOL_DRUG_LIST = [
         "rxcui_code": ""
     }
 ]
+
+export const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
+    window.location.hostname
+  )
+    ? `http://${window.location.hostname}:8000`
+    : "https://vet-anes.herokuapp.com";

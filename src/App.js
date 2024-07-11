@@ -9,7 +9,7 @@ import ERDrugList from "./components/ERDrugList";
 import FluidRatesList from "./components/FluidRatesList";
 import FentanylCRIList from "./components/FentanylCRIList";
 import Footer from "./components/Footer";
-import { INITIAL_PATIENT_INFO, INITIAL_PROTOCOL_DRUG_LIST, CAT_PROTOCOL_DRUG_LIST, DOG_PROTOCOL_DRUG_LIST } from "./data/constants";
+import { INITIAL_PATIENT_INFO, INITIAL_PROTOCOL_DRUG_LIST, CAT_PROTOCOL_DRUG_LIST, DOG_PROTOCOL_DRUG_LIST, BACKEND_HOST } from "./data/constants";
 
 // TODO: Add drugSet category to backend and remove hardcoded data
 function App() {
@@ -87,13 +87,6 @@ function App() {
 
   };
   
-  // For development
-  const BACKEND_HOST = ["localhost", "127.0.0.1"].includes(
-    window.location.hostname
-  )
-    ? `http://${window.location.hostname}:8000`
-    : "https://vet-anes.herokuapp.com";
-
   const populateHealthyPet = (e) => {
     e.preventDefault();
     if (patientInfo.species === "cat" || patientInfo.species === "Cat") {
