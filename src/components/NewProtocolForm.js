@@ -41,21 +41,18 @@ const NewProtocolForm = (props) => {
               drugData={props.protocolDrugList[0]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <NewDrugInput
               patientInfo={props.patientInfo}
               drugData={props.protocolDrugList[1]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <NewDrugInput
               patientInfo={props.patientInfo}
               drugData={props.protocolDrugList[2]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <tr className="trailing-row"></tr>
           </tbody>
@@ -78,21 +75,18 @@ const NewProtocolForm = (props) => {
               drugData={props.protocolDrugList[3]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <NewDrugInput
               patientInfo={props.patientInfo}
               drugData={props.protocolDrugList[4]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <NewDrugInput
               patientInfo={props.patientInfo}
               drugData={props.protocolDrugList[5]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <tr className="trailing-row"></tr>
           </tbody>
@@ -116,28 +110,24 @@ const NewProtocolForm = (props) => {
               drugData={props.protocolDrugList[6]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <NewDrugInput
               patientInfo={props.patientInfo}
               drugData={props.protocolDrugList[7]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <NewDrugInput
               patientInfo={props.patientInfo}
               drugData={props.protocolDrugList[8]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
             <NewDrugInput
               patientInfo={props.patientInfo}
               drugData={props.protocolDrugList[9]}
               updateDrugList={props.updateDrugList}
               drugOptions={props.drugOptions}
-              updateInteractionsDrugList={props.updateInteractionsDrugList}
             ></NewDrugInput>
           </tbody>
           <tbody>
