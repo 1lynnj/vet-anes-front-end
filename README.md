@@ -11,6 +11,7 @@ Popular tools currently in use:
 - Allows custom protocols for cats and dogs by entering each required drug and the required dose individually. 
  - Auto populates protocols for healthy cats and dogs with the click of a button.
  - Calculates drug dosages for anesthesia, Fentanyl (pain) continuous rate infusion, fluid rates, and emergency drugs.
+ - The app goes further by pulling drug interactions from the National Institutes of Health drug interactions API to warn the anesthetist of possible drug interactions. Includes all drugs administered within 12 hours of the anesthetic event and are present in the NIH Database. **Feature removed due to deprecation of drug interation endpoint by NIH**
 
 ## Setup and Dependencies
 
