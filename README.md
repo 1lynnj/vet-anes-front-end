@@ -3,8 +3,8 @@
 A web application to reduce drug calculation errors with veterinary anesthetic protocols. 
 
 Popular tools currently in use:
-- blank forms where medical staff manually write in and calculate drug dosages using a calculator
-- excel spreadsheets where some calculations can be automated but are prone to user error through spreadsheet interference 
+- Blank forms where medical staff manually write in and calculate drug dosages using a calculator
+- Excel spreadsheets where some calculations can be automated but are prone to user error through spreadsheet interference 
 
 ## Features
 
